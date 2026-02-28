@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0D0D0B">
+<title>Chapter One — Apply Now</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Work+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* TWS Brand */
+  --ivory:      #F7F5F2;
+  --stone:      #ECEAE6;
+  --charcoal:   #2E2F2C;
+  --slate:      #6B6E6A;
+  --olive:      #7C8A5A;
+  --steel:      #6F8191;
+  --gold:       #C7B27A;
+  --gold-dim:   rgba(199,178,122,0.22);
+  --gold-line:  rgba(199,178,122,0.35);
+  --cta:        #3F4438;
+  --cta-hover:  #7C8A5A;
+
+  /* Dark theme surfaces */
+  --black:      #0D0D0B;       /* Hero + Confirm bg */
+  --quiz-bg:    #181A16;       /* Quiz bg — deep charcoal, not pure black */
+  --quiz-card:  rgba(255,255,255,0.032); /* Subtle card lift on quiz */
+  --border:     rgba(199,178,122,0.20);
+
+  /* Typography */
+  --serif:   'Playfair Display', Georgia, serif;
+  --sans:    'Work Sans', sans-serif;
+  --body:    'Cormorant Garamond', Georgia, serif;
+}
+
+html, body {
+  height: 100%; width: 100%;
+  overflow: hidden;
+  font-family: var(--body);
+  background: var(--black);
+  color: var(--ivory);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Grain */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ══════════════════════════════
+   SCREEN SYSTEM
+══════════════════════════════ */
+.screen {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform: translateX(40px);
+}
+.screen.active  { opacity: 1; pointer-events: all; transform: translateX(0); }
+.screen.exit    { opacity: 0; transform: translateX(-40px); pointer-events: none; }
+
+/* ══════════════════════════════
+   HERO — pure black, dramatic
+══════════════════════════════ */
+#screen-hero {
+  background: var(--black);
+  align-items: stretch;
+  padding: 0;
+}
+
+/* Radial glow — warmth without color */
+#screen-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(199,178,122,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Top accent bar */
+#screen-hero::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.hero-top {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: max(48px, env(safe-area-inset-top, 48px)) 28px 16px;
+  position: relative;
+}
+
+.logo-mark {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 24px;
+  opacity: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 8px;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.roman {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(60px, 18vw, 116px);
+  line-height: 0.88;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold);
+  opacity: 0.9;
+  text-shadow: 0 0 60px rgba(199,178,122,0.15);
+  opacity: 0;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(30px, 8.5vw, 58px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  line-height: 1;
+  margin-top: 6px;
+  opacity: 0;
+}
+
+.hero-sub {
+  font-family: var(--body);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(13.5px, 3.5vw, 17px);
+  color: var(--slate);
+  margin-top: 14px;
+  opacity: 0;
+}
+
+.hero-divider {
+  display: flex; align-items: center; gap: 10px;
+  margin: 18px auto;
+  opacity: 0;
+}
+.hero-divider::before, .hero-divider::after {
+  content: ''; width: 28px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.hero-divider::after { transform: scaleX(-1); }
+.divider-gem {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.8;
+}
+
+.hero-body {
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(12px, 3vw, 13.5px);
+  line-height: 1.9;
+  color: rgba(236,234,230,0.60);
+  max-width: 300px;
+  opacity: 0;
+}
+.hero-body strong { color: var(--ivory); font-weight: 400; }
+
+/* Hero animations */
+#screen-hero.active .logo-mark   { animation: fadeUp 0.7s 0.08s ease forwards; }
+#screen-hero.active .roman        { animation: fadeUp 0.7s 0.20s ease forwards; }
+#screen-hero.active .hero-title   { animation: fadeUp 0.7s 0.30s ease forwards; }
+#screen-hero.active .hero-sub     { animation: fadeUp 0.7s 0.40s ease forwards; }
+#screen-hero.active .hero-divider { animation: fadeUp 0.7s 0.48s ease forwards; }
+#screen-hero.active .hero-body    { animation: fadeUp 0.7s 0.56s ease forwards; }
+#screen-hero.active .hero-bottom  { animation: fadeUp 0.7s 0.68s ease forwards; }
+
+/* Pinned CTA */
+.hero-bottom {
+  flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px;
+  padding: 20px 28px max(24px, calc(env(safe-area-inset-bottom, 0px) + 18px));
+  background: linear-gradient(to bottom, transparent, rgba(13,13,11,0.95) 35%, var(--black));
+  opacity: 0;
+  position: relative;
+}
+
+.cta-btn {
+  width: 100%; max-width: 360px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 18px 32px;
+  cursor: pointer;
+  position: relative; overflow: hidden;
+  -webkit-appearance: none;
+  transition: transform 0.15s ease;
+}
+.cta-btn:active { transform: scale(0.98); }
+.cta-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--ivory);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.cta-btn:hover::before { transform: translateX(0); }
+.cta-btn span { position: relative; z-index: 1; }
+
+.cta-note {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  color: rgba(107,110,106,0.7);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════
+   QUIZ — deep charcoal, warmer
+══════════════════════════════ */
+.screen-quiz {
+  background: var(--quiz-bg);
+  padding-top: max(0px, env(safe-area-inset-top, 0px));
+}
+
+.quiz-topbar {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 22px 13px;
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-logo {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.topbar-step {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.progress-bar-wrap {
+  flex-shrink: 0;
+  height: 1px;
+  background: rgba(199,178,122,0.15);
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--olive), var(--gold));
+  transition: width 0.55s ease;
+}
+
+.quiz-content {
+  flex: 1;
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 28px 22px 8px;
+}
+
+.quiz-nav {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 22px;
+  padding-bottom: max(14px, calc(env(safe-area-inset-bottom, 0px) + 10px));
+  background: var(--quiz-bg);
+  border-top: 1px solid var(--border);
+}
+
+/* Question text */
+.q-number {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 12px;
+}
+
+.q-text {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(20px, 5.4vw, 26px);
+  color: var(--ivory);
+  line-height: 1.28;
+  margin-bottom: 8px;
+}
+
+.q-sub {
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(12.5px, 3.1vw, 14px);
+  color: var(--slate);
+  line-height: 1.68;
+  margin-bottom: 24px;
+}
+
+/* Choices */
+.choices { display: flex; flex-direction: column; gap: 9px; padding-bottom: 10px; }
+
+.choice {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 15px;
+  border: 1px solid rgba(199,178,122,0.18);
+  background: var(--quiz-card);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(13px, 3.3vw, 14.5px);
+  color: rgba(236,234,230,0.65);
+  line-height: 1.45;
+  transition: border-color 0.22s, background 0.22s, color 0.22s;
+  -webkit-appearance: none; width: 100%;
+}
+.choice:active { background: rgba(124,138,90,0.1); }
+.choice.selected {
+  border-color: rgba(124,138,90,0.6);
+  background: rgba(124,138,90,0.09);
+  color: var(--ivory);
+}
+
+.choice-dot {
+  width: 17px; height: 17px;
+  border: 1px solid rgba(199,178,122,0.3);
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.22s;
+}
+.choice.selected .choice-dot { background: var(--olive); border-color: var(--olive); }
+.choice-check {
+  width: 5px; height: 5px;
+  background: var(--ivory);
+  border-radius: 50%;
+  opacity: 0; transition: opacity 0.2s;
+}
+.choice.selected .choice-check { opacity: 1; }
+
+/* Textarea */
+.textarea-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(199,178,122,0.25);
+  background: transparent;
+  padding: 10px 0;
+  font-family: var(--body);
+  font-size: clamp(16px, 4vw, 18px);
+  font-weight: 300;
+  color: var(--ivory);
+  outline: none; resize: none;
+  height: 95px; line-height: 1.7;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+.textarea-input:focus { border-bottom-color: var(--olive); }
+.textarea-input::placeholder { color: rgba(199,178,122,0.35); font-style: italic; }
+
+/* Contact */
+.contact-fields { display: flex; flex-direction: column; gap: 26px; padding-bottom: 10px; }
+
+.field-label {
+  display: block;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 7px;
+}
+
+.text-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(199,178,122,0.25);
+  background: transparent;
+  padding: 9px 0;
+  font-family: var(--body);
+  font-size: clamp(17px, 4.2vw, 20px);
+  font-weight: 300;
+  color: var(--ivory);
+  outline: none;
+  transition: border-color 0.3s;
+  -webkit-appearance: none; border-radius: 0;
+}
+.text-input:focus { border-bottom-color: var(--olive); }
+.text-input::placeholder { color: rgba(199,178,122,0.3); font-style: italic; }
+
+/* Nav */
+.btn-back {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(107,110,106,0.7);
+  background: none; border: none;
+  cursor: pointer; padding: 10px 0;
+  -webkit-appearance: none;
+  transition: color 0.2s;
+}
+.btn-back:hover { color: var(--slate); }
+.btn-back:disabled { opacity: 0; pointer-events: none; }
+
+.btn-next {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 14px 28px;
+  cursor: pointer;
+  position: relative; overflow: hidden;
+  -webkit-appearance: none;
+  transition: transform 0.15s ease;
+}
+.btn-next:active { transform: scale(0.97); }
+.btn-next::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--olive);
+  transform: translateX(-100%);
+  transition: transform 0.38s ease;
+}
+.btn-next:hover::before { transform: translateX(0); }
+.btn-next span { position: relative; z-index: 1; color: var(--black); }
+.btn-next:hover span { color: var(--ivory); }
+.btn-next:disabled { opacity: 0.28; cursor: default; }
+.btn-next:disabled::before { display: none; }
+
+/* ══════════════════════════════
+   CONFIRMATION — pure black, ceremonial
+══════════════════════════════ */
+#screen-confirm {
+  background: var(--black);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  align-items: center;
+  justify-content: flex-start;
+  padding: max(56px, env(safe-area-inset-top, 56px)) 28px max(44px, calc(env(safe-area-inset-bottom, 0px) + 28px));
+}
+
+/* Radial glow on confirm too */
+#screen-confirm::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 20%, rgba(199,178,122,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Gold hairline top */
+#screen-confirm::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.conf-inner {
+  max-width: 480px; width: 100%;
+  margin: 0 auto; text-align: center;
+  position: relative;
+}
+
+.conf-ornament {
+  font-family: var(--serif);
+  font-size: 42px;
+  color: var(--gold);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 40px rgba(199,178,122,0.3);
+}
+
+.conf-eyebrow {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 8.5px;
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 14px;
+}
+
+.conf-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(28px, 7.5vw, 46px);
+  color: var(--ivory);
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+.conf-title em { font-style: italic; color: var(--gold); }
+
+.conf-divider {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin: 20px auto 24px;
+}
+.conf-divider::before, .conf-divider::after {
+  content: ''; width: 24px; height: 1px;
+  background: rgba(199,178,122,0.4);
+}
+.conf-gem {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.75;
+}
+
+.conf-letter {
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(14.5px, 3.8vw, 17px);
+  line-height: 1.9;
+  color: rgba(236,234,230,0.62);
+  text-align: left;
+}
+.conf-letter strong { color: var(--gold); font-weight: 400; }
+.conf-letter p + p { margin-top: 14px; }
+
+.conf-sig {
+  display: block;
+  margin-top: 28px;
+  font-family: var(--body);
+  font-style: italic;
+  font-size: clamp(17px, 4.2vw, 20px);
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.conf-footer {
+  margin-top: 44px;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 8.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(107,110,106,0.5);
+}
+
+/* Confirm animations */
+#screen-confirm.active .conf-ornament { animation: fadeUp 0.65s 0.10s ease both; }
+#screen-confirm.active .conf-eyebrow  { animation: fadeUp 0.65s 0.22s ease both; }
+#screen-confirm.active .conf-title    { animation: fadeUp 0.65s 0.32s ease both; }
+#screen-confirm.active .conf-divider  { animation: fadeUp 0.65s 0.44s ease both; }
+#screen-confirm.active .conf-letter   { animation: fadeUp 0.65s 0.56s ease both; }
+#screen-confirm.active .conf-footer   { animation: fadeUp 0.65s 0.72s ease both; }
+
+/* ── ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="screen active" id="screen-hero">
+  <div class="hero-top">
+    <p class="logo-mark">Two Wild Souls Photography</p>
+    <div class="roman">I</div>
+    <div class="hero-title">Chapter One</div>
+    <p class="hero-sub">A portrait experience for your next beginning.</p>
+    <div class="hero-divider"><div class="divider-gem"></div></div>
+    <p class="hero-body">
+      You've been through something. A chapter closed —
+      maybe quietly, maybe loudly.<br><br>
+      <strong>Chapter One</strong> is an exclusive portrait experience for those stepping into what comes next. Professional portraits, a curated gallery reveal, and a night to celebrate who you're becoming.<br><br>
+      Spaces are limited. Applications are reviewed personally.
+    </p>
+  </div>
+  <div class="hero-bottom">
+    <button class="cta-btn" onclick="go('screen-q1')"><span>Apply for Your Spot</span></button>
+    <p class="cta-note">Takes less than 3 minutes</p>
+  </div>
+</section>
+
+<!-- ══ Q1 ══ -->
+<section class="screen screen-quiz" id="screen-q1">
+  <div class="quiz-topbar">
+    <span class="topbar-logo">Chapter One</span>
+    <span class="topbar-step">1 of 5</span>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:20%"></div></div>
+  <div class="quiz-content">
+    <p class="q-number">01 / 05</p>
+    <h3 class="q-text">What chapter are you closing — or have you just closed?</h3>
+    <p class="q-sub">We want to understand where you are in your story. There are no wrong answers here.</p>
+    <div class="choices">
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>A relationship or marriage has ended</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>My career or professional path has shifted</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>My children have grown — my role at home has changed</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I've been through a health journey or personal recovery</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I'm welcoming new life — pregnancy or a new beginning</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>Something else — I just know it's time</button>
+    </div>
+  </div>
+  <div class="quiz-nav">
+    <button class="btn-back" disabled>← Back</button>
+    <button class="btn-next" id="next-q1" disabled onclick="go('screen-q2')"><span>Continue →</span></button>
+  </div>
+</section>
+
+<!-- ══ Q2 ══ -->
+<section class="screen screen-quiz" id="screen-q2">
+  <div class="quiz-topbar">
+    <span class="topbar-logo">Chapter One</span>
+    <span class="topbar-step">2 of 5</span>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:40%"></div></div>
+  <div class="quiz-content">
+    <p class="q-number">02 / 05</p>
+    <h3 class="q-text">When you think about what's next, what feels most true right now?</h3>
+    <p class="q-sub">Be honest. This is just between us.</p>
+    <div class="choices">
+      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I'm ready. I feel it — something is shifting.</button>
+      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I'm still finding my footing, but I want to mark this moment.</button>
+      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I'm craving something that's just for me — I've been last on my list for too long.</button>
+      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I want to see myself the way others see me — strong, capable, beautiful.</button>
+    </div>
+  </div>
+  <div class="quiz-nav">
+    <button class="btn-back" onclick="go('screen-q1')">← Back</button>
+    <button class="btn-next" id="next-q2" disabled onclick="go('screen-q3')"><span>Continue →</span></button>
+  </div>
+</section>
+
+<!-- ══ Q3 ══ -->
+<section class="screen screen-quiz" id="screen-q3">
+  <div class="quiz-topbar">
+    <span class="topbar-logo">Chapter One</span>
+    <span class="topbar-step">3 of 5</span>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:60%"></div></div>
+  <div class="quiz-content">
+    <p class="q-number">03 / 05</p>
+    <h3 class="q-text">Imagine your portrait on your wall. What do you want it to say about you?</h3>
+    <p class="q-sub">Use your own words — even just a few. This is what we'll build your session around.</p>
+    <textarea class="textarea-input" id="portraitMeaning" placeholder="She's powerful. She made it through. She's just getting started…" oninput="checkTA()"></textarea>
+  </div>
+  <div class="quiz-nav">
+    <button class="btn-back" onclick="go('screen-q2')">← Back</button>
+    <button class="btn-next" id="next-q3" disabled onclick="go('screen-q4')"><span>Continue →</span></button>
+  </div>
+</section>
+
+<!-- ══ Q4 ══ -->
+<section class="screen screen-quiz" id="screen-q4">
+  <div class="quiz-topbar">
+    <span class="topbar-logo">Chapter One</span>
+    <span class="topbar-step">4 of 5</span>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:80%"></div></div>
+  <div class="quiz-content">
+    <p class="q-number">04 / 05</p>
+    <h3 class="q-text">What called you to apply for Chapter One?</h3>
+    <p class="q-sub">We're genuinely curious what brought you here.</p>
+    <div class="choices">
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>I saw it and immediately thought — that's for me.</button>
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>Someone who knows me sent it my way. They were right.</button>
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>I've been looking for something exactly like this.</button>
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>I've never done anything like this for myself. It's time.</button>
+    </div>
+  </div>
+  <div class="quiz-nav">
+    <button class="btn-back" onclick="go('screen-q3')">← Back</button>
+    <button class="btn-next" id="next-q4" disabled onclick="go('screen-q5')"><span>Continue →</span></button>
+  </div>
+</section>
+
+<!-- ══ Q5 — Contact ══ -->
+<section class="screen screen-quiz" id="screen-q5">
+  <div class="quiz-topbar">
+    <span class="topbar-logo">Chapter One</span>
+    <span class="topbar-step">5 of 5</span>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%"></div></div>
+  <div class="quiz-content">
+    <p class="q-number">05 / 05</p>
+    <h3 class="q-text">Last step — let us know how to reach you.</h3>
+    <p class="q-sub">Jasmine personally reviews every application and will call you within 48 hours if you're selected.</p>
+    <div class="contact-fields">
+      <div>
+        <label class="field-label" for="inp-name">Your Name</label>
+        <input class="text-input" type="text" id="inp-name" placeholder="First & last name" oninput="checkContact()" autocomplete="name">
+      </div>
+      <div>
+        <label class="field-label" for="inp-email">Email Address</label>
+        <input class="text-input" type="email" id="inp-email" placeholder="your@email.com" oninput="checkContact()" autocomplete="email">
+      </div>
+      <div>
+        <label class="field-label" for="inp-phone">Phone Number</label>
+        <input class="text-input" type="tel" id="inp-phone" placeholder="(000) 000-0000" oninput="checkContact()" autocomplete="tel">
+      </div>
+    </div>
+  </div>
+  <div class="quiz-nav">
+    <button class="btn-back" onclick="go('screen-q4')">← Back</button>
+    <button class="btn-next" id="next-q5" disabled onclick="submit()"><span>Submit →</span></button>
+  </div>
+</section>
+
+<!-- ══ CONFIRMATION ══ -->
+<section class="screen" id="screen-confirm">
+  <div class="conf-inner">
+    <div class="conf-ornament">✦</div>
+    <p class="conf-eyebrow">Application Received</p>
+    <h2 class="conf-title">You're on the<br><em>Chapter One</em> list.</h2>
+    <div class="conf-divider"><div class="conf-gem"></div></div>
+    <div class="conf-letter">
+      <p>Dear <strong id="conf-name">Beautiful Soul</strong>,</p>
+      <p>Thank you for trusting us with your story. That took courage — and it doesn't go unnoticed.</p>
+      <p>I read every single application myself. I want to understand where you are and make sure Chapter One is the right experience for this season of your life.</p>
+      <p>If you're selected, I'll be calling you personally within <strong>48 hours</strong>. Not an automated email — me, Jasmine, on the phone, ready to hear more about you and walk you through everything.</p>
+      <p>Until then — hold onto this feeling. The fact that you applied? <strong>That's already Chapter One beginning.</strong></p>
+      <span class="conf-sig">— Jasmine, Two Wild Souls Photography</span>
+    </div>
+    <p class="conf-footer">Two Wild Souls Photography &nbsp;·&nbsp; Chapter One 2026</p>
+  </div>
+</section>
+
+<script>
+  let cur = 'screen-hero';
+
+  function go(nextId) {
+    const from = document.getElementById(cur);
+    const to   = document.getElementById(nextId);
+    if (!to) return;
+
+    from.classList.add('exit');
+    from.classList.remove('active');
+    setTimeout(() => from.classList.remove('exit'), 480);
+
+    to.style.cssText = 'transform:translateX(40px);opacity:0;pointer-events:none;';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      to.style.cssText = 'transition:opacity 0.45s ease,transform 0.45s ease;transform:translateX(0);opacity:1;pointer-events:all;';
+      const c = to.querySelector('.quiz-content');
+      if (c) c.scrollTop = 0;
+      to.classList.add('active');
+    }));
+    cur = nextId;
+  }
+
+  function pick(el, qId, nextId) {
+    el.closest('.choices').querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    const btn = document.getElementById('next-' + qId);
+    if (btn) btn.disabled = false;
+    setTimeout(() => go(nextId), 300);
+  }
+
+  function checkTA() {
+    const v = document.getElementById('portraitMeaning').value.trim();
+    document.getElementById('next-q3').disabled = v.length < 3;
+  }
+
+  function checkContact() {
+    const n = document.getElementById('inp-name').value.trim();
+    const e = document.getElementById('inp-email').value.trim();
+    const p = document.getElementById('inp-phone').value.trim();
+    document.getElementById('next-q5').disabled = !(n.length > 1 && e.includes('@') && p.length > 6);
+  }
+
+  function submit() {
+    const name = document.getElementById('inp-name').value.trim();
+    document.getElementById('conf-name').textContent = name.split(' ')[0] || 'Beautiful Soul';
+    go('screen-confirm');
+  }
+
+  document.addEventListener('touchmove', function(e) {
+    if (!e.target.closest('.quiz-content, #screen-confirm, .hero-top')) e.preventDefault();
+  }, { passive: false });
+</script>
+</body>
+</html>
