@@ -714,7 +714,7 @@ body::after {
     </div>
   </div>
   <div class="quiz-nav">
-    <button class="btn-back" onclick="go('screen-q1')">← Back</button>
+    <button class="btn-back" onclick="goBack('screen-q1')">← Back</button>
     <button class="btn-next" id="next-q2" disabled onclick="go('screen-q3')"><span>Continue →</span></button>
   </div>
 </section>
@@ -734,7 +734,7 @@ body::after {
     <p class="char-counter" id="char-counter">0 / 50 minimum</p>
   </div>
   <div class="quiz-nav">
-    <button class="btn-back" onclick="go('screen-q2')">← Back</button>
+    <button class="btn-back" onclick="goBack('screen-q2')">← Back</button>
     <button class="btn-next" id="next-q3" disabled onclick="go('screen-q4')"><span>Continue →</span></button>
   </div>
 </section>
@@ -758,7 +758,7 @@ body::after {
     </div>
   </div>
   <div class="quiz-nav">
-    <button class="btn-back" onclick="go('screen-q3')">← Back</button>
+    <button class="btn-back" onclick="goBack('screen-q3')">← Back</button>
     <button class="btn-next" id="next-q4" disabled onclick="go('screen-q5')"><span>Continue →</span></button>
   </div>
 </section>
@@ -793,7 +793,7 @@ body::after {
     </div>
   </div>
   <div class="quiz-nav">
-    <button class="btn-back" onclick="go('screen-q4')">← Back</button>
+    <button class="btn-back" onclick="goBack('screen-q4')">← Back</button>
     <button class="btn-next" id="next-q5" disabled onclick="submit()"><span>Submit →</span></button>
   </div>
   <p class="submit-error" id="submit-error">Something went wrong. Please try again.</p>
@@ -811,7 +811,7 @@ body::after {
       <p>Thank you for trusting us with your story. That took courage, and it doesn't go unnoticed!</p>
       <p>Everything you shared here is completely private. It goes directly to me and no one else. Ever.</p>
       <p>I read every single application myself. I want to understand where you are and make sure Chapter One is the right fit for this season of your life!</p>
-      <p>If you're selected, I'll be calling you personally within <strong>48 hours!</strong> We will be chatting over the phone. And if you'd rather reach out first, you're always welcome to call or text me directly at <strong>(248) 274-6361</strong>.</p>
+      <p>If you're selected, I'll be calling you personally within <strong>48 hours!</strong> Not an automated email (like this one 😉). We will be chatting over the phone. And if you'd rather reach out first, you're always welcome to call or text me directly at <strong>(248) 274-6361</strong>.</p>
       <p>Until then...hold onto this feeling. The fact that you applied is already your Chapter One beginning!</p>
       <p>I cannot wait to talk to you!</p>
       <span class="conf-sig">Jasmine, Two Wild Souls Photography</span>
@@ -830,12 +830,12 @@ body::after {
   const answers = {};
 
   // ══════════════════════════════
-  // SCREEN NAVIGATION
+  // SCREEN NAVIGATION — FORWARD
   // ══════════════════════════════
   function go(nextId) {
     const from = document.getElementById(cur);
     const to   = document.getElementById(nextId);
-    if (!to) return;
+    if (!to || nextId === cur) return;
 
     from.classList.add('exit');
     from.classList.remove('active');
@@ -849,6 +849,35 @@ body::after {
       to.classList.add('active');
     }));
     cur = nextId;
+  }
+
+  // ══════════════════════════════
+  // SCREEN NAVIGATION — BACK
+  // ══════════════════════════════
+  function goBack(prevId) {
+    const from = document.getElementById(cur);
+    const to   = document.getElementById(prevId);
+    if (!to || prevId === cur) return;
+
+    // Exit current screen to the right
+    from.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+    from.style.transform = 'translateX(40px)';
+    from.style.opacity = '0';
+    from.style.pointerEvents = 'none';
+    setTimeout(() => {
+      from.classList.remove('active');
+      from.style.cssText = '';
+    }, 480);
+
+    // Enter previous screen from the left
+    to.style.cssText = 'transform:translateX(-40px);opacity:0;pointer-events:none;';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      to.style.cssText = 'transition:opacity 0.45s ease,transform 0.45s ease;transform:translateX(0);opacity:1;pointer-events:all;';
+      const c = to.querySelector('.quiz-content');
+      if (c) c.scrollTop = 0;
+      to.classList.add('active');
+    }));
+    cur = prevId;
   }
 
   // ══════════════════════════════
