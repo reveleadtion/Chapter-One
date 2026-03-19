@@ -583,51 +583,49 @@ body::after {
 #screen-confirm.active .conf-letter   { animation: fadeUp 0.65s 0.56s ease both; }
 #screen-confirm.active .conf-footer   { animation: fadeUp 0.65s 0.72s ease both; }
 
+/* ── VALIDATION ERROR STATES ── */
+.field-error {
+  display: none;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #C97A6A;
+  margin-top: 6px;
+}
+.field-error.visible { display: block; }
+
+.text-input.invalid { border-bottom-color: #C97A6A !important; }
+
+/* Submitting state */
+.btn-next.submitting span::after {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  border: 1.5px solid rgba(0,0,0,0.4);
+  border-top-color: #000;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.submit-error {
+  display: none;
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 13px;
+  color: #C97A6A;
+  text-align: center;
+  margin-top: 8px;
+  padding: 0 4px;
+}
+.submit-error.visible { display: block; }
+
 /* ── ANIMATION ── */
-/* ── Pricing ── */
-.pricing-content { overflow: hidden; padding: 14px 22px 6px; display: flex; flex-direction: column; }
-.pricing-content .q-number { margin-bottom: 2px; }
-.pricing-content .q-text   { font-size: clamp(17px, 4.6vw, 22px); margin-bottom: 0; }
-.pricing-content .q-sub    { font-size: 12px; margin-bottom: 8px; }
-
-.price-badge {
-  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  padding: 8px 14px; margin-bottom: 8px; flex-shrink: 0;
-  border: 1px solid rgba(199,178,122,0.35); background: rgba(199,178,122,0.12);
-}
-.price-label { font-family: var(--sans); font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--slate); }
-.price-amount { font-family: var(--serif); font-size: clamp(24px, 6vw, 30px); color: var(--gold); line-height: 1; }
-.price-note { font-family: var(--body); font-size: 12px; font-style: italic; color: var(--slate); }
-
-.inclusions-list { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-.inclusion-item {
-  display: flex; align-items: center; gap: 12px;
-  flex: 1; padding: 0 2px;
-  border-bottom: 1px solid rgba(199,178,122,0.10);
-}
-.inclusion-item:first-child { border-top: 1px solid rgba(199,178,122,0.10); }
-.incl-icon { font-size: 8px; color: var(--gold); opacity: 0.7; flex-shrink: 0; }
-.incl-name { font-family: var(--body); font-weight: 400; font-size: clamp(12px, 3.2vw, 14px); color: var(--ivory); line-height: 1.3; }
-
-#pricing-nav { flex-direction: column; gap: 8px; align-items: stretch; padding: 12px 22px; padding-bottom: max(12px, calc(env(safe-area-inset-bottom,0px) + 10px)); }
-.agree-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 12px;
-  border: 1px solid rgba(199,178,122,0.22); background: rgba(255,255,255,0.02);
-  cursor: pointer; transition: border-color 0.2s, background 0.2s;
-}
-.agree-row.checked { border-color: rgba(124,138,90,0.6); background: rgba(124,138,90,0.08); }
-.agree-box {
-  width: 18px; height: 18px; flex-shrink: 0;
-  border: 1px solid rgba(199,178,122,0.4);
-  display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s, border-color 0.2s; color: transparent;
-}
-.agree-row.checked .agree-box { background: var(--olive); border-color: var(--olive); color: var(--ivory); }
-.agree-text { font-family: var(--body); font-size: 13px; font-weight: 300; color: rgba(236,234,230,0.7); line-height: 1.4; }
-.agree-row.checked .agree-text { color: var(--ivory); }
-.pricing-btns { display: flex; align-items: center; justify-content: space-between; }
-
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -661,11 +659,11 @@ body::after {
 <section class="screen screen-quiz" id="screen-q1">
   <div class="quiz-topbar">
     <span class="topbar-logo">Chapter One</span>
-    <span class="topbar-step">1 of 6</span>
+    <span class="topbar-step">1 of 5</span>
   </div>
   <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:20%"></div></div>
   <div class="quiz-content">
-    <p class="q-number">01 / 06</p>
+    <p class="q-number">01 / 05</p>
     <h3 class="q-text">What chapter are you closing — or have you just closed?</h3>
     <p class="q-sub">We want to understand where you are in your story. There are no wrong answers here.</p>
     <div class="choices">
@@ -687,11 +685,11 @@ body::after {
 <section class="screen screen-quiz" id="screen-q2">
   <div class="quiz-topbar">
     <span class="topbar-logo">Chapter One</span>
-    <span class="topbar-step">2 of 6</span>
+    <span class="topbar-step">2 of 5</span>
   </div>
   <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:40%"></div></div>
   <div class="quiz-content">
-    <p class="q-number">02 / 06</p>
+    <p class="q-number">02 / 05</p>
     <h3 class="q-text">When you think about what's next, what feels most true right now?</h3>
     <p class="q-sub">Be honest. This is just between us.</p>
     <div class="choices">
@@ -711,11 +709,11 @@ body::after {
 <section class="screen screen-quiz" id="screen-q3">
   <div class="quiz-topbar">
     <span class="topbar-logo">Chapter One</span>
-    <span class="topbar-step">3 of 6</span>
+    <span class="topbar-step">3 of 5</span>
   </div>
   <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:60%"></div></div>
   <div class="quiz-content">
-    <p class="q-number">03 / 06</p>
+    <p class="q-number">03 / 05</p>
     <h3 class="q-text">Imagine your portrait on your wall. What do you want it to say about you?</h3>
     <p class="q-sub">Use your own words — even just a few. This is what we'll build your session around.</p>
     <textarea class="textarea-input" id="portraitMeaning" placeholder="She's powerful. She made it through. She's just getting started…" oninput="checkTA()"></textarea>
@@ -730,18 +728,18 @@ body::after {
 <section class="screen screen-quiz" id="screen-q4">
   <div class="quiz-topbar">
     <span class="topbar-logo">Chapter One</span>
-    <span class="topbar-step">4 of 6</span>
+    <span class="topbar-step">4 of 5</span>
   </div>
   <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:80%"></div></div>
   <div class="quiz-content">
-    <p class="q-number">04 / 06</p>
+    <p class="q-number">04 / 05</p>
     <h3 class="q-text">What called you to apply for Chapter One?</h3>
     <p class="q-sub">We're genuinely curious what brought you here.</p>
     <div class="choices">
-      <button class="choice" onclick="pick(this,'q4','screen-pricing')"><div class="choice-dot"><div class="choice-check"></div></div>I saw it and immediately thought — that's for me.</button>
-      <button class="choice" onclick="pick(this,'q4','screen-pricing')"><div class="choice-dot"><div class="choice-check"></div></div>Someone who knows me sent it my way. They were right.</button>
-      <button class="choice" onclick="pick(this,'q4','screen-pricing')"><div class="choice-dot"><div class="choice-check"></div></div>I've been looking for something exactly like this.</button>
-      <button class="choice" onclick="pick(this,'q4','screen-pricing')"><div class="choice-dot"><div class="choice-check"></div></div>I've never done anything like this for myself. It's time.</button>
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>I saw it and immediately thought — that's for me.</button>
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>Someone who knows me sent it my way. They were right.</button>
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>I've been looking for something exactly like this.</button>
+      <button class="choice" onclick="pick(this,'q4','screen-q5')"><div class="choice-dot"><div class="choice-check"></div></div>I've never done anything like this for myself. It's time.</button>
     </div>
   </div>
   <div class="quiz-nav">
@@ -750,90 +748,40 @@ body::after {
   </div>
 </section>
 
-<!-- ══ PRICING ══ -->
-<section class="screen screen-quiz" id="screen-pricing">
-  <div class="quiz-topbar">
-    <span class="topbar-logo">Chapter One</span>
-    <span class="topbar-step">5 of 6</span>
-  </div>
-  <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:83%"></div></div>
-  <div class="quiz-content pricing-content">
-    <p class="q-number">The Experience</p>
-    <h3 class="q-text">Everything included in <em style="font-style:italic;color:var(--gold)">Chapter One</em></h3>
-    <p class="q-sub">Know exactly what this experience holds for you.</p>
-    <div class="price-badge">
-      <span class="price-label">Starting at</span>
-      <span class="price-amount">$690</span>
-      <span class="price-note">· Portraits for 1 person only</span>
-    </div>
-    <ul class="inclusions-list">
-      <li class="inclusion-item">
-        <span class="incl-icon">✦</span>
-        <strong class="incl-name">Complimentary Pro Hair &amp; Makeup</strong>
-      </li>
-      <li class="inclusion-item">
-        <span class="incl-icon">✦</span>
-        <strong class="incl-name">In-Studio Portrait Session</strong>
-      </li>
-      <li class="inclusion-item">
-        <span class="incl-icon">✦</span>
-        <strong class="incl-name">2 High-Resolution Digital Images</strong>
-      </li>
-      <li class="inclusion-item">
-        <span class="incl-icon">✦</span>
-        <strong class="incl-name">Complimentary Wall Art <em style="font-weight:300;color:var(--gold);font-size:0.85em">— $1,490 Value</em></strong>
-      </li>
-      <li class="inclusion-item">
-        <span class="incl-icon">✦</span>
-        <strong class="incl-name">Exclusive Gala with All Participants <em style="font-weight:300;color:var(--slate);font-size:0.85em">— ETA 2027</em></strong>
-      </li>
-    </ul>
-  </div>
-  <div class="quiz-nav" id="pricing-nav">
-    <label class="agree-row" id="agree-label">
-      <div class="agree-box">
-        <svg width="10" height="8" viewBox="0 0 14 11" fill="none"><path d="M1.5 5.5L5.5 9.5L12.5 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <input type="checkbox" id="agree-chk" style="position:absolute;opacity:0;width:0;height:0;">
-      <span class="agree-text">I understand what's included and I'm ready to continue.</span>
-    </label>
-    <div class="pricing-btns">
-      <button class="btn-back" onclick="go('screen-q4')">← Back</button>
-      <button class="btn-next" id="next-pricing" disabled onclick="go('screen-q5')"><span>Continue →</span></button>
-    </div>
-  </div>
-</section>
-
-
+<!-- ══ Q5 — Contact ══ -->
 <section class="screen screen-quiz" id="screen-q5">
   <div class="quiz-topbar">
     <span class="topbar-logo">Chapter One</span>
-    <span class="topbar-step">6 of 6</span>
+    <span class="topbar-step">5 of 5</span>
   </div>
   <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:100%"></div></div>
   <div class="quiz-content">
-    <p class="q-number">Contact</p>
+    <p class="q-number">05 / 05</p>
     <h3 class="q-text">Last step — let us know how to reach you.</h3>
     <p class="q-sub">Jasmine personally reviews every application and will call you within 48 hours if you're selected.</p>
     <div class="contact-fields">
       <div>
         <label class="field-label" for="inp-name">Your Name</label>
         <input class="text-input" type="text" id="inp-name" placeholder="First & last name" oninput="checkContact()" autocomplete="name">
+        <span class="field-error" id="err-name">Please enter your first and last name.</span>
       </div>
       <div>
         <label class="field-label" for="inp-email">Email Address</label>
         <input class="text-input" type="email" id="inp-email" placeholder="your@email.com" oninput="checkContact()" autocomplete="email">
+        <span class="field-error" id="err-email">Please enter a valid email address.</span>
       </div>
       <div>
         <label class="field-label" for="inp-phone">Phone Number</label>
-        <input class="text-input" type="tel" id="inp-phone" placeholder="(000) 000-0000" oninput="checkContact()" autocomplete="tel">
+        <input class="text-input" type="tel" id="inp-phone" placeholder="(000) 000-0000" oninput="formatPhone()" autocomplete="tel">
+        <span class="field-error" id="err-phone">Please enter a valid 10-digit US phone number.</span>
       </div>
     </div>
   </div>
   <div class="quiz-nav">
-    <button class="btn-back" onclick="go('screen-pricing')">← Back</button>
+    <button class="btn-back" onclick="go('screen-q4')">← Back</button>
     <button class="btn-next" id="next-q5" disabled onclick="submit()"><span>Submit →</span></button>
   </div>
+  <p class="submit-error" id="submit-error">Something went wrong. Please try again.</p>
 </section>
 
 <!-- ══ CONFIRMATION ══ -->
@@ -856,12 +804,21 @@ body::after {
 </section>
 
 <script>
-  let cur = 'screen-hero';
+  // ── KLAVIYO CONFIG ──
+  const KLAVIYO_PUBLIC_KEY = 'WgMSBs';
+  const KLAVIYO_LIST_ID    = 'SvpksB';
 
+  // ── STATE ──
+  let cur = 'screen-hero';
+  const answers = {};
+
+  // ══════════════════════════════
+  // SCREEN NAVIGATION
+  // ══════════════════════════════
   function go(nextId) {
     const from = document.getElementById(cur);
     const to   = document.getElementById(nextId);
-    if (!to || nextId === cur) return;
+    if (!to) return;
 
     from.classList.add('exit');
     from.classList.remove('active');
@@ -877,85 +834,227 @@ body::after {
     cur = nextId;
   }
 
+  // ══════════════════════════════
+  // CHOICE SELECTION
+  // ══════════════════════════════
   function pick(el, qId, nextId) {
     el.closest('.choices').querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
+    answers[qId] = el.textContent.trim();
     const btn = document.getElementById('next-' + qId);
     if (btn) btn.disabled = false;
     setTimeout(() => go(nextId), 300);
   }
 
+  // ══════════════════════════════
+  // TEXTAREA CHECK
+  // ══════════════════════════════
   function checkTA() {
     const v = document.getElementById('portraitMeaning').value.trim();
+    answers['q3_portrait'] = v;
     document.getElementById('next-q3').disabled = v.length < 3;
   }
 
-  function checkContact() {
-    const n = document.getElementById('inp-name').value.trim();
-    const e = document.getElementById('inp-email').value.trim();
-    const p = document.getElementById('inp-phone').value.trim();
-    document.getElementById('next-q5').disabled = !(n.length > 1 && e.includes('@') && p.length > 6);
+  // ══════════════════════════════
+  // PHONE FORMATTING & VALIDATION
+  // ══════════════════════════════
+  function formatPhone() {
+    const el = document.getElementById('inp-phone');
+    // Strip everything except digits
+    let digits = el.value.replace(/\D/g, '').substring(0, 10);
+    // Format as (000) 000-0000
+    if (digits.length >= 7) {
+      el.value = '(' + digits.substring(0,3) + ') ' + digits.substring(3,6) + '-' + digits.substring(6);
+    } else if (digits.length >= 4) {
+      el.value = '(' + digits.substring(0,3) + ') ' + digits.substring(3);
+    } else if (digits.length > 0) {
+      el.value = '(' + digits;
+    }
+    checkContact();
   }
 
-  // Pricing checkbox — clicking the label toggles and auto-advances
-  document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('agree-label').addEventListener('click', function (e) {
-      e.preventDefault();
-      const chk = document.getElementById('agree-chk');
-      chk.checked = !chk.checked;
-      const checked = chk.checked;
-      document.getElementById('agree-label').classList.toggle('checked', checked);
-      document.getElementById('next-pricing').disabled = !checked;
-      if (checked) setTimeout(() => go('screen-q5'), 450);
-    });
-  });
+  function isValidPhone(val) {
+    const digits = val.replace(/\D/g, '');
+    return digits.length === 10;
+  }
 
-  document.addEventListener('touchmove', function (e) {
+  function isValidEmail(val) {
+    // RFC-friendly email regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+  }
+
+  function isValidName(val) {
+    // At least two words, each 1+ chars
+    const parts = val.trim().split(/\s+/);
+    return parts.length >= 2 && parts.every(p => p.length >= 1);
+  }
+
+  // ══════════════════════════════
+  // CONTACT VALIDATION
+  // ══════════════════════════════
+  function checkContact() {
+    const name  = document.getElementById('inp-name').value.trim();
+    const email = document.getElementById('inp-email').value.trim();
+    const phone = document.getElementById('inp-phone').value.trim();
+
+    const nameOk  = isValidName(name);
+    const emailOk = isValidEmail(email);
+    const phoneOk = isValidPhone(phone);
+
+    // Only show errors if field has content (don't punish on first load)
+    toggleError('err-name',  !nameOk  && name.length > 0);
+    toggleError('err-email', !emailOk && email.length > 0);
+    toggleError('err-phone', !phoneOk && phone.length > 0);
+
+    toggleInvalid('inp-name',  !nameOk  && name.length > 0);
+    toggleInvalid('inp-email', !emailOk && email.length > 0);
+    toggleInvalid('inp-phone', !phoneOk && phone.length > 0);
+
+    document.getElementById('next-q5').disabled = !(nameOk && emailOk && phoneOk);
+  }
+
+  function toggleError(id, show) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('visible', show);
+  }
+
+  function toggleInvalid(id, show) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('invalid', show);
+  }
+
+  // ══════════════════════════════
+  // KLAVIYO SUBMISSION
+  // ══════════════════════════════
+  async function submit() {
+    const nameRaw = document.getElementById('inp-name').value.trim();
+    const email   = document.getElementById('inp-email').value.trim();
+    const phone   = document.getElementById('inp-phone').value.trim();
+    const nameParts = nameRaw.split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName  = nameParts.slice(1).join(' ') || '';
+
+    // Final validation pass
+    if (!isValidName(nameRaw) || !isValidEmail(email) || !isValidPhone(phone)) {
+      checkContact();
+      return;
+    }
+
+    // Show loading state
+    const btn = document.getElementById('next-q5');
+    btn.disabled = true;
+    btn.classList.add('submitting');
+    document.getElementById('submit-error').classList.remove('visible');
+
+    // Build Klaviyo payload — Client Subscriptions API (2024-02-15)
+    const payload = {
+      data: {
+        type: 'subscription',
+        attributes: {
+          profile: {
+            data: {
+              type: 'profile',
+              attributes: {
+                email:        email,
+                first_name:   firstName,
+                last_name:    lastName,
+                properties: {
+                  'Chapter One Source':  'Chapter One 2026',
+                  'C1 Life Transition':  answers['q1'] || '',
+                  'C1 Emotional State':  answers['q2'] || '',
+                  'C1 Portrait Meaning': document.getElementById('portraitMeaning').value.trim(),
+                  'C1 What Called You':  answers['q4'] || '',
+                  'C1 Application Date': new Date().toISOString().split('T')[0],
+                  'C1 Phone':            phone,
+                }
+              }
+            }
+          }
+        },
+        relationships: {
+          list: {
+            data: {
+              type: 'list',
+              id: KLAVIYO_LIST_ID
+            }
+          }
+        }
+      }
+    };
+
+    // ── DIAGNOSTICS ──
+    console.group('📋 Chapter One — Klaviyo Submission');
+    console.log('Public Key:', KLAVIYO_PUBLIC_KEY);
+    console.log('List ID:', KLAVIYO_LIST_ID);
+    console.log('Email:', email);
+    console.log('Name:', firstName, lastName);
+    console.log('Phone (custom):', phone);
+    console.log('Answers:', {
+      q1: answers['q1'],
+      q2: answers['q2'],
+      q3: document.getElementById('portraitMeaning').value.trim(),
+      q4: answers['q4'],
+    });
+    console.log('Full payload:', JSON.stringify(payload, null, 2));
+    console.groupEnd();
+
+    try {
+      const url = 'https://a.klaviyo.com/client/subscriptions/?company_id=' + KLAVIYO_PUBLIC_KEY;
+      console.log('📡 POST →', url);
+
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'revision': '2024-02-15'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      console.log('📨 Response status:', res.status, res.statusText);
+
+      // Try to read body regardless of status
+      const rawText = await res.text();
+      console.log('📨 Response body (raw):', rawText || '(empty — expected for 202)');
+
+      let parsed = null;
+      try { parsed = JSON.parse(rawText); } catch(e) { /* empty body is fine */ }
+      if (parsed) console.log('📨 Response body (parsed):', parsed);
+
+      if (res.status === 202 || res.status === 200) {
+        console.log('✅ Klaviyo accepted — navigating to confirmation');
+        document.getElementById('conf-name').textContent = firstName || 'Beautiful Soul';
+        go('screen-confirm');
+      } else {
+        console.error('❌ Klaviyo rejected with status:', res.status);
+        if (parsed?.errors) {
+          parsed.errors.forEach((e, i) => {
+            console.error(`  Error ${i+1}:`, e.title, '|', e.detail, '| pointer:', e.source?.pointer);
+          });
+        }
+        showSubmitError();
+      }
+    } catch (err) {
+      console.error('❌ Network/fetch error:', err.message, err);
+      showSubmitError();
+    } finally {
+      btn.classList.remove('submitting');
+      btn.disabled = false;
+    }
+  }
+
+  function showSubmitError() {
+    const el = document.getElementById('submit-error');
+    el.textContent = 'Something went wrong. Please check your details and try again.';
+    el.classList.add('visible');
+  }
+
+  // ══════════════════════════════
+  // IOS SCROLL LOCK
+  // ══════════════════════════════
+  document.addEventListener('touchmove', function(e) {
     if (!e.target.closest('.quiz-content, #screen-confirm, .hero-top')) e.preventDefault();
   }, { passive: false });
-
-  // ── Klaviyo ──
-  const KLAVIYO_LIST_ID    = 'YOUR_LIST_ID';
-  const KLAVIYO_COMPANY_ID = 'YOUR_COMPANY_ID';
-
-  async function submitToKlaviyo(data) {
-    const headers = { 'Content-Type': 'application/json', 'revision': '2024-07-15' };
-    const base    = 'https://a.klaviyo.com/client';
-    try {
-      await fetch(`${base}/profiles/?company_id=${KLAVIYO_COMPANY_ID}`, {
-        method: 'POST', headers,
-        body: JSON.stringify({ data: { type: 'profile', attributes: {
-          email: data.email, first_name: data.firstName, last_name: data.lastName,
-          phone_number: data.phone || undefined,
-          properties: { chapter_closing: data.q1, mindset_right_now: data.q2, portrait_meaning: data.q3, application_source: data.q4, experience_acknowledged: true, source_form: 'Chapter One Application' }
-        }}})
-      });
-      await fetch(`${base}/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`, {
-        method: 'POST', headers,
-        body: JSON.stringify({ data: { type: 'subscription', attributes: { list_id: KLAVIYO_LIST_ID, subscriptions: [{ channels: { email: ['MARKETING'], sms: ['MARKETING'] }, email: data.email, phone_number: data.phone || undefined }] }, relationships: { list: { data: { type: 'list', id: KLAVIYO_LIST_ID } } } } })
-      });
-    } catch (err) { console.warn('[Chapter One] Klaviyo failed silently', err); }
-  }
-
-  async function submit() {
-    const fullName  = document.getElementById('inp-name').value.trim();
-    const parts     = fullName.split(' ');
-    const answers   = {};
-    document.querySelectorAll('.choice.selected').forEach(el => {
-      const s = el.closest('.screen'); if (s) answers[s.id] = el.textContent.trim();
-    });
-    const data = {
-      firstName: parts[0] || '', lastName: parts.slice(1).join(' ') || '',
-      email: document.getElementById('inp-email').value.trim(),
-      phone: document.getElementById('inp-phone').value.trim(),
-      q1: answers['screen-q1'] || '', q2: answers['screen-q2'] || '',
-      q3: document.getElementById('portraitMeaning').value.trim(),
-      q4: answers['screen-q4'] || ''
-    };
-    document.getElementById('conf-name').textContent = data.firstName || 'Beautiful Soul';
-    go('screen-confirm');
-    await submitToKlaviyo(data);
-  }
 </script>
 </body>
 </html>
