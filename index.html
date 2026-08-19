@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0D0D0B">
+<meta name="theme-color" content="#F7F5F2">
 <title>Chapter One — A Portrait Experience by Two Wild Souls Photography</title>
 
 <!-- ══ SEO / META ══ (indexable — this is the paid-traffic destination) -->
@@ -43,10 +43,17 @@
   --cta:        #3F4438;
   --cta-hover:  #7C8A5A;
 
-  /* Dark theme surfaces */
-  --black:      #0D0D0B;
-  --quiz-bg:    #181A16;
-  --border:     rgba(199,178,122,0.20);
+  /* Surfaces — light theme */
+  --black:      #0D0D0B;                /* retained for the gala night band */
+  --paper:      #F7F5F2;                /* main background (ivory) */
+  --paper-alt:  #EEEBE4;                /* alternating sections */
+  --ink:        #2E2F2C;                /* headings / primary text */
+  --ink-soft:   #54544D;                /* body text (AA on paper) */
+  --ink-mute:   #7A7B73;                /* quiet meta text */
+  --quiz-bg:    #EEEBE4;
+  --gold-deep:  #8A6E2C;                /* legible gold for text accents */
+  --olive-deep: #5E6B3E;                /* legible olive for eyebrows */
+  --border:     rgba(138,110,44,0.28);  /* hairlines on light */
 
   /* Typography */
   --serif:   'Playfair Display', Georgia, serif;
@@ -59,8 +66,8 @@ html { scroll-behavior: smooth; }
 body {
   width: 100%;
   font-family: var(--body);
-  background: var(--black);
-  color: var(--ivory);
+  background: var(--paper);
+  color: var(--ink-soft);
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
@@ -87,8 +94,7 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   line-height: 0.88;
   color: transparent;
-  -webkit-text-stroke: 1px var(--gold);
-  text-shadow: 0 0 60px rgba(199,178,122,0.15);
+  -webkit-text-stroke: 1px var(--gold-deep);
 }
 .roman.hero-roman  { font-size: clamp(60px, 18vw, 116px); opacity: 0.9; }
 .roman.mark-sm     { font-size: clamp(38px, 10vw, 60px); opacity: 0.65; }
@@ -100,7 +106,7 @@ img { max-width: 100%; display: block; }
   font-size: 9px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--olive);
+  color: var(--olive-deep);
 }
 
 .logo-mark {
@@ -109,7 +115,7 @@ img { max-width: 100%; display: block; }
   font-size: 8.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--slate);
+  color: var(--ink-mute);
 }
 
 /* Gold hairline divider + gem — same as the quiz */
@@ -161,19 +167,19 @@ img { max-width: 100%; display: block; }
 
 /* Secondary CTA — quieter, outlined */
 .cta-btn.secondary {
-  color: var(--gold);
+  color: var(--ink);
   background: transparent;
-  border: 1px solid var(--gold-line);
+  border: 1px solid rgba(138,110,44,0.5);
 }
-.cta-btn.secondary::before { background: var(--gold-dim); }
-.cta-btn.secondary:hover span { color: var(--ivory); }
+.cta-btn.secondary::before { background: rgba(199,178,122,0.20); }
+.cta-btn.secondary:hover span { color: var(--ink); }
 
 .cta-note {
   font-family: var(--sans);
   font-weight: 400;
   font-size: 9.5px;
   letter-spacing: 0.2em;
-  color: rgba(107,110,106,0.75);
+  color: var(--ink-mute);
   text-transform: uppercase;
   margin-top: 12px;
 }
@@ -204,31 +210,33 @@ img { max-width: 100%; display: block; }
   position: relative;
   min-height: 100svh;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  align-items: center; justify-content: flex-end;
   text-align: center;
   padding: max(64px, env(safe-area-inset-top, 64px)) 28px
-           max(40px, calc(env(safe-area-inset-bottom, 0px) + 32px));
+           max(48px, calc(env(safe-area-inset-bottom, 0px) + 40px));
   overflow: hidden;
-  background: var(--black);
+  background: var(--paper);
 }
 
 /* HERO-IMG: editorial close portrait, warm/moody lighting, one of the 4 studio
    backdrops, direct eye contact with camera. Swap the background-image URL below.
-   Dark bottom-up gradient overlay keeps the copy legible. */
+   The portrait fills the top; a bottom-up IVORY gradient fades it into solid
+   paper where the headline + CTA sit, so the copy is always dark-on-ivory. */
 .hero-bg {
   position: absolute; inset: 0;
-  background-color: #14150F;
+  background-color: #E6E2D9;
   /* background-image: url('hero-portrait.jpg'); */
   background-size: cover;
-  background-position: center 30%;
+  background-position: center 25%;
   z-index: 0;
 }
 .hero-bg::after {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 28%, rgba(199,178,122,0.08) 0%, transparent 70%),
-    linear-gradient(to top, rgba(13,13,11,0.96) 4%, rgba(13,13,11,0.72) 42%, rgba(13,13,11,0.55) 100%);
+    linear-gradient(to top,
+      var(--paper) 0%, var(--paper) 40%,
+      rgba(247,245,242,0.72) 60%, rgba(247,245,242,0.15) 82%, transparent 100%);
 }
 /* Top gold accent hairline */
 .hero::before {
@@ -243,7 +251,7 @@ img { max-width: 100%; display: block; }
   display: flex; flex-direction: column; align-items: center;
   max-width: 520px; width: 100%;
 }
-.hero .logo-mark  { margin-bottom: 24px; }
+.hero .logo-mark  { margin-bottom: 22px; }
 .hero .roman      { margin-bottom: 6px; }
 
 .hero-title {
@@ -252,41 +260,21 @@ img { max-width: 100%; display: block; }
   font-size: clamp(34px, 9vw, 62px);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ivory);
+  color: var(--ink);
   line-height: 1;
   margin-top: 6px;
 }
 .hero-sub {
   font-family: var(--body);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(14px, 4vw, 19px);
-  color: rgba(236,234,230,0.78);
+  color: var(--ink-soft);
   margin-top: 16px;
   max-width: 340px;
   line-height: 1.5;
 }
 .hero .cta-btn { margin-top: 30px; }
-
-/* Scroll cue */
-.scroll-cue {
-  position: absolute; bottom: 18px; left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  font-family: var(--sans);
-  font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
-  color: rgba(107,110,106,0.6);
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  animation: cueFloat 2.4s ease-in-out infinite;
-}
-.scroll-cue::after {
-  content: ''; width: 1px; height: 22px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-}
-@keyframes cueFloat {
-  0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.7; }
-  50%     { transform: translateX(-50%) translateY(4px); opacity: 1; }
-}
 
 /* ══════════════════════════════
    GENERIC SECTION SCAFFOLD
@@ -304,36 +292,36 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
   font-size: clamp(24px, 6.4vw, 38px);
   line-height: 1.22;
-  color: var(--ivory);
+  color: var(--ink);
   letter-spacing: 0.01em;
 }
-.section-title em { font-style: italic; color: var(--gold); }
+.section-title em { font-style: italic; color: var(--gold-deep); }
 
 .body-copy {
   font-family: var(--body);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(15px, 4vw, 18px);
   line-height: 1.85;
-  color: rgba(236,234,230,0.66);
+  color: var(--ink-soft);
 }
-.body-copy strong { color: var(--ivory); font-weight: 400; }
+.body-copy strong { color: var(--ink); font-weight: 500; }
 .body-copy p + p { margin-top: 18px; }
 
 /* ══════════════════════════════
    SECTION 2 — THE RECOGNITION
 ══════════════════════════════ */
 .recognition {
-  background: var(--black);
+  background: var(--paper);
   text-align: center;
 }
 .recognition .section-inner { max-width: 600px; }
 .recognition-line {
   font-family: var(--body);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(18px, 5.2vw, 26px);
   line-height: 1.5;
-  color: rgba(236,234,230,0.55);
+  color: var(--ink-soft);
   margin: 0 auto 14px;
 }
 .recognition-close {
@@ -341,15 +329,14 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
   font-size: clamp(21px, 5.8vw, 30px);
   line-height: 1.4;
-  color: var(--gold);
+  color: var(--gold-deep);
   margin-top: 30px;
-  text-shadow: 0 0 40px rgba(199,178,122,0.14);
 }
 
 /* ══════════════════════════════
    SECTION 3 — THE ETHOS (asymmetric)
 ══════════════════════════════ */
-.ethos { background: var(--quiz-bg); }
+.ethos { background: var(--paper-alt); }
 .ethos-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -364,15 +351,15 @@ img { max-width: 100%; display: block; }
   font-weight: 400;
   font-size: clamp(16px, 4.4vw, 20px);
   line-height: 1.6;
-  color: var(--gold);
+  color: var(--gold-deep);
   padding-left: 16px;
-  border-left: 1px solid var(--gold-line);
+  border-left: 2px solid var(--gold-deep);
 }
 /* IMG: studio session in progress, candid, one of the 4 backdrop colors */
 .ethos-img {
   position: relative;
   aspect-ratio: 4 / 5;
-  background-color: #20221C;
+  background-color: #E1DDD3;
   background-size: cover; background-position: center;
   border: 1px solid var(--border);
   overflow: hidden;
@@ -382,7 +369,7 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: center;
   text-align: center; padding: 24px;
   font-family: var(--sans); font-size: 9px; letter-spacing: 0.24em;
-  text-transform: uppercase; color: rgba(107,110,106,0.55);
+  text-transform: uppercase; color: var(--ink-mute);
 }
 
 @media (min-width: 760px) {
@@ -393,10 +380,10 @@ img { max-width: 100%; display: block; }
 /* ══════════════════════════════
    SECTION 4 — HOW IT WORKS
 ══════════════════════════════ */
-.process { background: var(--black); }
+.process { background: var(--paper); }
 .process .section-title { text-align: center; margin-bottom: 8px; }
 .process-intro {
-  text-align: center; color: var(--slate);
+  text-align: center; color: var(--ink-mute);
   font-family: var(--body); font-size: clamp(14px,3.6vw,16px);
   font-style: italic; margin-bottom: 48px;
 }
@@ -415,29 +402,28 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.24em;
-  color: var(--gold);
-  opacity: 0.8;
+  color: var(--gold-deep);
   padding-top: 5px;
 }
 .step-title {
   font-family: var(--serif);
   font-weight: 500;
   font-size: clamp(19px, 5vw, 24px);
-  color: var(--ivory);
+  color: var(--ink);
   margin-bottom: 6px;
 }
 .step-desc {
   font-family: var(--body);
-  font-weight: 300;
+  font-weight: 400;
   font-size: clamp(14px, 3.7vw, 16px);
   line-height: 1.6;
-  color: rgba(236,234,230,0.6);
+  color: var(--ink-soft);
 }
 
 /* ══════════════════════════════
    SECTION 5 — THE GALA / PAYOFF
 ══════════════════════════════ */
-.gala { position: relative; background: var(--black); padding-top: 0; }
+.gala { position: relative; background: var(--paper); padding-top: 0; }
 /* IMG or VIDEO-STILL: gallery wall of framed 16x24 portraits at a night event,
    warm gold lighting, champagne, candid guests. */
 .gala-hero {
@@ -479,25 +465,25 @@ img { max-width: 100%; display: block; }
 /* ══════════════════════════════
    SECTION 6 — TESTIMONIALS
 ══════════════════════════════ */
-.testimonials { background: var(--quiz-bg); text-align: center; }
+.testimonials { background: var(--paper-alt); text-align: center; }
 .testimonials .eyebrow { display: block; margin-bottom: 42px; }
 .tstack { display: flex; flex-direction: column; gap: 48px; }
 .tquote {
   font-family: var(--body);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
   font-size: clamp(18px, 4.8vw, 24px);
   line-height: 1.6;
-  color: rgba(236,234,230,0.78);
+  color: var(--ink);
   max-width: 600px; margin: 0 auto;
 }
-.tquote::before { content: '“'; color: var(--gold); font-family: var(--serif); }
-.tquote::after  { content: '”'; color: var(--gold); font-family: var(--serif); }
+.tquote::before { content: '“'; color: var(--gold-deep); font-family: var(--serif); }
+.tquote::after  { content: '”'; color: var(--gold-deep); font-family: var(--serif); }
 .tattr {
   display: block; margin-top: 16px;
   font-family: var(--sans); font-weight: 500;
   font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--olive);
+  color: var(--olive-deep);
 }
 /* TESTIMONIAL-IMG: small circular portrait crop next to each quote, optional */
 
@@ -506,7 +492,7 @@ img { max-width: 100%; display: block; }
 ══════════════════════════════ */
 .final {
   position: relative;
-  background: var(--black);
+  background: var(--paper);
   text-align: center;
   padding: clamp(80px, 18vw, 140px) 28px
            max(56px, calc(env(safe-area-inset-bottom, 0px) + 44px));
@@ -515,7 +501,7 @@ img { max-width: 100%; display: block; }
 .final::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 50% at 50% 34%, rgba(199,178,122,0.09) 0%, transparent 66%);
+  background: radial-gradient(ellipse 70% 50% at 50% 34%, rgba(199,178,122,0.16) 0%, transparent 66%);
   pointer-events: none;
 }
 .final::after {
@@ -531,15 +517,15 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
   font-size: clamp(26px, 7vw, 42px);
   line-height: 1.24;
-  color: var(--ivory);
+  color: var(--ink);
   margin-bottom: 16px;
 }
-.final-title em { font-style: italic; color: var(--gold); }
+.final-title em { font-style: italic; color: var(--gold-deep); }
 .final-micro {
   font-family: var(--body);
-  font-style: italic; font-weight: 300;
+  font-style: italic; font-weight: 400;
   font-size: clamp(14px, 3.8vw, 17px);
-  color: rgba(236,234,230,0.6);
+  color: var(--ink-soft);
   line-height: 1.7;
   max-width: 400px; margin: 0 auto 30px;
 }
@@ -550,8 +536,8 @@ img { max-width: 100%; display: block; }
 }
 .footer-phone {
   font-family: var(--body);
-  font-size: 17px; font-weight: 300;
-  color: var(--gold);
+  font-size: 17px; font-weight: 400;
+  color: var(--gold-deep);
   text-decoration: none;
   letter-spacing: 0.04em;
 }
@@ -559,12 +545,13 @@ img { max-width: 100%; display: block; }
   font-family: var(--sans);
   font-weight: 400;
   font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase;
-  color: rgba(107,110,106,0.55);
+  color: var(--ink-mute);
 }
 .footer-legal {
   font-family: var(--sans);
   font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(107,110,106,0.4);
+  color: var(--ink-mute);
+  opacity: 0.7;
   margin-top: 4px;
 }
 </style>
@@ -587,8 +574,6 @@ img { max-width: 100%; display: block; }
     <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
     <p class="cta-note">Applications reviewed personally · Limited spots</p>
   </div>
-
-  <div class="scroll-cue">Scroll</div>
 </header>
 
 <!-- ══════════════════════════════════════════════════════════
