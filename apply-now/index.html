@@ -67,6 +67,11 @@ body::after {
 .screen.active  { opacity: 1; pointer-events: all; transform: translateX(0); }
 .screen.exit    { opacity: 0; transform: translateX(-40px); pointer-events: none; }
 
+/* Deep-link (?#apply from the landing page): skip the quiz hero, open on Q1.
+   Applied pre-paint by the inline <head> script so the hero never flashes. */
+html.skip-hero #screen-hero { display: none !important; }
+html.skip-hero #screen-q1   { opacity: 1; pointer-events: all; transform: translateX(0); }
+
 /* ══════════════════════════════
    HERO — pure black, dramatic
 ══════════════════════════════ */
@@ -645,6 +650,11 @@ body::after {
   to   { opacity: 1; transform: translateY(0); }
 }
 </style>
+<script>
+  // Runs before first paint: if arriving via the landing page CTA (…/#apply),
+  // flag the document so CSS opens directly on Q1 instead of the quiz hero.
+  if (location.hash === '#apply') document.documentElement.classList.add('skip-hero');
+</script>
 </head>
 <body>
 
@@ -828,6 +838,16 @@ body::after {
   // ── STATE ──
   let cur = 'screen-hero';
   const answers = {};
+
+  // ── DEEP-LINK: open on Q1 when arriving from the landing page (…/#apply) ──
+  // CSS (html.skip-hero) has already shown Q1 and hidden the hero pre-paint;
+  // here we align the JS state so navigation continues correctly from Q1.
+  if (document.documentElement.classList.contains('skip-hero')) {
+    cur = 'screen-q1';
+    document.getElementById('screen-hero').classList.remove('active');
+    document.getElementById('screen-q1').classList.add('active');
+    document.documentElement.classList.remove('skip-hero');
+  }
 
   // ══════════════════════════════
   // SCREEN NAVIGATION — FORWARD
