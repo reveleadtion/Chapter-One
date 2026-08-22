@@ -208,7 +208,7 @@ img { max-width: 100%; display: block; }
 ══════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 90svh;
   display: flex; flex-direction: column;
   align-items: center; justify-content: flex-end;
   text-align: center;
@@ -468,6 +468,7 @@ img { max-width: 100%; display: block; }
 .testimonials { background: var(--paper-alt); text-align: center; }
 .testimonials .eyebrow { display: block; margin-bottom: 42px; }
 .tstack { display: flex; flex-direction: column; gap: 48px; }
+.treview { max-width: 600px; margin: 0 auto; }
 .tquote {
   font-family: var(--body);
   font-weight: 400;
@@ -475,7 +476,6 @@ img { max-width: 100%; display: block; }
   font-size: clamp(18px, 4.8vw, 24px);
   line-height: 1.6;
   color: var(--ink);
-  max-width: 600px; margin: 0 auto;
 }
 .tquote::before { content: '“'; color: var(--gold-deep); font-family: var(--serif); }
 .tquote::after  { content: '”'; color: var(--gold-deep); font-family: var(--serif); }
@@ -554,6 +554,182 @@ img { max-width: 100%; display: block; }
   opacity: 0.7;
   margin-top: 4px;
 }
+
+/* ══════════════════════════════
+   SCROLL CUE (hero → next section)
+══════════════════════════════ */
+.scroll-cue {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+  margin-top: 26px;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold-deep);
+  animation: cueFloat 2.2s ease-in-out infinite;
+}
+.scroll-cue .scroll-arrow {
+  font-family: var(--serif);
+  font-size: 20px; line-height: 1;
+  color: var(--gold-deep);
+}
+@keyframes cueFloat {
+  0%,100% { transform: translateY(0); opacity: 0.75; }
+  50%     { transform: translateY(5px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+/* ══════════════════════════════
+   WHAT'S INCLUDED
+══════════════════════════════ */
+.included { background: var(--paper-alt); }
+.included .section-eyebrow,
+.included .section-title { text-align: center; }
+.included .section-title { margin-bottom: 10px; }
+.included-sub {
+  text-align: center; color: var(--ink-mute);
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(14px, 3.6vw, 16px);
+  margin: 0 auto 40px; max-width: 460px;
+}
+.include-list {
+  list-style: none;
+  max-width: 520px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 0;
+}
+.include-list li {
+  display: grid; grid-template-columns: auto 1fr; gap: 16px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--body);
+  font-size: clamp(15px, 4vw, 18px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.include-list li:first-child { border-top: 1px solid var(--border); }
+.include-list li strong { color: var(--ink); font-weight: 500; }
+.include-check {
+  width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px;
+  color: var(--olive-deep);
+}
+.include-note {
+  text-align: center;
+  margin: 34px auto 0; max-width: 480px;
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(13.5px, 3.4vw, 15.5px);
+  color: var(--ink-mute);
+}
+
+/* ══════════════════════════════
+   PRICING / VALUE
+══════════════════════════════ */
+.pricing { background: var(--paper); text-align: center; }
+.pricing .section-inner { max-width: 560px; }
+.price-card {
+  border: 1px solid var(--gold-line);
+  background: rgba(199,178,122,0.06);
+  padding: clamp(34px, 8vw, 52px) 28px;
+  position: relative;
+}
+.price-eyebrow { margin-bottom: 20px; display: block; }
+.price-value {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--ink-mute);
+  margin-bottom: 2px;
+}
+.price-value s { text-decoration-color: var(--gold-deep); }
+.price-amount {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(46px, 13vw, 74px);
+  line-height: 1;
+  color: var(--ink);
+  margin: 6px 0 4px;
+}
+.price-amount .cur { font-size: 0.5em; vertical-align: super; color: var(--gold-deep); }
+.price-label {
+  font-family: var(--sans);
+  font-weight: 500; font-size: 10px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--olive-deep);
+  margin-bottom: 26px;
+}
+.price-card .cta-btn { margin: 0 auto; }
+.price-fine {
+  margin-top: 16px;
+  font-family: var(--sans); font-size: 9.5px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* ══════════════════════════════
+   WHO IT'S FOR
+══════════════════════════════ */
+.audience { background: var(--paper-alt); text-align: center; }
+.audience .section-title { margin-bottom: 28px; }
+.audience-list {
+  list-style: none;
+  max-width: 520px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 14px;
+  text-align: left;
+}
+.audience-list li {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  font-family: var(--body);
+  font-size: clamp(15px, 4vw, 18px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.audience-list .include-check { width: 18px; height: 18px; }
+
+/* ══════════════════════════════
+   VIDEO LIGHTBOX + play affordance
+══════════════════════════════ */
+.has-video { cursor: pointer; }
+.play-badge {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 66px; height: 66px; border-radius: 50%;
+  background: rgba(247,245,242,0.9);
+  border: 1px solid var(--gold-line);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+.has-video:hover .play-badge { transform: translate(-50%, -50%) scale(1.06); background: var(--paper); }
+.play-badge::after {
+  content: ''; margin-left: 4px;
+  border-style: solid;
+  border-width: 11px 0 11px 18px;
+  border-color: transparent transparent transparent var(--gold-deep);
+}
+.play-cap {
+  position: absolute; left: 0; right: 0; bottom: 16px; z-index: 3;
+  text-align: center;
+  font-family: var(--sans); font-size: 9px; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--ivory);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+.lightbox {
+  position: fixed; inset: 0; z-index: 10000;
+  background: rgba(13,13,11,0.92);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.lightbox.open { display: flex; }
+.lightbox-frame {
+  position: relative; width: 100%; max-width: 900px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.lightbox-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.lightbox-close {
+  position: absolute; top: -42px; right: 0;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ivory);
+}
 </style>
 </head>
 <body>
@@ -573,20 +749,24 @@ img { max-width: 100%; display: block; }
     <p class="hero-sub">A portrait experience for the woman on the other side of everything.</p>
     <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
     <p class="cta-note">Applications reviewed personally · Limited spots</p>
+    <a class="scroll-cue" href="#recognition" aria-label="Scroll to read more">
+      <span>Keep scrolling</span>
+      <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
+    </a>
   </div>
 </header>
 
 <!-- ══════════════════════════════════════════════════════════
      SECTION 2 — THE RECOGNITION
 ════════════════════════════════════════════════════════════ -->
-<section class="section recognition">
+<section class="section recognition" id="recognition">
   <div class="section-inner">
-    <p class="recognition-line reveal">Maybe a marriage ended.</p>
-    <p class="recognition-line reveal d1">Maybe a career you built for someone else fell away.</p>
-    <p class="recognition-line reveal d2">Maybe the people who needed you don't need you the same way anymore.</p>
-    <p class="recognition-line reveal d3">Maybe you just survived something — and you're still standing.</p>
+    <p class="recognition-line reveal">Maybe a marriage ended. Maybe a new love began.</p>
+    <p class="recognition-line reveal d1">Maybe you started the business you always talked about.</p>
+    <p class="recognition-line reveal d2">Maybe you became a mom, or moved somewhere new and started over.</p>
+    <p class="recognition-line reveal d3">Maybe you came through a health battle, and you are still standing.</p>
     <div class="divider reveal d3"><div class="gem"></div></div>
-    <p class="recognition-close reveal d4">Whatever it was — you're still here.<br>This is for you.</p>
+    <p class="recognition-close reveal d4">Whatever your season, it is worth celebrating.<br>And this is for you.</p>
   </div>
 </section>
 
@@ -598,10 +778,10 @@ img { max-width: 100%; display: block; }
     <div class="ethos-grid">
       <div class="ethos-copy">
         <p class="eyebrow section-eyebrow reveal">The Experience</p>
-        <h2 class="section-title reveal d1">Not a photoshoot.<br>A closing chapter — <em>and an opening one.</em></h2>
+        <h2 class="section-title reveal d1">Not a photoshoot.<br>The last page of one book, <em>and the first of the next.</em></h2>
         <div class="body-copy reveal d2">
-          <p>Chapter One is an intimate, application-only portrait experience for people stepping into a new season. It begins with your story, not a package — every session is built around where you've been and who you're becoming.</p>
-          <p>This isn't a quick shoot and a gallery of proofs. It's a considered process: a real conversation, a session styled around you, and finished art made to live on your wall.</p>
+          <p>Chapter One is an intimate, application-only portrait experience for people stepping into a new season. It begins with your story, not a package. Every session is built around where you have been and who you are becoming.</p>
+          <p>This is not a quick shoot and a gallery of proofs. It is a considered process. A real conversation, professional hair and makeup, a session styled around you, and finished art made to live on your wall.</p>
         </div>
         <p class="ethos-pull reveal d3">This isn't for everyone. It's for the ones ready to see themselves differently.</p>
       </div>
@@ -621,35 +801,35 @@ img { max-width: 100%; display: block; }
   <div class="section-inner">
     <p class="eyebrow section-eyebrow reveal" style="text-align:center;display:block;">The Process</p>
     <h2 class="section-title reveal d1">How it works</h2>
-    <p class="process-intro reveal d1">Four steps, from application to gala.</p>
+    <p class="process-intro reveal d1">Four steps, from application to Reveal Night.</p>
 
     <div class="steps">
       <div class="step reveal">
-        <span class="step-num">01 — 04</span>
+        <span class="step-num">01</span>
         <div>
           <h3 class="step-title">Apply</h3>
           <p class="step-desc">A short, personal application. Every one is read by Jasmine herself.</p>
         </div>
       </div>
       <div class="step reveal">
-        <span class="step-num">02 — 04</span>
+        <span class="step-num">02</span>
         <div>
           <h3 class="step-title">The Call</h3>
           <p class="step-desc">If selected, a real phone conversation to talk through your story and season of life.</p>
         </div>
       </div>
       <div class="step reveal">
-        <span class="step-num">03 — 04</span>
+        <span class="step-num">03</span>
         <div>
           <h3 class="step-title">The Session</h3>
-          <p class="step-desc">An intimate portrait experience in our Downtown Rochester studio, styled around you.</p>
+          <p class="step-desc">An intimate portrait experience in our Downtown Rochester studio, with professional hair and makeup, styled around you.</p>
         </div>
       </div>
       <div class="step reveal">
-        <span class="step-num">04 — 04</span>
+        <span class="step-num">04</span>
         <div>
-          <h3 class="step-title">The Reveal</h3>
-          <p class="step-desc">Your finished 16&Prime;×24&Prime; wall art, unveiled at an exclusive gala night with the full Chapter One community.</p>
+          <h3 class="step-title">Reveal Night</h3>
+          <p class="step-desc">Your finished 16&Prime;×24&Prime; wall art, unveiled at an evening with the full Chapter One community.</p>
         </div>
       </div>
     </div>
@@ -657,51 +837,135 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     SECTION 5 — THE GALA / THE PAYOFF
+     SECTION 5 — REVEAL NIGHT (the payoff)
 ════════════════════════════════════════════════════════════ -->
 <section class="gala">
   <!-- IMG or VIDEO-STILL: gallery wall of framed 16x24 portraits at a night event,
-       warm gold lighting, champagne, candid guests -->
-  <div class="gala-hero">
-    <span class="img-note">[ IMG / VIDEO-STILL — gala gallery wall, night event, warm gold lighting ]</span>
+       warm lighting, candid guests.
+       CLICKABLE VIDEO: to make this open the recap video, add data-video-id="YOUTUBE_ID"
+       to the .gala-hero below (the play badge + lightbox are already wired). -->
+  <div class="gala-hero has-video" role="button" tabindex="0"
+       aria-label="Play the Reveal Night recap video"
+       data-video-id="">
+    <span class="img-note">[ IMG / VIDEO-STILL — Reveal Night gallery wall, warm lighting ]</span>
+    <div class="play-badge" aria-hidden="true"></div>
+    <span class="play-cap">Watch the recap</span>
     <div class="gala-content reveal">
-      <p class="eyebrow section-eyebrow">The Gala Reveal</p>
-      <h2 class="section-title" style="color:var(--ivory);">A night made for the women who showed up for themselves.</h2>
+      <p class="eyebrow section-eyebrow">Reveal Night</p>
+      <h2 class="section-title" style="color:var(--ivory);">A night made for the people who showed up for themselves.</h2>
     </div>
   </div>
 
   <div class="gala-body">
     <div class="body-copy reveal">
-      <p>Your framed 16&Prime;×24&Prime; portrait, unveiled on the wall alongside the full Chapter One gallery — every story in the room, hung like the art it is.</p>
-      <p>A video recap of everyone's journey. Champagne and hors d'oeuvres. Exclusive vendors. No assigned seats, no dinner service — a standing gallery night made for moving through the room and meeting the other women who said yes to themselves.</p>
-      <p>And a capstone moment: a guest speaker sharing her cause, with the evening built to give back.</p>
+      <p>Your framed 16&Prime;×24&Prime; portrait, unveiled on the wall alongside the full Chapter One gallery. Every story in the room, hung like the art it is.</p>
+      <p>An evening together with the other people who said yes to themselves. A standing gallery night to move through the room, celebrate, and see your season honored.</p>
     </div>
     <a class="cta-btn secondary reveal d1" href="apply-now/#apply"><span>See If You Qualify →</span></a>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     SECTION 6: TESTIMONIALS — toggle visibility once content available
-     Remove the `hidden` attribute below to switch this section on.
+     SECTION 6 — WHAT'S INCLUDED
 ════════════════════════════════════════════════════════════ -->
-<section class="section testimonials" hidden>
+<section class="section included">
   <div class="section-inner">
-    <span class="eyebrow reveal">In Their Words</span>
-    <div class="tstack">
-      <blockquote class="tquote reveal">
-        Placeholder testimonial — swap in a real client's words once available.
-        <span class="tattr">— Sarah, six months post-divorce</span>
-      </blockquote>
-      <blockquote class="tquote reveal d1">
-        Placeholder testimonial — a second voice, a different transition.
-        <span class="tattr">— Name, one-line transition descriptor</span>
-      </blockquote>
+    <p class="eyebrow section-eyebrow reveal">The Experience</p>
+    <h2 class="section-title reveal d1">What's included</h2>
+    <p class="included-sub reveal d1">Everything is taken care of. You just show up as you are.</p>
+
+    <ul class="include-list">
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>A personal consultation</strong> to plan a session built around your story and this season of life.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Professional hair and makeup</strong> with every experience, so you look and feel your absolute best.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>A fully guided portrait session</strong> in our Downtown Rochester studio, styled around you.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>An invitation to Reveal Night</strong>, an evening with the full Chapter One community.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>A custom framed 16&Prime;×24&Prime; wall portrait</strong> to keep and treasure forever.</span>
+      </li>
+    </ul>
+
+    <p class="include-note reveal">Want to bring the people who matter most? Family can be included in your session, just let us know.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 7 — PRICING / VALUE
+════════════════════════════════════════════════════════════ -->
+<section class="section pricing">
+  <div class="section-inner">
+    <div class="price-card reveal">
+      <span class="eyebrow price-eyebrow">The Investment</span>
+      <p class="price-value">Total value <s>over $2,550</s></p>
+      <p class="price-amount"><span class="cur">$</span>789</p>
+      <p class="price-label">Intro experience</p>
+      <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
+      <p class="price-fine">Limited spots · Applications reviewed personally</p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     SECTION 7 — FINAL CTA
+     SECTION 8 — WHO IT'S FOR
+════════════════════════════════════════════════════════════ -->
+<section class="section audience">
+  <div class="section-inner">
+    <p class="eyebrow section-eyebrow reveal">Who It's For</p>
+    <h2 class="section-title reveal d1">Is this you?</h2>
+    <ul class="audience-list">
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You're stepping into a new season and you feel it shifting.</span></li>
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You've been last on your own list for too long.</span></li>
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You want to see yourself the way the people who love you already do.</span></li>
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You're ready to mark this moment and celebrate how far you've come.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 9 — REVIEWS (real client survey quotes, approved for use)
+════════════════════════════════════════════════════════════ -->
+<section class="section testimonials">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Five-Star Reviews</span>
+    <div class="tstack">
+      <div class="treview reveal">
+        <blockquote class="tquote">Incomparable. Head and shoulders above the competition. Extraordinary, artistic, and completely stress free.</blockquote>
+        <span class="tattr">— Roy</span>
+      </div>
+      <div class="treview reveal d1">
+        <blockquote class="tquote">Attentive to every detail and comprehensive from start to finish. They truly go above and beyond. Invigorating, memorable, and professional.</blockquote>
+        <span class="tattr">— Yana</span>
+      </div>
+      <div class="treview reveal">
+        <blockquote class="tquote">The personal connection and the time they spent with us made all the difference. Accommodating, energetic, and lovable.</blockquote>
+        <span class="tattr">— Dawn</span>
+      </div>
+      <div class="treview reveal d1">
+        <blockquote class="tquote">Comfortable, amazing, and unforgettable. Friendly, creative, and detail oriented from the very first conversation.</blockquote>
+        <span class="tattr">— Lira</span>
+      </div>
+      <div class="treview reveal">
+        <blockquote class="tquote">Friendly, all inclusive, and stress free. Professional, flexible, and comfortable the whole way through.</blockquote>
+        <span class="tattr">— Nick</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 10 — FINAL CTA
 ════════════════════════════════════════════════════════════ -->
 <section class="final">
   <div class="final-inner reveal">
@@ -717,6 +981,14 @@ img { max-width: 100%; display: block; }
     </footer>
   </div>
 </section>
+
+<!-- Video lightbox (used by any element with class "has-video" + data-video-id) -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-frame">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close video">Close ✕</button>
+    <div id="lightbox-slot"></div>
+  </div>
+</div>
 
 <script>
   // ── SCROLL-TRIGGERED REVEALS ──
@@ -741,6 +1013,49 @@ img { max-width: 100%; display: block; }
       // Hero content is already visible on load — don't wait for scroll.
       if (!el.classList.contains('in')) io.observe(el);
     });
+  })();
+
+  // ── VIDEO LIGHTBOX ──
+  // Any element with class "has-video" and a non-empty data-video-id (a YouTube
+  // video ID) opens that video in a lightbox. Add IDs once the videos are on
+  // YouTube. Elements with an empty data-video-id stay inert (no error).
+  (function () {
+    var box  = document.getElementById('lightbox');
+    var slot = document.getElementById('lightbox-slot');
+    if (!box || !slot) return;
+
+    function open(id) {
+      slot.innerHTML = '<iframe src="https://www.youtube.com/embed/' + encodeURIComponent(id) +
+        '?autoplay=1&rel=0" title="Chapter One video" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+    }
+    function close() {
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+      slot.innerHTML = ''; // stop playback
+    }
+
+    document.querySelectorAll('.has-video').forEach(function (el) {
+      var id = (el.getAttribute('data-video-id') || '').trim();
+      // No video wired yet: hide the play affordance and make it inert.
+      if (!id) {
+        el.classList.remove('has-video');
+        el.removeAttribute('role');
+        el.removeAttribute('tabindex');
+        el.querySelectorAll('.play-badge, .play-cap').forEach(function (n) { n.style.display = 'none'; });
+        return;
+      }
+      function trigger() { open(id); }
+      el.addEventListener('click', trigger);
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+      });
+    });
+
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();
 </script>
 </body>
