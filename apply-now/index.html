@@ -670,9 +670,8 @@ html.skip-hero #screen-q1   { opacity: 1; pointer-events: all; transform: transl
     <p class="hero-sub">A portrait experience for your next beginning.</p>
     <div class="hero-divider"><div class="divider-gem"></div></div>
     <p class="hero-body">
-      You've been through something. A chapter closed,
-      maybe quietly, maybe loudly.<br><br>
-      <strong>Chapter One</strong> is an exclusive portrait experience for those stepping into what comes next. Professional portraits, a curated gallery reveal, and a night to celebrate who you're becoming.<br><br>
+      Something in your life is changing. Maybe an ending, maybe a beginning, maybe both.<br><br>
+      <strong>Chapter One</strong> is an application-only portrait experience for people stepping into a new season. Professional hair and makeup, a session styled around you, and Reveal Night: an evening to celebrate how far you've come.<br><br>
       Spaces are limited. Every application is personally reviewed by Jasmine.
     </p>
   </div>
@@ -691,14 +690,14 @@ html.skip-hero #screen-q1   { opacity: 1; pointer-events: all; transform: transl
   <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:20%"></div></div>
   <div class="quiz-content">
     <p class="q-number">01 / 05</p>
-    <h3 class="q-text">What chapter are you closing? Or have you just closed one?</h3>
-    <p class="q-sub">We want to understand where you are in your story. There are no wrong answers here.</p>
+    <h3 class="q-text">What chapter are you in right now?</h3>
+    <p class="q-sub">An ending, a beginning, or somewhere in between. There are no wrong answers here.</p>
     <div class="choices">
-      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>A relationship or marriage has ended</button>
-      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>My career or professional path has shifted</button>
-      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>My children have grown and my role at home has changed</button>
-      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I've been through a health journey or personal recovery</button>
-      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I'm welcoming new life, pregnancy or a fresh beginning</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>A relationship ended, or a new love began</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I started a business, or stepped into a new career</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I became a parent, or my role at home shifted</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I moved somewhere new and started over</button>
+      <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>I came through a health battle or a hard season</button>
       <button class="choice" onclick="pick(this,'q1','screen-q2')"><div class="choice-dot"><div class="choice-check"></div></div>Something else. I just know it's time.</button>
     </div>
   </div>
@@ -720,10 +719,10 @@ html.skip-hero #screen-q1   { opacity: 1; pointer-events: all; transform: transl
     <h3 class="q-text">When you think about what's next, what feels most true right now?</h3>
     <p class="q-sub">Be honest. This is just between us.</p>
     <div class="choices">
-      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I'm ready. I feel it. Something is shifting.</button>
+      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I'm ready. I can feel something shifting.</button>
       <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I'm still finding my footing, but I want to mark this moment.</button>
-      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I'm craving something that's just for me. I've been last on my own list for too long.</button>
-      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I want to see myself the way others see me. Strong, capable, beautiful.</button>
+      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I've been last on my own list for too long, and I want something just for me.</button>
+      <button class="choice" onclick="pick(this,'q2','screen-q3')"><div class="choice-dot"><div class="choice-check"></div></div>I want to see myself the way the people who love me already do.</button>
     </div>
   </div>
   <div class="quiz-nav">
@@ -743,7 +742,7 @@ html.skip-hero #screen-q1   { opacity: 1; pointer-events: all; transform: transl
     <p class="q-number">03 / 05</p>
     <h3 class="q-text">Imagine your portrait on your wall. What do you want it to say about you?</h3>
     <p class="q-sub">Share a little of your story, even just a sentence or two. What you write here stays between you and Jasmine. It will never be shared with anyone else.</p>
-    <textarea class="textarea-input" id="portraitMeaning" placeholder="She's powerful. She made it through. She's just getting started…" oninput="checkTA()"></textarea>
+    <textarea class="textarea-input" id="portraitMeaning" placeholder="That I made it through. That I'm proud of who I'm becoming. That this season was mine…" oninput="checkTA()"></textarea>
     <p class="char-counter" id="char-counter">0 / 50 minimum</p>
   </div>
   <div class="quiz-nav">
@@ -820,7 +819,7 @@ html.skip-hero #screen-q1   { opacity: 1; pointer-events: all; transform: transl
     <h2 class="conf-title">You're on the<br><em>Chapter One</em> list.</h2>
     <div class="conf-divider"><div class="conf-gem"></div></div>
     <div class="conf-letter">
-      <p>Dear <strong id="conf-name">Beautiful Soul</strong>,</p>
+      <p>Dear <strong id="conf-name">friend</strong>,</p>
       <p>Thank you for trusting us with your story. That took courage, and it doesn't go unnoticed!</p>
       <p>Everything you shared here is completely private. It goes directly to me and no one else. Ever.</p>
       <p>I read every single application myself. I want to understand where you are and make sure Chapter One is the right fit for this season of your life!</p>
@@ -1103,7 +1102,7 @@ html.skip-hero #screen-q1   { opacity: 1; pointer-events: all; transform: transl
 
       if (res.status === 202 || res.status === 200) {
         console.log('✅ Klaviyo accepted — navigating to confirmation');
-        document.getElementById('conf-name').textContent = firstName || 'Beautiful Soul';
+        document.getElementById('conf-name').textContent = firstName || 'friend';
         go('screen-confirm');
       } else {
         console.error('❌ Klaviyo rejected with status:', res.status);
