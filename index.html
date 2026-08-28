@@ -218,55 +218,64 @@ img { max-width: 100%; display: block; }
    The embed injects its own markup (and inline styles), so these overrides use
    !important to reskin its inputs and submit button to match the brand.
    Kept resilient to a few possible field/label structures. */
-.signup-embed { font-family: var(--body); color: var(--ink); max-width: 100%; }
-/* neutralize the embed's own panel/table backgrounds & borders */
-.signup-embed div,
-.signup-embed form,
-.signup-embed table,
-.signup-embed tbody,
-.signup-embed tr,
-.signup-embed td,
-.signup-embed fieldset {
+/* Scoped under `body #signup-embed` so these win against the embed's own
+   (often ID-level / !important) CSS. Reskin: underline fields on ivory + a
+   gold submit button, form contained and centered. */
+body #signup-embed { font-family: var(--body); color: var(--ink); max-width: 340px; margin: 0 auto; }
+/* neutralize the embed's own panel backgrounds & borders (the white block) */
+body #signup-embed div,
+body #signup-embed form,
+body #signup-embed section,
+body #signup-embed table,
+body #signup-embed tbody,
+body #signup-embed tr,
+body #signup-embed td,
+body #signup-embed ul,
+body #signup-embed li,
+body #signup-embed p,
+body #signup-embed span,
+body #signup-embed fieldset {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   max-width: 100% !important;
 }
 /* labels */
-.signup-embed label {
+body #signup-embed label {
   font-family: var(--sans) !important;
   font-size: 9px !important; letter-spacing: 0.24em !important;
   text-transform: uppercase !important; color: var(--ink-mute) !important;
 }
-/* text-like inputs */
-.signup-embed input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
-.signup-embed textarea,
-.signup-embed select {
+/* text-like inputs → elegant underline on ivory */
+body #signup-embed input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+body #signup-embed textarea,
+body #signup-embed select {
   display: block !important;
   width: 100% !important;
   font-family: var(--body) !important;
   font-size: 16px !important; /* 16px avoids iOS zoom-on-focus */
   color: var(--ink) !important;
-  background: #FCFBF9 !important;
-  border: 1px solid var(--border) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--border) !important;
   border-radius: 0 !important;
-  padding: 12px 13px !important;
-  margin: 0 0 11px 0 !important;
+  padding: 11px 2px !important;
+  margin: 0 0 14px 0 !important;
   outline: none !important;
   box-shadow: none !important;
   -webkit-appearance: none !important; appearance: none !important;
 }
-.signup-embed input::placeholder,
-.signup-embed textarea::placeholder { color: var(--ink-mute) !important; opacity: 0.85 !important; }
-.signup-embed input:focus,
-.signup-embed textarea:focus,
-.signup-embed select:focus { border-color: var(--olive-deep) !important; }
-/* submit button (covers <input type=submit>, <button>, styled <a>) */
-.signup-embed input[type="submit"],
-.signup-embed button,
-.signup-embed input[type="button"],
-.signup-embed a[class*="button"],
-.signup-embed a[class*="btn"] {
+body #signup-embed input::placeholder,
+body #signup-embed textarea::placeholder { color: var(--ink-mute) !important; opacity: 0.85 !important; }
+body #signup-embed input:focus,
+body #signup-embed textarea:focus,
+body #signup-embed select:focus { border-bottom-color: var(--olive-deep) !important; }
+/* submit → gold brand button, full width */
+body #signup-embed input[type="submit"],
+body #signup-embed button,
+body #signup-embed input[type="button"],
+body #signup-embed a[class*="button"],
+body #signup-embed a[class*="btn"] {
   display: block !important;
   width: 100% !important;
   font-family: var(--sans) !important;
@@ -280,7 +289,7 @@ img { max-width: 100%; display: block; }
   border: none !important;
   border-radius: 0 !important;
   padding: 15px 20px !important;
-  margin: 4px 0 0 0 !important;
+  margin: 8px auto 0 !important;
   cursor: pointer !important;
   -webkit-appearance: none !important; appearance: none !important;
 }
@@ -326,6 +335,18 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   .fade { animation: none; opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
+}
+
+/* ── Desktop / tablet: center the page as a column so the portrait keeps a
+   proper head-and-shoulders crop instead of stretching full-width. ── */
+@media (min-width: 760px) {
+  .page { max-width: 620px; margin: 0 auto; }
+  .teaser-photo {
+    height: 440px; min-height: 0; max-height: none;
+    background-position: center 20%;
+  }
+  .teaser-inner { max-width: 500px; padding-bottom: 52px; }
+  .teaser-body { max-width: 430px; }
 }
 
 /* ── Video lightbox (for the teaser, once it's on YouTube) ── */
