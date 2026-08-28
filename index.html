@@ -84,19 +84,19 @@ img { max-width: 100%; display: block; }
 .teaser-photo {
   position: relative;
   width: 100%;
-  height: 34svh;
-  min-height: 220px;
-  max-height: 380px;
+  height: 28svh;
+  min-height: 180px;
+  max-height: 280px;
   background-color: #E6E2D9;
   background-image: url('/photos/hero-portrait.webp');
   background-size: cover;
-  background-position: center 16%;
+  background-position: center 14%;
   flex-shrink: 0;
 }
 .teaser-photo::after {
   content: '';
   position: absolute; left: 0; right: 0; bottom: 0;
-  height: 40%;
+  height: 38%;
   background: linear-gradient(to top, var(--paper) 0%, rgba(247,245,242,0) 100%);
 }
 
@@ -105,9 +105,9 @@ img { max-width: 100%; display: block; }
   flex: 1;
   display: flex; flex-direction: column; align-items: center;
   text-align: center;
-  max-width: 480px; width: 100%;
+  max-width: 460px; width: 100%;
   margin: 0 auto;
-  padding: 0 26px max(40px, calc(env(safe-area-inset-bottom, 0px) + 32px));
+  padding: 0 26px max(24px, calc(env(safe-area-inset-bottom, 0px) + 20px));
 }
 
 .eyebrow {
@@ -119,15 +119,15 @@ img { max-width: 100%; display: block; }
 
 .roman {
   font-family: var(--serif); font-weight: 400;
-  font-size: clamp(46px, 13vw, 74px); line-height: 0.88;
+  font-size: clamp(40px, 11vw, 62px); line-height: 0.88;
   color: transparent; -webkit-text-stroke: 1px var(--gold-deep);
-  margin: -10px 0 2px;
+  margin: -8px 0 2px;
 }
 
 .teaser-title {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(32px, 9vw, 52px);
+  font-size: clamp(30px, 8.5vw, 48px);
   letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--ink); line-height: 1;
   margin-top: 4px;
@@ -135,7 +135,7 @@ img { max-width: 100%; display: block; }
 
 .teaser-tag {
   display: inline-block;
-  margin-top: 16px;
+  margin-top: 14px;
   font-family: var(--sans);
   font-weight: 600; font-size: 9.5px;
   letter-spacing: 0.34em; text-transform: uppercase;
@@ -149,13 +149,13 @@ img { max-width: 100%; display: block; }
   font-family: var(--body); font-style: italic; font-weight: 400;
   font-size: clamp(15px, 4.2vw, 19px);
   color: var(--ink-soft);
-  margin-top: 20px; line-height: 1.5;
+  margin-top: 14px; line-height: 1.5;
   max-width: 360px;
 }
 
 .divider {
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  margin: 22px auto;
+  margin: 16px auto;
 }
 .divider::before, .divider::after {
   content: ''; width: 26px; height: 1px;
@@ -195,39 +195,93 @@ img { max-width: 100%; display: block; }
 /* ── Email capture ── */
 .signup {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 22px;
   background: var(--paper-alt);
   border: 1px solid var(--border);
-  padding: 26px 22px;
+  padding: 22px 18px 20px;
 }
 .signup h2 {
   font-family: var(--serif); font-weight: 500;
-  font-size: clamp(19px, 5.2vw, 24px);
+  font-size: clamp(19px, 5.2vw, 23px);
   color: var(--ink); line-height: 1.2;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
 }
 .signup .signup-note {
   font-family: var(--body); font-style: italic;
   font-size: clamp(13.5px, 3.6vw, 15px);
   color: var(--ink-mute);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
-/* Gentle, safe styling for whatever the Sprout embed injects, so it inherits
-   the brand fonts and goes full-width on mobile without fighting its own CSS. */
-.signup-embed { font-family: var(--body); color: var(--ink); }
-.signup-embed input,
+/* ── Sprout embed → brand styling ──
+   The embed injects its own markup (and inline styles), so these overrides use
+   !important to reskin its inputs and submit button to match the brand.
+   Kept resilient to a few possible field/label structures. */
+.signup-embed { font-family: var(--body); color: var(--ink); max-width: 100%; }
+/* neutralize the embed's own panel/table backgrounds & borders */
+.signup-embed div,
+.signup-embed form,
+.signup-embed table,
+.signup-embed tbody,
+.signup-embed tr,
+.signup-embed td,
+.signup-embed fieldset {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+}
+/* labels */
+.signup-embed label {
+  font-family: var(--sans) !important;
+  font-size: 9px !important; letter-spacing: 0.24em !important;
+  text-transform: uppercase !important; color: var(--ink-mute) !important;
+}
+/* text-like inputs */
+.signup-embed input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
 .signup-embed textarea,
 .signup-embed select {
-  font-family: var(--body);
-  font-size: 16px; /* 16px avoids iOS zoom-on-focus */
-  max-width: 100%;
+  display: block !important;
+  width: 100% !important;
+  font-family: var(--body) !important;
+  font-size: 16px !important; /* 16px avoids iOS zoom-on-focus */
+  color: var(--ink) !important;
+  background: #FCFBF9 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  padding: 12px 13px !important;
+  margin: 0 0 11px 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important; appearance: none !important;
 }
+.signup-embed input::placeholder,
+.signup-embed textarea::placeholder { color: var(--ink-mute) !important; opacity: 0.85 !important; }
+.signup-embed input:focus,
+.signup-embed textarea:focus,
+.signup-embed select:focus { border-color: var(--olive-deep) !important; }
+/* submit button (covers <input type=submit>, <button>, styled <a>) */
+.signup-embed input[type="submit"],
 .signup-embed button,
-.signup-embed input[type="submit"] {
-  font-family: var(--sans);
-  letter-spacing: 0.12em;
-  cursor: pointer;
+.signup-embed input[type="button"],
+.signup-embed a[class*="button"],
+.signup-embed a[class*="btn"] {
+  display: block !important;
+  width: 100% !important;
+  font-family: var(--sans) !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.3em !important;
+  text-transform: uppercase !important;
+  text-align: center !important; text-decoration: none !important;
+  color: var(--black) !important;
+  background: var(--gold) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 15px 20px !important;
+  margin: 4px 0 0 0 !important;
+  cursor: pointer !important;
+  -webkit-appearance: none !important; appearance: none !important;
 }
 .signup-fallback {
   font-family: var(--body); font-size: 14px; color: var(--ink-mute);
@@ -235,7 +289,7 @@ img { max-width: 100%; display: block; }
 .signup-fallback a { color: var(--gold-deep); }
 
 .microcopy {
-  margin-top: 16px;
+  margin-top: 14px;
   font-family: var(--sans); font-weight: 400;
   font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink-mute);
@@ -244,8 +298,8 @@ img { max-width: 100%; display: block; }
 /* ── Footer ── */
 .teaser-footer {
   margin-top: auto;
-  padding-top: 40px;
-  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  padding-top: 26px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
 }
 .footer-phone {
   font-family: var(--body); font-size: 17px; font-weight: 400;
@@ -305,8 +359,7 @@ img { max-width: 100%; display: block; }
     <div class="divider fade d2"><div class="gem"></div></div>
 
     <p class="teaser-body fade d3">
-      Something new is coming. A film, an invitation, and a limited number of spots.
-      Join the list to be the first to watch the teaser and to apply before doors open to everyone.
+      A film, an invitation, and a limited number of spots. Join the list to watch the teaser first and apply before doors open.
     </p>
 
     <!-- Optional: reveal by adding data-video-id="YOUTUBE_ID" -->
