@@ -380,6 +380,68 @@ img { max-width: 100%; display: block; }
 }
 
 /* ══════════════════════════════
+   CINEMATIC FILM BAND (reusable)
+   Full-bleed motion beat, à la the reference page's rotating media.
+   Poster still shows immediately; a muted, looping, autoplay video plays
+   over it once its source is added. An italic-serif tagline sits on a scrim.
+══════════════════════════════ */
+.filmband {
+  position: relative;
+  width: 100%;
+  min-height: 62svh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: #14150F center 18% / cover no-repeat;   /* poster set inline per band */
+}
+.filmband__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 18%;
+  z-index: 0;
+}
+.filmband::after {                              /* legibility scrim */
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(13,13,11,0.28) 0%, transparent 70%),
+    linear-gradient(to top, rgba(13,13,11,0.62), rgba(13,13,11,0.30) 50%, rgba(13,13,11,0.55));
+}
+.filmband__inner {
+  position: relative; z-index: 2;
+  max-width: 640px; padding: clamp(56px, 12vw, 110px) 28px;
+}
+.filmband__eyebrow {
+  font-family: var(--sans); font-weight: 500;
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.filmband__line {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(22px, 5.6vw, 38px); line-height: 1.32;
+  color: var(--ivory);
+  text-shadow: 0 1px 24px rgba(13,13,11,0.5);
+}
+.filmband__line em { color: var(--gold); font-style: italic; }
+@media (min-width: 760px) { .filmband { min-height: 78vh; } }
+
+/* Gold line-art frame motif (echo of the reference's line-drawn "door") */
+.frame-motif {
+  position: relative;
+  display: inline-block;
+  padding: 26px 34px;
+}
+.frame-motif::before, .frame-motif::after {
+  content: '';
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 1px solid var(--gold-deep);
+}
+.frame-motif::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.frame-motif::after  { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+/* ══════════════════════════════
    SECTION 4 — HOW IT WORKS
 ══════════════════════════════ */
 .process { background: var(--paper); }
@@ -794,6 +856,25 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
+     CINEMATIC FILM BAND — the signature "rotating media" beat
+     TO ADD MOTION: drop a muted, short, looping clip at videos/chapter-one.mp4
+     (and optionally .webm) and a poster still at photos/film-poster.webp.
+     Until the video exists the poster shows on its own — nothing breaks.
+════════════════════════════════════════════════════════════ -->
+<section class="filmband" style="background-image:url('/photos/reveal-night.webp');" aria-label="Chapter One film">
+  <video class="filmband__video" autoplay muted loop playsinline preload="none"
+         poster="/photos/reveal-night.webp">
+    <!-- Add sources when ready (WebM first for size, MP4 for Safari):
+    <source src="/videos/chapter-one.webm" type="video/webm">
+    <source src="/videos/chapter-one.mp4" type="video/mp4"> -->
+  </video>
+  <div class="filmband__inner reveal">
+    <p class="filmband__eyebrow">Chapter One</p>
+    <p class="filmband__line">This is the season you stop waiting,<br><em>and start becoming.</em></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
      SECTION 3 — THE ETHOS
 ════════════════════════════════════════════════════════════ -->
 <section class="section ethos">
@@ -821,7 +902,7 @@ img { max-width: 100%; display: block; }
 <section class="section process">
   <div class="section-inner">
     <p class="eyebrow section-eyebrow reveal" style="text-align:center;display:block;">The Process</p>
-    <h2 class="section-title reveal d1">How it works</h2>
+    <h2 class="section-title reveal d1"><span class="frame-motif">How it works</span></h2>
     <p class="process-intro reveal d1">Four steps, from application to Reveal Night.</p>
 
     <div class="steps">
