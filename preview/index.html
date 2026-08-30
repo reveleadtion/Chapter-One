@@ -538,6 +538,45 @@ img { max-width: 100%; display: block; }
 }
 
 /* ══════════════════════════════
+   REAL CHAPTERS — a trio of real client portraits, giving faces to the
+   life-shift stories named in the recognition lines.
+══════════════════════════════ */
+.stories { background: var(--paper); text-align: center; }
+.stories .section-title { margin-bottom: 12px; }
+.stories-sub {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(14px, 3.8vw, 17px); color: var(--ink-mute);
+  max-width: 460px; margin: 0 auto;
+}
+.stories-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(34px, 7vw, 44px);
+  max-width: 380px; margin: clamp(44px, 9vw, 64px) auto 0;
+}
+.story { margin: 0; }
+.story img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 44px rgba(46,47,44,0.14);
+}
+.story figcaption {
+  margin-top: 18px;
+}
+.story .story-label {
+  display: block;
+  font-family: var(--sans); font-weight: 500;
+  font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 8px;
+}
+.story .story-line {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(16px, 4.4vw, 19px); line-height: 1.45; color: var(--ink);
+}
+@media (min-width: 760px) {
+  .stories-grid { grid-template-columns: repeat(3, 1fr); max-width: 1000px; gap: 30px; align-items: start; }
+}
+
+/* ══════════════════════════════
    SECTION 4 — HOW IT WORKS
 ══════════════════════════════ */
 .process { background: var(--paper); }
@@ -960,9 +999,10 @@ img { max-width: 100%; display: block; }
 <section class="filmband" style="background-image:url('/photos/reveal-night.webp');" aria-label="Chapter One film">
   <video class="filmband__video" autoplay muted loop playsinline preload="none"
          poster="/photos/reveal-night.webp">
-    <!-- Add sources when ready (WebM first for size, MP4 for Safari):
-    <source src="/videos/chapter-one.webm" type="video/webm">
-    <source src="/videos/chapter-one.mp4" type="video/mp4"> -->
+    <!-- Poster still for now. To animate this full-bleed band, drop a WIDE
+         (≥1440px) muted loop at /videos/reveal-night.webm|mp4 and uncomment:
+    <source src="/videos/reveal-night.webm" type="video/webm">
+    <source src="/videos/reveal-night.mp4" type="video/mp4"> -->
   </video>
   <div class="filmband__inner reveal">
     <p class="filmband__eyebrow">Chapter One</p>
@@ -986,17 +1026,15 @@ img { max-width: 100%; display: block; }
         <p class="ethos-pull reveal d3">This isn't for everyone. It's for the ones ready to see themselves differently.</p>
       </div>
 
-      <div class="ethos-img reveal d2" role="img" aria-label="A Chapter One portrait session"
-           style="background-image:url('/photos/ethos-portrait.webp');">
-        <!-- MOTION SLOT: to animate this portrait, add ethos.webm + ethos.mp4 to
-             /videos/ and uncomment the block below. Poster (bg) shows until then. -->
-        <!--
+      <div class="ethos-img reveal d2" role="img" aria-label="A Chapter One portrait experience in Rochester"
+           style="background-image:url('/photos/chapter-one-portrait-still.webp');">
+        <!-- MOTION: the Chapter One clip plays muted + looping over the poster still.
+             prefers-reduced-motion viewers fall back to the poster automatically. -->
         <video class="motion-video" autoplay muted loop playsinline preload="none"
-               poster="/photos/ethos-portrait.webp">
-          <source src="/videos/ethos.webm" type="video/webm">
-          <source src="/videos/ethos.mp4"  type="video/mp4">
+               poster="/photos/chapter-one-portrait-still.webp">
+          <source src="/videos/chapter-one-portrait.webm" type="video/webm">
+          <source src="/videos/chapter-one-portrait.mp4"  type="video/mp4">
         </video>
-        -->
       </div>
     </div>
   </div>
@@ -1069,9 +1107,9 @@ img { max-width: 100%; display: block; }
 
     <!-- Wall-art mockups: framed portraits, clustered like snapshots -->
     <div class="collage reveal d1">
-      <figure class="c1"><img src="/photos/wall-art-1.webp" alt="A framed Chapter One portrait on the gallery wall" loading="lazy" decoding="async" width="760" height="1350"></figure>
-      <figure class="c2"><img src="/photos/wall-art-2.webp" alt="A framed Chapter One portrait on the gallery wall" loading="lazy" decoding="async" width="760" height="1350"></figure>
-      <figure class="c3"><img src="/photos/wall-art-3.webp" alt="A framed Chapter One portrait on the gallery wall" loading="lazy" decoding="async" width="760" height="1350"></figure>
+      <figure class="c1"><img src="/photos/chapter-one-wall-art-jessica.webp" alt="A framed Chapter One wall portrait unveiled at Reveal Night" loading="lazy" decoding="async" width="900" height="1599"></figure>
+      <figure class="c2"><img src="/photos/chapter-one-wall-art-natalie.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599"></figure>
+      <figure class="c3"><img src="/photos/chapter-one-wall-art-samantha.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599"></figure>
     </div>
     <p class="collage-cap reveal d1">Your season, finished as art and hung like it matters.</p>
 
@@ -1127,6 +1165,40 @@ img { max-width: 100%; display: block; }
       <p class="price-label">Intro experience</p>
       <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
       <p class="price-fine">Limited spots · Applications reviewed personally</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     REAL CHAPTERS — real client portraits, faces to the stories
+════════════════════════════════════════════════════════════ -->
+<section class="section stories">
+  <div class="section-inner" style="max-width:none;">
+    <p class="eyebrow section-eyebrow reveal" style="display:block;">Real Women, Real Chapters</p>
+    <h2 class="section-title reveal d1">Women who said yes to themselves.</h2>
+    <p class="stories-sub reveal d1">Every portrait begins with a real story and a real turning point.</p>
+    <div class="stories-grid">
+      <figure class="story reveal">
+        <img src="/photos/chapter-one-portrait-jessica.webp" alt="Rochester women's portrait experience — an elegant studio portrait celebrating a new chapter" loading="lazy" decoding="async" width="1200" height="1800">
+        <figcaption>
+          <span class="story-label">Her Chapter</span>
+          <span class="story-line">On the other side of the hardest year, and standing taller than ever.</span>
+        </figcaption>
+      </figure>
+      <figure class="story reveal d1">
+        <img src="/photos/chapter-one-portrait-working-mom.webp" alt="Rochester women's portrait experience — a mom and business owner celebrating a new season" loading="lazy" decoding="async" width="1200" height="1683">
+        <figcaption>
+          <span class="story-label">Her Chapter</span>
+          <span class="story-line">A new business and a new baby, carried at the very same time.</span>
+        </figcaption>
+      </figure>
+      <figure class="story reveal d2">
+        <img src="/photos/chapter-one-portrait-new-chapter.webp" alt="Rochester women's portrait experience — a warm portrait marking a fresh start" loading="lazy" decoding="async" width="1200" height="1680">
+        <figcaption>
+          <span class="story-label">Her Chapter</span>
+          <span class="story-line">A new city, a fresh start, and a story worth telling in her own words.</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
