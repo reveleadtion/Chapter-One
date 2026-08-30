@@ -286,6 +286,80 @@ img { max-width: 100%; display: block; }
 }
 
 /* ══════════════════════════════
+   SHOWREEL — the client rotating clip, in a contained device-style frame on a
+   dark ground (kept small so the source stays sharp).
+══════════════════════════════ */
+.showreel { background: #14150F; text-align: center; }
+.showreel .section-eyebrow { color: var(--gold); display: block; }
+.showreel .section-title { color: var(--ivory); margin-bottom: 10px; }
+.showreel-sub { color: rgba(247,245,242,0.7); font-family: var(--body); font-style: italic;
+  font-size: clamp(14px,3.8vw,17px); max-width: 440px; margin: 0 auto clamp(34px,6vw,46px); }
+.showreel-frame {
+  width: min(340px, 78vw); margin: 0 auto; aspect-ratio: 480 / 672;
+  border: 1px solid rgba(199,178,122,0.4);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5); overflow: hidden; background: #000;
+}
+.showreel-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ══════════════════════════════
+   GALLERY MOSAIC — an exhibition grid: one wide scene + framed pieces.
+══════════════════════════════ */
+.mosaic {
+  max-width: 1040px; margin: clamp(36px,7vw,52px) auto 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.mosaic img { width: 100%; height: 100%; object-fit: cover; display: block;
+  border: 1px solid var(--border); box-shadow: 0 14px 34px rgba(46,47,44,0.14); }
+.mosaic .m-wide { grid-column: span 2; aspect-ratio: 16 / 10; }
+.mosaic .m-tall { aspect-ratio: 3 / 4; }
+@media (min-width: 760px) {
+  .mosaic { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .mosaic .m-wide { grid-column: span 3; aspect-ratio: 21 / 9; }
+}
+
+/* ══════════════════════════════
+   STEPS ROW — the four steps as a horizontal band (distinct from the 2-col rows).
+══════════════════════════════ */
+.steps-row { display: grid; grid-template-columns: 1fr; gap: 8px; max-width: 1040px; margin: clamp(40px,7vw,56px) auto 0; }
+.step-card { padding: 26px 4px; border-top: 1px solid var(--border); }
+.step-card .step-num { display: block; margin-bottom: 12px; }
+@media (min-width: 760px) {
+  .steps-row { grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .step-card { border-top: none; border-left: 1px solid var(--border); padding: 8px 22px; }
+  .step-card:first-child { border-left: none; }
+}
+
+/* ══════════════════════════════
+   REVIEW CARDS — three-column quote cards (distinct from the stacked reviews).
+══════════════════════════════ */
+.tcards { display: grid; grid-template-columns: 1fr; gap: 18px; max-width: 1040px; margin: clamp(36px,7vw,52px) auto 0; }
+.tcard {
+  background: var(--paper); border: 1px solid var(--border);
+  padding: clamp(26px,4vw,34px) clamp(24px,3.5vw,30px); text-align: left;
+}
+.tcard .tcard-stars { color: var(--gold); letter-spacing: 0.3em; font-size: 12px; margin-bottom: 14px; }
+.tcard blockquote {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(16px,2.4vw,19px); line-height: 1.55; color: var(--ink); margin-bottom: 14px;
+}
+.tcard .tcard-name {
+  font-family: var(--sans); font-weight: 500; font-size: 10px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive-deep);
+}
+@media (min-width: 820px) { .tcards { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+
+/* Pricing over a dark photo band */
+.pricing.pricing--photo {
+  background-color: #17140D; background-size: cover; background-position: center 30%;
+  background-repeat: no-repeat;
+}
+.pricing.pricing--photo::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(13,13,11,0.72), rgba(13,13,11,0.8));
+}
+.pricing.pricing--photo .section-inner { position: relative; z-index: 2; }
+
+/* ══════════════════════════════
    GENERIC SECTION SCAFFOLD
 ══════════════════════════════ */
 .section {
@@ -821,6 +895,8 @@ img { max-width: 100%; display: block; }
 }
 @media (min-width: 820px) {
   .included-grid { grid-template-columns: 0.9fr 1.1fr; gap: clamp(48px, 6vw, 72px); }
+  .included-grid.reverse { grid-template-columns: 1.1fr 0.9fr; }
+  .included-grid.reverse .included-figure { order: 2; }
   .included .included-copy .section-eyebrow,
   .included .included-copy .section-title,
   .included .included-copy .included-sub,
@@ -919,6 +995,25 @@ img { max-width: 100%; display: block; }
 }
 .audience-list .include-check { width: 18px; height: 18px; }
 
+/* Full-bleed text-on-image "Is this you?" */
+.audience-overlay {
+  position: relative; overflow: hidden; text-align: center;
+  background-color: #17140D; background-size: cover; background-position: center 26%;
+  background-repeat: no-repeat;
+  padding: clamp(96px, 18vw, 156px) 26px;
+}
+.audience-overlay::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 76% 70% at 50% 50%, rgba(13,13,11,0.62), rgba(13,13,11,0.5)),
+    linear-gradient(to bottom, rgba(13,13,11,0.7), rgba(13,13,11,0.55) 40%, rgba(13,13,11,0.78));
+}
+.audience-overlay .section-eyebrow { text-shadow: 0 1px 10px rgba(13,13,11,0.7); }
+.audience-overlay .section-title { text-shadow: 0 2px 20px rgba(13,13,11,0.6); }
+.audience-overlay .section-inner { position: relative; z-index: 2; max-width: 640px; }
+.audience-overlay .audience-list li { color: rgba(247,245,242,0.92); }
+.audience-overlay .audience-list .include-check { color: var(--gold); }
+
 /* ══════════════════════════════
    VIDEO LIGHTBOX + play affordance
 ══════════════════════════════ */
@@ -1001,7 +1096,7 @@ img { max-width: 100%; display: block; }
      SECTION 2 — THE RECOGNITION
 ════════════════════════════════════════════════════════════ -->
 <section class="section recognition" id="recognition">
-  <div class="media-row">
+  <div class="media-row reverse">
     <figure class="media-figure reveal">
       <img src="/photos/chapter-one-portrait-executive.webp" alt="Rochester women's portrait experience — a confident studio portrait" loading="lazy" decoding="async" width="1200" height="1680">
     </figure>
@@ -1063,7 +1158,24 @@ img { max-width: 100%; display: block; }
 
       <div class="ethos-img reveal d2" role="img"
            aria-label="A Chapter One portrait experience in Rochester — editorial gown portrait"
-           style="background-image:url('/photos/chapter-one-portrait-gold-gown.webp');background-position:center 12%;"></div>
+           style="order:-1;background-image:url('/photos/chapter-one-portrait-gold-gown.webp');background-position:center 12%;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SHOWREEL — the client rotating clip, in motion
+════════════════════════════════════════════════════════════ -->
+<section class="section showreel">
+  <div class="section-inner">
+    <p class="eyebrow section-eyebrow reveal">In Motion</p>
+    <h2 class="section-title showreel-title reveal d1">A season, in motion.</h2>
+    <p class="showreel-sub reveal d1">A glimpse of the women who have already turned the page.</p>
+    <div class="showreel-frame reveal d1">
+      <video autoplay muted loop playsinline preload="none" poster="/photos/chapter-one-showreel-poster.webp" aria-label="Rotating Chapter One portraits">
+        <source src="/videos/chapter-one-showreel.webm" type="video/webm">
+        <source src="/videos/chapter-one-showreel.mp4"  type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
@@ -1077,43 +1189,28 @@ img { max-width: 100%; display: block; }
     <h2 class="section-title reveal d1"><span class="frame-motif">How it works</span></h2>
     <p class="process-intro reveal d1">Four steps, from application to Reveal Night.</p>
 
-   <div class="media-row reverse" style="margin-top:clamp(28px,5vw,44px);">
-    <figure class="media-figure reveal">
-      <img src="/photos/chapter-one-wall-art-jessica.webp" alt="A framed Chapter One wall portrait, the finished result of the experience" loading="lazy" decoding="async" width="900" height="1599">
-    </figure>
-    <div class="media-copy">
-    <div class="steps">
-      <div class="step reveal">
+    <div class="steps-row">
+      <div class="step-card reveal">
         <span class="step-num">01</span>
-        <div>
-          <h3 class="step-title">Apply</h3>
-          <p class="step-desc">A short, personal application. Every one is read by Jasmine herself.</p>
-        </div>
+        <h3 class="step-title">Apply</h3>
+        <p class="step-desc">A short, personal application. Every one is read by Jasmine herself.</p>
       </div>
-      <div class="step reveal">
+      <div class="step-card reveal d1">
         <span class="step-num">02</span>
-        <div>
-          <h3 class="step-title">The Call</h3>
-          <p class="step-desc">If selected, a real phone conversation to talk through your story and season of life.</p>
-        </div>
+        <h3 class="step-title">The Call</h3>
+        <p class="step-desc">If selected, a real phone conversation to talk through your story and season of life.</p>
       </div>
-      <div class="step reveal">
+      <div class="step-card reveal d2">
         <span class="step-num">03</span>
-        <div>
-          <h3 class="step-title">The Session</h3>
-          <p class="step-desc">An intimate portrait experience in our Downtown Rochester studio, with professional hair and makeup, styled around you.</p>
-        </div>
+        <h3 class="step-title">The Session</h3>
+        <p class="step-desc">An intimate portrait experience in our Downtown Rochester studio, with professional hair and makeup, styled around you.</p>
       </div>
-      <div class="step reveal">
+      <div class="step-card reveal d3">
         <span class="step-num">04</span>
-        <div>
-          <h3 class="step-title">Reveal Night</h3>
-          <p class="step-desc">Your finished 16&Prime;×24&Prime; wall art, unveiled at an evening with the full Chapter One community.</p>
-        </div>
+        <h3 class="step-title">Reveal Night</h3>
+        <p class="step-desc">Your finished 16&Prime;×24&Prime; wall art, unveiled at an evening with the full Chapter One community.</p>
       </div>
     </div>
-    </div>
-   </div>
   </div>
 </section>
 
@@ -1140,10 +1237,13 @@ img { max-width: 100%; display: block; }
       <p>An evening together with the other people who said yes to themselves. A standing gallery night to move through the room, celebrate, and see your season honored.</p>
     </div>
 
-    <!-- Reveal Night gallery scene -->
-    <figure class="gallery-figure reveal d1">
-      <img src="/photos/chapter-one-gallery-wall.webp" alt="Guests viewing framed Chapter One portraits at a Reveal Night gallery exhibition" loading="lazy" decoding="async" width="1600" height="1067">
-    </figure>
+    <!-- Reveal Night exhibition mosaic -->
+    <div class="mosaic reveal d1">
+      <img class="m-wide" src="/photos/chapter-one-gallery-wall.webp" alt="Guests viewing framed Chapter One portraits at a Reveal Night gallery exhibition" loading="lazy" decoding="async" width="1600" height="1067">
+      <img class="m-tall" src="/photos/chapter-one-wall-art-jessica.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599">
+      <img class="m-tall" src="/photos/chapter-one-wall-art-natalie.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599">
+      <img class="m-tall" src="/photos/chapter-one-wall-art-samantha.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599">
+    </div>
     <p class="collage-cap reveal d1">Your season, finished as art and hung like it matters.</p>
 
     <a class="cta-btn secondary reveal d1" href="apply-now/#apply"><span>See If You Qualify →</span></a>
@@ -1155,7 +1255,7 @@ img { max-width: 100%; display: block; }
 ════════════════════════════════════════════════════════════ -->
 <section class="section included">
   <div class="section-inner" style="max-width:1060px;">
-   <div class="included-grid">
+   <div class="included-grid reverse">
     <figure class="included-figure reveal">
       <img src="/photos/chapter-one-portrait-working-mom.webp" alt="Chapter One portrait experience in Rochester — a business owner and mom celebrating her season" loading="lazy" decoding="async" width="1200" height="1683">
     </figure>
@@ -1197,11 +1297,7 @@ img { max-width: 100%; display: block; }
      SECTION 7 — PRICING / VALUE
 ════════════════════════════════════════════════════════════ -->
 <section class="section pricing">
-  <div class="section-inner" style="max-width:1120px;">
-   <div class="media-row">
-    <figure class="media-figure reveal">
-      <img src="/photos/chapter-one-portrait-magenta.webp" alt="Chapter One portrait experience in Rochester — a vibrant studio portrait" loading="lazy" decoding="async" width="1200" height="1677">
-    </figure>
+  <div class="section-inner">
     <div class="price-card reveal">
       <span class="eyebrow price-eyebrow">The Investment</span>
       <p class="price-value">Total value <s>over $2,550</s></p>
@@ -1210,7 +1306,6 @@ img { max-width: 100%; display: block; }
       <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
       <p class="price-fine">Limited spots · Applications reviewed personally</p>
     </div>
-   </div>
   </div>
 </section>
 
@@ -1261,23 +1356,16 @@ img { max-width: 100%; display: block; }
 <!-- ══════════════════════════════════════════════════════════
      SECTION 8 — WHO IT'S FOR
 ════════════════════════════════════════════════════════════ -->
-<section class="section audience">
-  <div class="section-inner" style="max-width:1120px;">
-   <div class="media-row reverse">
-    <figure class="media-figure reveal">
-      <img src="/photos/chapter-one-wall-art-natalie.webp" alt="A framed Chapter One wall portrait — the finished art from a session" loading="lazy" decoding="async" width="900" height="1599">
-    </figure>
-    <div class="media-copy">
-    <p class="eyebrow section-eyebrow reveal">Who It's For</p>
-    <h2 class="section-title reveal d1">Is this you?</h2>
+<section class="audience-overlay" style="background-image:url('/photos/chapter-one-portrait-magenta.webp');" aria-label="Who it's for">
+  <div class="section-inner">
+    <p class="eyebrow section-eyebrow reveal" style="display:block;color:var(--gold);">Who It's For</p>
+    <h2 class="section-title reveal d1" style="color:var(--ivory);">Is this you?</h2>
     <ul class="audience-list">
       <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You're stepping into a new season and you feel it shifting.</span></li>
       <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You've been last on your own list for too long.</span></li>
       <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You want to see yourself the way the people who love you already do.</span></li>
       <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You're ready to mark this moment and celebrate how far you've come.</span></li>
     </ul>
-    </div>
-   </div>
   </div>
 </section>
 
@@ -1294,36 +1382,35 @@ img { max-width: 100%; display: block; }
 ════════════════════════════════════════════════════════════ -->
 <section class="section testimonials">
   <div class="section-inner" style="max-width:1120px;">
-   <div class="media-row" style="align-items:start;">
-    <figure class="media-figure reveal">
-      <img src="/photos/chapter-one-wall-art-samantha.webp" alt="A framed Chapter One wall portrait, celebrated by a happy client" loading="lazy" decoding="async" width="900" height="1599">
-    </figure>
-    <div class="media-copy">
     <span class="eyebrow reveal" style="display:block;text-align:center;">Five-Star Reviews</span>
-    <div class="tstack">
-      <div class="treview reveal">
-        <blockquote class="tquote">Incomparable. Head and shoulders above the competition. Extraordinary, artistic, and completely stress free.</blockquote>
-        <span class="tattr">— Roy</span>
+    <h2 class="section-title reveal d1" style="text-align:center;margin-top:10px;">The women say it best.</h2>
+    <div class="tcards">
+      <div class="tcard reveal">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Incomparable. Head and shoulders above the competition. Extraordinary, artistic, and completely stress free.</blockquote>
+        <span class="tcard-name">— Roy</span>
       </div>
-      <div class="treview reveal d1">
-        <blockquote class="tquote">Attentive to every detail and comprehensive from start to finish. They truly go above and beyond. Invigorating, memorable, and professional.</blockquote>
-        <span class="tattr">— Yana</span>
+      <div class="tcard reveal d1">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Attentive to every detail and comprehensive from start to finish. They truly go above and beyond. Invigorating, memorable, and professional.</blockquote>
+        <span class="tcard-name">— Yana</span>
       </div>
-      <div class="treview reveal">
-        <blockquote class="tquote">The personal connection and the time they spent with us made all the difference. Accommodating, energetic, and lovable.</blockquote>
-        <span class="tattr">— Dawn</span>
+      <div class="tcard reveal d2">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>The personal connection and the time they spent with us made all the difference. Accommodating, energetic, and lovable.</blockquote>
+        <span class="tcard-name">— Dawn</span>
       </div>
-      <div class="treview reveal d1">
-        <blockquote class="tquote">Comfortable, amazing, and unforgettable. Friendly, creative, and detail oriented from the very first conversation.</blockquote>
-        <span class="tattr">— Lira</span>
+      <div class="tcard reveal">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Comfortable, amazing, and unforgettable. Friendly, creative, and detail oriented from the very first conversation.</blockquote>
+        <span class="tcard-name">— Lira</span>
       </div>
-      <div class="treview reveal">
-        <blockquote class="tquote">Friendly, all inclusive, and stress free. Professional, flexible, and comfortable the whole way through.</blockquote>
-        <span class="tattr">— Nick</span>
+      <div class="tcard reveal d1">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Friendly, all inclusive, and stress free. Professional, flexible, and comfortable the whole way through.</blockquote>
+        <span class="tcard-name">— Nick</span>
       </div>
     </div>
-    </div>
-   </div>
   </div>
 </section>
 
