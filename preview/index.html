@@ -206,80 +206,77 @@ img { max-width: 100%; display: block; }
 }
 
 /* ══════════════════════════════
-   SECTION 1 — HERO
+   ROTATING SHOWCASE — a full-res crossfade of real portraits, rebuilt from
+   the client "rotating gif" so it stays sharp and never black-borders.
 ══════════════════════════════ */
-/* Stacked hero: portrait panel on top, copy on solid ivory below — so text
-   and the photo never overlap on any screen height. */
+.showcase { position: absolute; inset: 0; overflow: hidden; background: #17140D; z-index: 0; }
+.showcase-slide {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 20%;
+  opacity: 0; transition: opacity 1.5s ease;
+  will-change: opacity;
+}
+.showcase-slide.is-active { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .showcase-slide { transition: none; } }
+
+/* ══════════════════════════════
+   SECTION 1 — HERO (full-bleed showcase + overlaid copy)
+══════════════════════════════ */
 .hero {
   position: relative;
   min-height: 100svh;
-  display: flex; flex-direction: column;
+  display: flex; align-items: flex-end;
   text-align: center;
   overflow: hidden;
-  background: var(--paper);
+  background: #17140D;
 }
-/* Top gold accent hairline */
-.hero::before {
+.hero::before {                                   /* top gold accent hairline */
   content: '';
   position: absolute; top: 0; left: 0; right: 0;
   height: 1px; z-index: 3;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
-
-/* HERO-IMG: editorial close portrait, warm/moody lighting, direct eye contact.
-   Swap the background-image URL below. It sits in its own panel; a soft fade
-   at the bottom edge blends it into the ivory copy zone. */
-.hero-photo {
-  position: relative;
-  flex-shrink: 0;
-  width: 100%;
-  height: 46svh;
-  min-height: 280px;
-  max-height: 520px;
-  background-color: #E6E2D9;
-  background-image: url('/photos/hero-portrait.webp');
-  background-size: cover;
-  background-position: center 18%;
-}
-.hero-photo::after {
+.hero::after {                                    /* legibility scrim, anchored low */
   content: '';
-  position: absolute; left: 0; right: 0; bottom: 0;
-  height: 30%;
-  background: linear-gradient(to top, var(--paper) 0%, rgba(247,245,242,0) 100%);
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top,
+    rgba(13,13,11,0.88) 0%, rgba(13,13,11,0.55) 34%,
+    rgba(13,13,11,0.22) 60%, rgba(13,13,11,0.30) 100%);
 }
-
 .hero-inner {
   position: relative; z-index: 2;
-  flex: 1;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  max-width: 520px; width: 100%;
+  width: 100%; max-width: 640px;
   margin: 0 auto;
-  padding: 4px 28px max(36px, calc(env(safe-area-inset-bottom, 0px) + 28px));
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 28px max(46px, calc(env(safe-area-inset-bottom, 0px) + 44px));
 }
-.hero .logo-mark  { margin-bottom: 16px; }
-.hero .roman      { margin-bottom: 4px; margin-top: -14px; }
+.hero .logo-mark  { color: rgba(247,245,242,0.72); margin-bottom: 16px; }
+.hero .roman      { -webkit-text-stroke-color: var(--gold); margin: 0 auto 6px; }
 
 .hero-title {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(34px, 9vw, 62px);
+  font-size: clamp(38px, 10vw, 72px);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--ivory);
   line-height: 1;
   margin-top: 6px;
+  text-shadow: 0 2px 30px rgba(13,13,11,0.5);
 }
 .hero-sub {
   font-family: var(--body);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(14px, 4vw, 19px);
-  color: var(--ink-soft);
-  margin-top: 16px;
-  max-width: 340px;
+  font-size: clamp(15px, 4vw, 20px);
+  color: rgba(247,245,242,0.92);
+  margin: 16px auto 0;
+  max-width: 360px;
   line-height: 1.5;
+  text-shadow: 0 1px 18px rgba(13,13,11,0.6);
 }
 .hero .cta-btn { margin-top: 30px; }
+.hero .cta-note { color: rgba(247,245,242,0.7); }
 
 /* ══════════════════════════════
    GENERIC SECTION SCAFFOLD
@@ -428,6 +425,11 @@ img { max-width: 100%; display: block; }
 }
 .filmband__line em { color: var(--gold); font-style: italic; }
 @media (min-width: 760px) { .filmband { min-height: 78vh; } }
+/* Lighter variant: keep the image bright, scrim only the lower-left caption zone */
+.filmband--light::after {
+  background: linear-gradient(to top,
+    rgba(13,13,11,0.58) 0%, rgba(13,13,11,0.14) 38%, rgba(13,13,11,0) 68%);
+}
 
 /* Gold line-art frame motif (echo of the reference's line-drawn "door") */
 .frame-motif {
@@ -498,8 +500,10 @@ img { max-width: 100%; display: block; }
    scroll ("You deserve to feel this great too!").
 ══════════════════════════════ */
 .statement { background: var(--paper); text-align: center;
-  padding: clamp(72px, 15vw, 128px) 26px clamp(8px, 3vw, 20px); }
-.statement.close { padding-bottom: clamp(56px, 12vw, 96px); }
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 52vh;
+  padding: clamp(72px, 14vw, 120px) 26px; }
+.statement.close { padding-bottom: clamp(72px, 14vw, 120px); }
 .statement-line {
   font-family: var(--body); font-weight: 300;
   font-size: clamp(32px, 8.4vw, 62px); line-height: 1.05;
@@ -556,11 +560,13 @@ img { max-width: 100%; display: block; }
 .story { margin: 0; }
 .story img {
   width: 100%; height: auto; display: block;
+  aspect-ratio: 4 / 5;               /* all three identical size */
+  object-fit: cover; object-position: center 18%;
   border: 1px solid var(--border);
   box-shadow: 0 20px 44px rgba(46,47,44,0.14);
 }
 .story figcaption {
-  margin-top: 18px;
+  margin-top: 18px; text-align: center;
 }
 .story .story-label {
   display: block;
@@ -631,7 +637,7 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: flex-end;
   background-color: #17140D;
   background-image: url('/photos/reveal-night.webp');
-  background-size: cover; background-position: center 20%;
+  background-size: cover; background-position: center top;
   overflow: hidden;
 }
 .gala-hero::after {
@@ -668,6 +674,12 @@ img { max-width: 100%; display: block; }
 .testimonials .eyebrow { display: block; margin-bottom: 42px; }
 .tstack { display: flex; flex-direction: column; gap: 48px; }
 .treview { max-width: 600px; margin: 0 auto; }
+.treview::before {
+  content: '\2605 \2605 \2605 \2605 \2605';
+  display: block; color: var(--gold);
+  font-size: 13px; letter-spacing: 0.32em;
+  margin-bottom: 16px;
+}
 .tquote {
   font-family: var(--body);
   font-weight: 400;
@@ -763,13 +775,14 @@ img { max-width: 100%; display: block; }
   text-decoration: none;
   font-family: var(--sans);
   font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--gold-deep);
+  color: var(--gold);
+  text-shadow: 0 1px 12px rgba(13,13,11,0.6);
   animation: cueFloat 2.2s ease-in-out infinite;
 }
 .scroll-cue .scroll-arrow {
   font-family: var(--serif);
   font-size: 20px; line-height: 1;
-  color: var(--gold-deep);
+  color: var(--gold);
 }
 @keyframes cueFloat {
   0%,100% { transform: translateY(0); opacity: 0.75; }
@@ -789,6 +802,25 @@ img { max-width: 100%; display: block; }
   font-family: var(--body); font-style: italic;
   font-size: clamp(14px, 3.6vw, 16px);
   margin: 0 auto 40px; max-width: 460px;
+}
+.included-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(36px, 6vw, 56px); align-items: center;
+}
+.included-figure { margin: 0; }
+.included-figure img {
+  width: 100%; height: auto; aspect-ratio: 4 / 5;
+  object-fit: cover; object-position: center 14%;
+  border: 1px solid var(--border);
+  box-shadow: 0 22px 46px rgba(46,47,44,0.15);
+}
+@media (min-width: 820px) {
+  .included-grid { grid-template-columns: 0.9fr 1.1fr; gap: clamp(48px, 6vw, 72px); }
+  .included .included-copy .section-eyebrow,
+  .included .included-copy .section-title,
+  .included .included-copy .included-sub,
+  .included .included-copy .include-note { text-align: left; margin-left: 0; }
+  .included .included-copy .include-list { margin-left: 0; }
 }
 .include-list {
   list-style: none;
@@ -942,9 +974,14 @@ img { max-width: 100%; display: block; }
      SECTION 1 — HERO
 ════════════════════════════════════════════════════════════ -->
 <header class="hero">
-  <!-- HERO-IMG: set background-image on .hero-photo — editorial close portrait,
-       warm/moody lighting, direct eye contact -->
-  <div class="hero-photo" role="img" aria-label="Chapter One portrait"></div>
+  <!-- Rotating showcase of real Chapter One portraits (full-res crossfade) -->
+  <div class="showcase" role="img" aria-label="Chapter One portraits" data-showcase="3600">
+    <div class="showcase-slide is-active" style="background-image:url('/photos/chapter-one-portrait-sequin.webp');background-position:center 22%;"></div>
+    <div class="showcase-slide" style="background-image:url('/photos/chapter-one-portrait-gold-gown.webp');background-position:center 18%;"></div>
+    <div class="showcase-slide" style="background-image:url('/photos/chapter-one-portrait-jessica.webp');background-position:center 20%;"></div>
+    <div class="showcase-slide" style="background-image:url('/photos/chapter-one-portrait-velvet.webp');background-position:center 16%;"></div>
+    <div class="showcase-slide" style="background-image:url('/photos/chapter-one-portrait-executive.webp');background-position:center 18%;"></div>
+  </div>
 
   <div class="hero-inner reveal in">
     <p class="logo-mark">Two Wild Souls Photography</p>
@@ -1026,16 +1063,9 @@ img { max-width: 100%; display: block; }
         <p class="ethos-pull reveal d3">This isn't for everyone. It's for the ones ready to see themselves differently.</p>
       </div>
 
-      <div class="ethos-img reveal d2" role="img" aria-label="A Chapter One portrait experience in Rochester"
-           style="background-image:url('/photos/chapter-one-portrait-still.webp');">
-        <!-- MOTION: the Chapter One clip plays muted + looping over the poster still.
-             prefers-reduced-motion viewers fall back to the poster automatically. -->
-        <video class="motion-video" autoplay muted loop playsinline preload="none"
-               poster="/photos/chapter-one-portrait-still.webp">
-          <source src="/videos/chapter-one-portrait.webm" type="video/webm">
-          <source src="/videos/chapter-one-portrait.mp4"  type="video/mp4">
-        </video>
-      </div>
+      <div class="ethos-img reveal d2" role="img"
+           aria-label="A Chapter One portrait experience in Rochester — editorial gown portrait"
+           style="background-image:url('/photos/chapter-one-portrait-gold-gown.webp');background-position:center 12%;"></div>
     </div>
   </div>
 </section>
@@ -1121,7 +1151,12 @@ img { max-width: 100%; display: block; }
      SECTION 6 — WHAT'S INCLUDED
 ════════════════════════════════════════════════════════════ -->
 <section class="section included">
-  <div class="section-inner">
+  <div class="section-inner" style="max-width:1060px;">
+   <div class="included-grid">
+    <figure class="included-figure reveal">
+      <img src="/photos/chapter-one-portrait-jessica-light.webp" alt="Chapter One portrait experience in Rochester — a joyful studio portrait" loading="lazy" decoding="async" width="1200" height="1680">
+    </figure>
+    <div class="included-copy">
     <p class="eyebrow section-eyebrow reveal">The Experience</p>
     <h2 class="section-title reveal d1">What's included</h2>
     <p class="included-sub reveal d1">Everything is taken care of. You just show up as you are.</p>
@@ -1150,6 +1185,8 @@ img { max-width: 100%; display: block; }
     </ul>
 
     <p class="include-note reveal">Want to bring the people who matter most? Family can be included in your session, just let us know.</p>
+    </div>
+   </div>
   </div>
 </section>
 
@@ -1166,6 +1203,16 @@ img { max-width: 100%; display: block; }
       <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
       <p class="price-fine">Limited spots · Applications reviewed personally</p>
     </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FULL-BLEED BAND 2 — a lighter, gray-toned beat for color variation
+════════════════════════════════════════════════════════════ -->
+<section class="filmband filmband--light" style="background-image:url('/photos/chapter-one-portrait-twirl.webp');background-position:center 20%;" aria-label="Chapter One portrait">
+  <div class="filmband__inner reveal">
+    <p class="filmband__eyebrow">The Feeling</p>
+    <p class="filmband__line">Lighter than you have felt<br><em>in a long, long time.</em></p>
   </div>
 </section>
 
@@ -1306,6 +1353,23 @@ img { max-width: 100%; display: block; }
     els.forEach(function (el) {
       // Hero content is already visible on load — don't wait for scroll.
       if (!el.classList.contains('in')) io.observe(el);
+    });
+  })();
+
+  // ── ROTATING SHOWCASE (crossfade) ──
+  // Cycles the .showcase-slide children of any [data-showcase] element.
+  (function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('[data-showcase]').forEach(function (box) {
+      var slides = box.querySelectorAll('.showcase-slide');
+      if (slides.length < 2 || reduce) return;
+      var i = 0;
+      var delay = parseInt(box.getAttribute('data-showcase'), 10) || 3600;
+      setInterval(function () {
+        slides[i].classList.remove('is-active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('is-active');
+      }, delay);
     });
   })();
 
