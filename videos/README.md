@@ -1,27 +1,42 @@
-# Videos — cinematic film bands
+# Videos — motion clips for the landing page
 
-Drop short, **muted, looping** clips here for the full-bleed film band(s) on the
-landing page (`preview/index.html`, the `.filmband` sections).
+The landing page (`preview/index.html`) follows the reference-page design: the
+**hero stays a still photo, and the other main portraits become short, muted,
+looping video/gif clips**. Each motion slot already shows a **poster still**, so
+the page looks finished today — drop a clip in and it starts moving. Nothing
+breaks while clips are still being made.
 
-## Recommended encoding (keep it light for paid mobile traffic)
+## Motion slots (what goes where)
+
+| Slot | Type | Poster still | Clip files to add | Status |
+|------|------|--------------|-------------------|--------|
+| Hero (top of page) | **Still — stays a photo** | `photos/hero-portrait.webp` | — | done |
+| Film band (below recognition) | Motion | `photos/reveal-night.webp` | `videos/chapter-one.webm` + `.mp4` | waiting on clip |
+| Ethos portrait ("The Experience") | Motion | `photos/ethos-portrait.webp` | `videos/ethos.webm` + `.mp4` | waiting on clip |
+| Reveal Night hero | **Click-to-play film** (YouTube) | thumbnail | already wired (Short `4xmrcap65bI`) | done |
+| Wall-art trio (gallery) | **Stills — framed prints** | `photos/wall-art-1/2/3.webp` | — | done |
+
+## How to hand me a clip
+
+Easiest: **commit the source file to the repo** (a `.mp4`, `.mov`, or `.gif`),
+the same way the photos were added — e.g. `videos/source/sequin-portrait.mov`.
+Pasting an image/gif into chat only reaches me as a single still frame, not the
+moving file, so it must be in git for me to use it.
+
+I'll then transcode it to a web-optimized **muted, looping** pair and wire it in:
+- `<name>.webm` (VP9/AV1 — smaller, loads first)
+- `<name>.mp4`  (H.264, `-movflags +faststart` — Safari/iOS)
+
+## Encoding targets (if you export them yourself)
+
 - **Length:** 6–12 s, seamless loop
-- **Formats:** provide both, WebM first (smaller) then MP4 (Safari/iOS):
-  - `chapter-one.webm` (VP9/AV1)
-  - `chapter-one.mp4`  (H.264, `-movflags +faststart`)
-- **Size:** aim for ~1080–1440px wide, target < 2–3 MB per file
-- **No audio track** (bands autoplay muted)
-- Also export a **poster still** to `photos/film-poster.webp` (first frame)
+- **Size:** ~1080–1440px wide, target **< 2–3 MB** per file
+- **No audio track** (slots autoplay muted)
+- Provide both `.webm` and `.mp4`
 
-## Wire it up
-In `preview/index.html`, inside the `.filmband` `<video>`, uncomment the
-`<source>` lines and point them here. Until then the poster image shows on its
-own and nothing breaks.
+## Wiring (I handle this)
 
-Example:
-```html
-<video class="filmband__video" autoplay muted loop playsinline preload="none"
-       poster="/photos/film-poster.webp">
-  <source src="/videos/chapter-one.webm" type="video/webm">
-  <source src="/videos/chapter-one.mp4"  type="video/mp4">
-</video>
-```
+Each motion slot has a commented `<video>` block right next to it in
+`preview/index.html`. Once the files exist I uncomment it and point the
+`<source>` lines at them. `prefers-reduced-motion` viewers automatically fall
+back to the poster still.

@@ -441,6 +441,21 @@ img { max-width: 100%; display: block; }
 .frame-motif::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
 .frame-motif::after  { bottom: 0; right: 0; border-left: 0; border-top: 0; }
 
+/* Reusable motion overlay — a muted, looping clip that plays over a poster
+   still inside any relatively-positioned image container (.ethos-img, etc.),
+   the way the reference page animates its main photos. The poster (the
+   container's background-image) shows until a <source> is added, so nothing
+   breaks while clips are still being produced. */
+.motion-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-video, .filmband__video { display: none; }   /* fall back to poster */
+}
+
 /* ══════════════════════════════
    SECTION 4 — HOW IT WORKS
 ══════════════════════════════ */
@@ -891,7 +906,17 @@ img { max-width: 100%; display: block; }
       </div>
 
       <div class="ethos-img reveal d2" role="img" aria-label="A Chapter One portrait session"
-           style="background-image:url('/photos/ethos-portrait.webp');"></div>
+           style="background-image:url('/photos/ethos-portrait.webp');">
+        <!-- MOTION SLOT: to animate this portrait, add ethos.webm + ethos.mp4 to
+             /videos/ and uncomment the block below. Poster (bg) shows until then. -->
+        <!--
+        <video class="motion-video" autoplay muted loop playsinline preload="none"
+               poster="/photos/ethos-portrait.webp">
+          <source src="/videos/ethos.webm" type="video/webm">
+          <source src="/videos/ethos.mp4"  type="video/mp4">
+        </video>
+        -->
+      </div>
     </div>
   </div>
 </section>
