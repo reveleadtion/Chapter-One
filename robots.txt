@@ -1,6 +1,7 @@
 User-agent: *
-Disallow: /preview/
+Allow: /
+Disallow: /teaser/
 
-# The public teaser lives at / and is crawlable.
-# /preview/ holds the full landing page + application quiz, kept private
-# (also noindex'd per-page) until launch.
+# The Chapter One landing page is live at /.
+# /apply-now/ is the application funnel (noindex per-page).
+# /teaser/ is the retired coming-soon / email-capture page (noindex per-page).

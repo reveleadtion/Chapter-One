@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F7F5F2">
+<title>Chapter One — Coming Soon | Two Wild Souls Photography</title>
+
+<!-- ══ SEO / META ══ (retired coming-soon page — kept for the email capture form) -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Something new is coming from Two Wild Souls Photography. Chapter One is a portrait experience for your next beginning. Join the list to watch the teaser and get early access before applications open.">
+<link rel="canonical" href="https://twowildsoulsphotography.com/teaser/">
+
+<!-- ══ OPEN GRAPH — social / ad link previews ══ -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Two Wild Souls Photography">
+<meta property="og:title" content="Chapter One is coming.">
+<meta property="og:description" content="A portrait experience for your next beginning. Join the list to watch the teaser and get early access.">
+<!-- OG-IMG: 1200×630 — swap for a teaser-specific still when ready -->
+<meta property="og:image" content="https://twowildsoulsphotography.com/photos/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://twowildsoulsphotography.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chapter One is coming.">
+<meta name="twitter:description" content="A portrait experience for your next beginning. Join the list for early access.">
+<meta name="twitter:image" content="https://twowildsoulsphotography.com/photos/og-image.jpg">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Work+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* TWS Brand — inherited from the landing page / quiz */
+  --ivory:      #F7F5F2;
+  --stone:      #ECEAE6;
+  --gold:       #C7B27A;
+  --gold-line:  rgba(199,178,122,0.35);
+  --paper:      #F7F5F2;
+  --paper-alt:  #EEEBE4;
+  --ink:        #2E2F2C;
+  --ink-soft:   #54544D;
+  --ink-mute:   #7A7B73;
+  --gold-deep:  #8A6E2C;
+  --olive-deep: #5E6B3E;
+  --border:     rgba(138,110,44,0.28);
+  --black:      #0D0D0B;
+
+  --serif:  'Playfair Display', Georgia, serif;
+  --sans:   'Work Sans', sans-serif;
+  --body:   'Cormorant Garamond', Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100svh;
+  font-family: var(--body);
+  background: var(--paper);
+  color: var(--ink-soft);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  display: flex; flex-direction: column;
+}
+
+/* Grain — same fractalNoise overlay as the rest of the site */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999;
+}
+img { max-width: 100%; display: block; }
+
+/* Top gold hairline */
+.page::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 1px; z-index: 3;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.page { flex: 1; display: flex; flex-direction: column; }
+
+/* ── Portrait band (soft-fades into ivory; no text overlaps it) ── */
+.teaser-photo {
+  position: relative;
+  width: 100%;
+  height: 28svh;
+  min-height: 180px;
+  max-height: 280px;
+  background-color: #E6E2D9;
+  background-image: url('/photos/hero-portrait.webp');
+  background-size: cover;
+  background-position: center 14%;
+  flex-shrink: 0;
+}
+.teaser-photo::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 38%;
+  background: linear-gradient(to top, var(--paper) 0%, rgba(247,245,242,0) 100%);
+}
+
+/* ── Content ── */
+.teaser-inner {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  max-width: 460px; width: 100%;
+  margin: 0 auto;
+  padding: 0 26px max(24px, calc(env(safe-area-inset-bottom, 0px) + 20px));
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 500; font-size: 9px;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.roman {
+  display: block;
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(38px, 10vw, 56px); line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px var(--gold-deep);
+  margin: 12px 0 2px;
+}
+
+.teaser-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(30px, 8.5vw, 48px);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink); line-height: 1;
+  margin-top: 4px;
+}
+
+.teaser-tag {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--sans);
+  font-weight: 600; font-size: 9.5px;
+  letter-spacing: 0.34em; text-transform: uppercase;
+  color: var(--gold-deep);
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  padding: 7px 16px;
+}
+
+.teaser-sub {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(15px, 4.2vw, 19px);
+  color: var(--ink-soft);
+  margin-top: 14px; line-height: 1.5;
+  max-width: 360px;
+}
+
+.divider {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin: 16px auto;
+}
+.divider::before, .divider::after {
+  content: ''; width: 26px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.divider::after { transform: scaleX(-1); }
+.gem { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); opacity: 0.8; }
+
+.teaser-body {
+  font-family: var(--body); font-weight: 400;
+  font-size: clamp(15px, 4vw, 17px); line-height: 1.75;
+  color: var(--ink-soft);
+  max-width: 380px;
+}
+
+/* Optional "watch the teaser" button — stays hidden until a video ID is set.
+   When the teaser video is on YouTube, add data-video-id="YOUTUBE_ID" to
+   the button below and it appears + opens the lightbox. */
+.watch-btn {
+  display: none;
+  align-items: center; gap: 10px;
+  margin-top: 24px;
+  font-family: var(--sans); font-weight: 600;
+  font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--ink); background: transparent;
+  border: 1px solid var(--gold-line); border-radius: 999px;
+  padding: 13px 24px; cursor: pointer;
+  -webkit-appearance: none;
+}
+.watch-btn.is-on { display: inline-flex; }
+.watch-btn .tri {
+  width: 0; height: 0;
+  border-style: solid; border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent var(--gold-deep);
+}
+
+/* ── Email capture ── */
+.signup {
+  width: 100%;
+  margin-top: 22px;
+  background: var(--paper-alt);
+  border: 1px solid var(--border);
+  padding: 22px 18px 20px;
+}
+.signup h2 {
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(19px, 5.2vw, 23px);
+  color: var(--ink); line-height: 1.2;
+  margin-bottom: 5px;
+}
+.signup .signup-note {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(13.5px, 3.6vw, 15px);
+  color: var(--ink-mute);
+  margin-bottom: 14px;
+}
+
+/* ── Sprout embed → brand styling ──
+   The embed injects its own markup (and inline styles), so these overrides use
+   !important to reskin its inputs and submit button to match the brand.
+   Kept resilient to a few possible field/label structures. */
+/* Scoped under `body #signup-embed` so these win against the embed's own
+   (often ID-level / !important) CSS. Reskin: underline fields on ivory + a
+   gold submit button, form contained and centered. */
+body #signup-embed { font-family: var(--body); color: var(--ink); max-width: 340px; margin: 0 auto; }
+/* neutralize the embed's own panel backgrounds & borders (the white block) */
+body #signup-embed div,
+body #signup-embed form,
+body #signup-embed section,
+body #signup-embed table,
+body #signup-embed tbody,
+body #signup-embed tr,
+body #signup-embed td,
+body #signup-embed ul,
+body #signup-embed li,
+body #signup-embed p,
+body #signup-embed span,
+body #signup-embed fieldset {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+}
+/* labels */
+body #signup-embed label {
+  font-family: var(--sans) !important;
+  font-size: 9px !important; letter-spacing: 0.24em !important;
+  text-transform: uppercase !important; color: var(--ink-mute) !important;
+}
+/* text-like inputs → elegant underline on ivory */
+body #signup-embed input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+body #signup-embed textarea,
+body #signup-embed select {
+  display: block !important;
+  width: 100% !important;
+  font-family: var(--body) !important;
+  font-size: 16px !important; /* 16px avoids iOS zoom-on-focus */
+  color: var(--ink) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  padding: 11px 2px !important;
+  margin: 0 0 14px 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important; appearance: none !important;
+}
+body #signup-embed input::placeholder,
+body #signup-embed textarea::placeholder { color: var(--ink-mute) !important; opacity: 0.85 !important; }
+body #signup-embed input:focus,
+body #signup-embed textarea:focus,
+body #signup-embed select:focus { border-bottom-color: var(--olive-deep) !important; }
+/* submit → gold brand button, full width */
+body #signup-embed input[type="submit"],
+body #signup-embed button,
+body #signup-embed input[type="button"],
+body #signup-embed a[class*="button"],
+body #signup-embed a[class*="btn"] {
+  display: block !important;
+  width: 100% !important;
+  font-family: var(--sans) !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.3em !important;
+  text-transform: uppercase !important;
+  text-align: center !important; text-decoration: none !important;
+  color: var(--black) !important;
+  background: var(--gold) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 15px 20px !important;
+  margin: 8px auto 0 !important;
+  cursor: pointer !important;
+  -webkit-appearance: none !important; appearance: none !important;
+}
+.signup-fallback {
+  font-family: var(--body); font-size: 14px; color: var(--ink-mute);
+}
+.signup-fallback a { color: var(--gold-deep); }
+
+.microcopy {
+  margin-top: 14px;
+  font-family: var(--sans); font-weight: 400;
+  font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+/* ── Footer ── */
+.teaser-footer {
+  margin-top: auto;
+  padding-top: 26px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.footer-phone {
+  font-family: var(--body); font-size: 17px; font-weight: 400;
+  color: var(--gold-deep); text-decoration: none; letter-spacing: 0.04em;
+}
+.footer-brand {
+  font-family: var(--sans); font-weight: 400;
+  font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.footer-legal {
+  font-family: var(--sans); font-size: 8px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-mute); opacity: 0.7;
+}
+
+/* ── Entrance ── */
+.fade { opacity: 0; transform: translateY(16px); animation: fadeUp 0.8s ease forwards; }
+.fade.d1 { animation-delay: 0.10s; }
+.fade.d2 { animation-delay: 0.20s; }
+.fade.d3 { animation-delay: 0.32s; }
+.fade.d4 { animation-delay: 0.44s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .fade { animation: none; opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ── Desktop / tablet: center the page as a column so the portrait keeps a
+   proper head-and-shoulders crop instead of stretching full-width. ── */
+@media (min-width: 760px) {
+  .page { max-width: 620px; margin: 0 auto; }
+  .teaser-photo {
+    height: 440px; min-height: 0; max-height: none;
+    background-position: center 20%;
+  }
+  .teaser-inner { max-width: 500px; padding-bottom: 52px; }
+  .teaser-body { max-width: 430px; }
+}
+
+/* ── Video lightbox (for the teaser, once it's on YouTube) ── */
+.lightbox {
+  position: fixed; inset: 0; z-index: 10000;
+  background: rgba(13,13,11,0.92);
+  display: none; align-items: center; justify-content: center; padding: 24px;
+}
+.lightbox.open { display: flex; }
+.lightbox-frame { position: relative; width: 100%; max-width: 880px; aspect-ratio: 16 / 9; background: #000; }
+.lightbox-frame.portrait { aspect-ratio: 9 / 16; max-width: min(92vw, calc(86svh * 9 / 16)); }
+.lightbox-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.lightbox-close {
+  position: absolute; top: -42px; right: 0; background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory);
+}
+</style>
+</head>
+<body>
+
+<main class="page">
+  <!-- TEASER-IMG: swap /photos/hero-portrait.webp for a teaser-specific still if you have one -->
+  <div class="teaser-photo fade" role="img" aria-label="Chapter One"></div>
+
+  <div class="teaser-inner">
+    <p class="eyebrow fade" style="margin-top:22px;">Two Wild Souls Photography</p>
+    <div class="roman fade d1">I</div>
+    <h1 class="teaser-title fade d1">Chapter One</h1>
+    <span class="teaser-tag fade d2">Coming Soon</span>
+    <p class="teaser-sub fade d2">A portrait experience for your next beginning.</p>
+
+    <div class="divider fade d2"><div class="gem"></div></div>
+
+    <p class="teaser-body fade d3">
+      A film, an invitation, and a limited number of spots. Join the list to watch the teaser first and apply before doors open.
+    </p>
+
+    <!-- Optional: reveal by adding data-video-id="YOUTUBE_ID" -->
+    <button class="watch-btn fade d3" type="button"
+            aria-label="Watch the teaser"
+            data-video-id="" data-video-orientation="portrait">
+      <span class="tri" aria-hidden="true"></span>Watch the teaser
+    </button>
+
+    <!-- ══ EMAIL CAPTURE (Sprout Studio) ══ -->
+    <section class="signup fade d4" aria-label="Join the email list">
+      <h2>Be the first to know</h2>
+      <p class="signup-note">Early access, the teaser film, and your spot before anyone else.</p>
+      <div class="signup-embed" id="signup-embed">
+        <!-- Sprout Studio email-campaign embed. Renders the form on the live site. -->
+        <script id='sprout-studio-email-campaign-script-11331' type="text/javascript" src='https://sproutstudio.com/sprout_email_campaign_embed.php?email_campaign_list_id=17245&embedable_id=11331' defer></script>
+        <noscript>
+          <p class="signup-fallback">Please enable JavaScript to join the list, or email
+          <a href="mailto:hello@twowildsoulsphotography.com">hello@twowildsoulsphotography.com</a>.</p>
+        </noscript>
+      </div>
+      <p class="microcopy">No spam · Just the first look &amp; early access</p>
+    </section>
+
+    <footer class="teaser-footer fade d4">
+      <a class="footer-phone" href="tel:+12482746361">(248) 274-6361</a>
+      <p class="footer-brand">Two Wild Souls Photography</p>
+      <p class="footer-legal">© 2026 Two Wild Souls Photography · Chapter One</p>
+    </footer>
+  </div>
+</main>
+
+<!-- Video lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-frame">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close video">Close ✕</button>
+    <div id="lightbox-slot"></div>
+  </div>
+</div>
+
+<script>
+  // Teaser video button: only shows if a YouTube ID has been set on it.
+  (function () {
+    var btn  = document.querySelector('.watch-btn');
+    var box  = document.getElementById('lightbox');
+    var slot = document.getElementById('lightbox-slot');
+    var frame = box ? box.querySelector('.lightbox-frame') : null;
+    if (!btn || !box || !slot || !frame) return;
+
+    var id = (btn.getAttribute('data-video-id') || '').trim();
+    if (!id) return; // no teaser video yet — leave the button hidden
+    btn.classList.add('is-on');
+
+    var portrait = (btn.getAttribute('data-video-orientation') || '').trim() === 'portrait';
+    function open() {
+      frame.classList.toggle('portrait', portrait);
+      slot.innerHTML = '<iframe src="https://www.youtube.com/embed/' + encodeURIComponent(id) +
+        '?autoplay=1&rel=0&playsinline=1" title="Chapter One teaser" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+      box.classList.add('open'); box.setAttribute('aria-hidden', 'false');
+    }
+    function close() {
+      box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); slot.innerHTML = '';
+    }
+    btn.addEventListener('click', open);
+    document.getElementById('lightbox-close').addEventListener('click', close);
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+</script>
+</body>
+</html>
