@@ -578,30 +578,31 @@ img { max-width: 100%; display: block; }
    line-art and a tiny italic script subtitle tucked beneath.
 ══════════════════════════════ */
 .marquee { background: var(--paper); text-align: center;
-  padding: clamp(72px, 16vw, 132px) 24px; }
+  padding: clamp(52px, 9vw, 88px) 24px; }
 .marquee-intro {
   font-family: var(--body); font-style: italic;
-  font-size: clamp(15px, 4.2vw, 20px); line-height: 1.6;
-  color: var(--ink-soft); max-width: 480px; margin: 0 auto clamp(44px, 10vw, 84px);
+  font-size: clamp(15px, 4vw, 19px); line-height: 1.6;
+  color: var(--ink-soft); max-width: 540px; margin: 0 auto clamp(26px, 4.5vw, 40px);
 }
 .marquee-intro strong { font-style: normal; font-weight: 500; color: var(--ink); }
-.marquee-lockup { position: relative; display: inline-block; max-width: 94vw; }
+.marquee-lockup {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: clamp(10px, 2vw, 20px); max-width: 94vw;
+}
 .marquee-word {
   font-family: var(--body); font-weight: 300;
-  font-size: clamp(54px, 17vw, 132px); line-height: 0.9;
+  font-size: clamp(42px, 10vw, 82px); line-height: 1;
   letter-spacing: 0.004em; color: var(--ink); white-space: nowrap;
 }
 .marquee-word em { font-style: italic; }
 .marquee-door {
-  position: absolute; right: clamp(-14px, -3.2vw, -6px); top: 50%;
-  transform: translateY(-54%);
-  width: clamp(52px, 14vw, 108px); height: auto;
+  width: clamp(28px, 6vw, 50px); height: auto; flex-shrink: 0;
   color: var(--gold); pointer-events: none;
 }
 .marquee-script {
   font-family: var(--body); font-style: italic; font-weight: 400;
-  font-size: clamp(15px, 4.2vw, 23px); letter-spacing: 0.02em;
-  color: var(--ink-mute); margin-top: 8px;
+  font-size: clamp(14px, 3.6vw, 20px); letter-spacing: 0.03em;
+  color: var(--ink-mute); margin-top: clamp(16px, 2.6vw, 24px);
 }
 
 /* ══════════════════════════════
@@ -1151,7 +1152,7 @@ img { max-width: 100%; display: block; }
      MARQUEE MOMENT — the big thin-serif title drop with the gold door line-art
 ════════════════════════════════════════════════════════════ -->
 <section class="marquee" aria-label="Chapter One">
-  <p class="marquee-intro reveal">We photograph women stepping into a new season of life, and turn it into <strong>art worth living with.</strong></p>
+  <p class="marquee-intro reveal">We photograph women in a new season of life, and turn it into <strong>art worth hanging on your wall.</strong></p>
   <div class="marquee-lockup reveal d1">
     <span class="marquee-word">Chapter One</span>
     <svg class="marquee-door" viewBox="0 0 90 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
