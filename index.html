@@ -377,6 +377,66 @@ img { max-width: 100%; display: block; }
 }
 @media (min-width: 820px) { .tcards { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
 
+/* ══════════════════════════════
+   ABOUT — the woman behind the camera
+   Quiet, intimate founder's note. Text-forward for now; the .about-portrait
+   slot is ready for a headshot of Jasmine to become a two-column layout.
+══════════════════════════════ */
+.about { background: var(--paper); }
+.about .section-inner { max-width: 1040px; }
+.about-grid {
+  display: grid; grid-template-columns: 1fr; gap: clamp(28px, 5vw, 56px);
+  align-items: center; text-align: center;
+}
+.about-portrait { margin: 0; position: relative; max-width: 360px; width: 100%; justify-self: center; }
+.about-portrait img {
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;
+  border: 1px solid var(--border); box-shadow: 0 24px 52px rgba(46,47,44,0.22);
+}
+.about-portrait::after {
+  content: ''; position: absolute; inset: 12px -12px -12px 12px; z-index: -1;
+  border: 1px solid var(--gold-line);
+}
+.about .roman { margin: 0 0 14px; -webkit-text-stroke-color: var(--gold); }
+.about-name {
+  font-family: var(--serif); font-weight: 500; font-style: italic;
+  font-size: clamp(28px, 7vw, 44px); line-height: 1.1; color: var(--ink);
+  margin: 8px 0 4px;
+}
+.about-name-full {
+  font-family: var(--sans); font-weight: 500; font-size: 10px;
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--olive-deep);
+  display: block; margin-bottom: clamp(20px, 4vw, 26px);
+}
+.about-copy {
+  font-family: var(--body); font-weight: 400;
+  font-size: clamp(16px, 4.2vw, 20px); line-height: 1.8; color: var(--ink-soft);
+  max-width: 560px; margin: 0 auto;
+}
+.about-copy strong { color: var(--ink); font-weight: 500; }
+.about-copy p + p { margin-top: 18px; }
+.about-sign {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(17px, 4.6vw, 22px); color: var(--gold-deep);
+  margin-top: clamp(24px, 5vw, 32px);
+}
+.about-rule {
+  width: 46px; height: 1px; background: var(--gold-line);
+  border: 0; margin: clamp(22px, 5vw, 30px) auto 0;
+}
+/* Two-column once a portrait is present and the viewport is wide */
+@media (min-width: 860px) {
+  .about-grid { grid-template-columns: 0.82fr 1fr; text-align: left; }
+  .about-grid .about-body { max-width: none; }
+  .about-body .about-copy, .about-body .about-rule { margin-left: 0; }
+  .about-body .about-copy { margin-right: 0; }
+}
+/* Graceful fallback: if the headshot is missing, collapse to a centered note */
+.about--nophoto .about-portrait { display: none; }
+.about--nophoto .about-grid { grid-template-columns: 1fr; text-align: center; }
+.about--nophoto .about-body .about-copy,
+.about--nophoto .about-body .about-rule { margin-left: auto; margin-right: auto; }
+
 /* Pricing over a dark photo band */
 .pricing.pricing--photo {
   background-color: #17140D; background-size: cover; background-position: center 30%;
@@ -1444,6 +1504,33 @@ img { max-width: 100%; display: block; }
         <div class="tcard-stars" aria-hidden="true">★★★★★</div>
         <blockquote>Friendly, all inclusive, and stress free. Professional, flexible, and comfortable the whole way through.</blockquote>
         <span class="tcard-name">— Nick</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 9.5 — ABOUT JASMINE (the woman behind the camera)
+════════════════════════════════════════════════════════════ -->
+<section class="section about" aria-label="Meet Jasmine">
+  <div class="section-inner">
+    <div class="about-grid">
+      <figure class="about-portrait reveal">
+        <img src="/photos/chapter-one-jasmine.webp" alt="Jasmine Robertson, founder of Two Wild Souls Photography"
+             width="360" height="450" loading="lazy"
+             onerror="this.closest('.about').classList.add('about--nophoto')">
+      </figure>
+      <div class="about-body">
+        <div class="roman mark-sm reveal" aria-hidden="true">I</div>
+        <span class="eyebrow reveal" style="display:block;">The Woman Behind the Camera</span>
+        <h2 class="about-name reveal d1">Hi, I'm Jasmine.</h2>
+        <span class="about-name-full reveal d1">Jasmine Robertson · Founder, Two Wild Souls</span>
+        <div class="about-copy reveal d2">
+          <p>I'm a mom and a business owner, so I know how fast life moves &mdash; and how the milestones that matter deserve to be captured beautifully. I created <strong>Two Wild Souls</strong> to give women an elevated portrait experience that actually feels like one.</p>
+          <p>After nearly a decade in automotive sales, I followed my passion back to photography. Now I create stress-free days from my studio in Rochester, handling <strong>every single detail</strong> &mdash; so you can simply show up, be present, and let me take care of the rest.</p>
+        </div>
+        <p class="about-sign reveal d2">&mdash; Jasmine</p>
+        <hr class="about-rule reveal d2" aria-hidden="true">
       </div>
     </div>
   </div>
