@@ -335,7 +335,7 @@ img { max-width: 100%; display: block; }
 .artduo figure { margin: 0; }
 .artduo img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  aspect-ratio: 7 / 5;
+  aspect-ratio: 4 / 5; object-position: center 20%;
   border: 1px solid rgba(199,178,122,0.28);
   box-shadow: 0 24px 52px rgba(0,0,0,0.45);
 }
@@ -344,7 +344,7 @@ img { max-width: 100%; display: block; }
   font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
   color: rgba(199,178,122,0.75);
 }
-@media (min-width: 760px) { .artduo { grid-template-columns: 1fr 1fr; gap: 18px; } }
+@media (min-width: 640px) { .artduo { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
 
 /* ══════════════════════════════
    STEPS ROW — the four steps as a horizontal band (distinct from the 2-col rows).
@@ -1266,13 +1266,10 @@ img { max-width: 100%; display: block; }
       <p>An evening together with the other people who said yes to themselves. A standing gallery night to move through the room, celebrate, and see your season honored.</p>
     </div>
 
-    <!-- Reveal Night exhibition mosaic -->
-    <div class="mosaic reveal d1">
-      <img class="m-wide" src="/photos/chapter-one-gallery-wall.webp" alt="Guests viewing framed Chapter One portraits at a Reveal Night gallery exhibition" loading="lazy" decoding="async" width="1600" height="1067">
-      <img class="m-tall" src="/photos/chapter-one-wall-art-jessica.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599">
-      <img class="m-tall" src="/photos/chapter-one-wall-art-natalie.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599">
-      <img class="m-tall" src="/photos/chapter-one-wall-art-samantha.webp" alt="A framed Chapter One wall portrait on the gallery wall" loading="lazy" decoding="async" width="900" height="1599">
-    </div>
+    <!-- Reveal Night gallery scene -->
+    <figure class="gallery-figure reveal d1">
+      <img src="/photos/chapter-one-gallery-wall.webp" alt="Guests viewing framed Chapter One portraits at a Reveal Night gallery exhibition" loading="lazy" decoding="async" width="1600" height="1067">
+    </figure>
     <p class="collage-cap reveal d1">Your season, finished as art and hung like it matters.</p>
 
     <a class="cta-btn secondary reveal d1" href="apply-now/#apply"><span>See If You Qualify →</span></a>
@@ -1286,15 +1283,19 @@ img { max-width: 100%; display: block; }
   <div class="section-inner" style="max-width:none;">
     <p class="eyebrow section-eyebrow reveal">The Artistry</p>
     <h2 class="section-title reveal d1">Made like fine art.</h2>
-    <p class="artgallery-sub reveal d1">Every session becomes a piece worth living with, not just a photo on a phone.</p>
+    <p class="artgallery-sub reveal d1">From glamour to editorial to branding, every session is styled and finished as a piece worth living with.</p>
     <div class="artduo">
       <figure class="reveal">
-        <img src="/photos/chapter-one-art-editorial.webp" alt="A dramatic fine-art Chapter One portrait with flowing fabric" loading="lazy" decoding="async" width="1400" height="1000">
-        <figcaption>Editorial</figcaption>
+        <img src="/photos/chapter-one-portrait-gold-gown.webp" alt="A glamour fine-art Chapter One portrait in an editorial gown" loading="lazy" decoding="async" width="1200" height="1680">
+        <figcaption>Glamour</figcaption>
       </figure>
       <figure class="reveal d1">
-        <img src="/photos/chapter-one-art-bw.webp" alt="A fine-art black and white Chapter One portrait" loading="lazy" decoding="async" width="1400" height="1050">
-        <figcaption>Fine Art · Black &amp; White</figcaption>
+        <img src="/photos/chapter-one-art-editorial.webp" alt="A dramatic editorial Chapter One portrait with flowing fabric" loading="lazy" decoding="async" width="1400" height="1000">
+        <figcaption>Editorial</figcaption>
+      </figure>
+      <figure class="reveal d2">
+        <img src="/photos/chapter-one-portrait-executive.webp" alt="A personal branding Chapter One portrait in a studio office setting" loading="lazy" decoding="async" width="1200" height="1680">
+        <figcaption>Personal Branding</figcaption>
       </figure>
     </div>
   </div>
