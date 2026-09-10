@@ -994,8 +994,15 @@ img { max-width: 100%; display: block; }
   font-weight: 500; font-size: 10px;
   letter-spacing: 0.28em; text-transform: uppercase;
   color: var(--olive-deep);
-  margin-bottom: 26px;
+  margin-bottom: 16px;
 }
+.price-includes {
+  font-family: var(--body);
+  font-size: clamp(14px, 3.6vw, 16px); line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 420px; margin: 0 auto 26px;
+}
+.price-includes strong { color: var(--gold-deep); font-weight: 500; }
 .price-card .cta-btn { margin: 0 auto; }
 .price-fine {
   margin-top: 16px;
@@ -1277,31 +1284,6 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     ARTISTRY — fine-art range
-════════════════════════════════════════════════════════════ -->
-<section class="section artgallery" aria-label="Fine art portraiture">
-  <div class="section-inner" style="max-width:none;">
-    <p class="eyebrow section-eyebrow reveal">The Artistry</p>
-    <h2 class="section-title reveal d1">Made like fine art.</h2>
-    <p class="artgallery-sub reveal d1">From glamour to editorial to branding, every session is styled and finished as a piece worth living with.</p>
-    <div class="artduo">
-      <figure class="reveal">
-        <img src="/photos/chapter-one-portrait-gold-gown.webp" alt="A glamour fine-art Chapter One portrait in an editorial gown" loading="lazy" decoding="async" width="1200" height="1680">
-        <figcaption>Glamour</figcaption>
-      </figure>
-      <figure class="reveal d1">
-        <img src="/photos/chapter-one-art-editorial.webp" alt="A dramatic editorial Chapter One portrait with flowing fabric" loading="lazy" decoding="async" width="1400" height="1000">
-        <figcaption>Editorial</figcaption>
-      </figure>
-      <figure class="reveal d2">
-        <img src="/photos/chapter-one-portrait-executive.webp" alt="A personal branding Chapter One portrait in a studio office setting" loading="lazy" decoding="async" width="1200" height="1680">
-        <figcaption>Personal Branding</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════
      SECTION 6 — WHAT'S INCLUDED
 ════════════════════════════════════════════════════════════ -->
 <section class="section included">
@@ -1313,9 +1295,13 @@ img { max-width: 100%; display: block; }
     <div class="included-copy">
     <p class="eyebrow section-eyebrow reveal">The Experience</p>
     <h2 class="section-title reveal d1">What's included</h2>
-    <p class="included-sub reveal d1">Everything is taken care of. You just show up as you are.</p>
+    <p class="included-sub reveal d1">You show up as you are. You leave with a finished, framed piece of art for your wall, not a folder of digital files.</p>
 
     <ul class="include-list">
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>A custom framed 16&Prime;×24&Prime; wall portrait</strong>, ready to hang, unveiled at Reveal Night and yours to keep.</span>
+      </li>
       <li class="reveal">
         <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span><strong>A personal consultation</strong> to plan a session built around your story and this season of life.</span>
@@ -1332,10 +1318,6 @@ img { max-width: 100%; display: block; }
         <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span><strong>An invitation to Reveal Night</strong>, an evening with the full Chapter One community.</span>
       </li>
-      <li class="reveal">
-        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span><strong>A custom framed 16&Prime;×24&Prime; wall portrait</strong> to keep and treasure forever.</span>
-      </li>
     </ul>
 
     <p class="include-note reveal">Want to bring the people who matter most? Family can be included in your session, just let us know.</p>
@@ -1350,12 +1332,13 @@ img { max-width: 100%; display: block; }
 <section class="section pricing">
   <div class="section-inner">
     <div class="price-card reveal">
-      <span class="eyebrow price-eyebrow">The Investment</span>
+      <span class="eyebrow price-eyebrow">The Investment · By Application Only</span>
       <p class="price-value">Total value <s>over $2,550</s></p>
       <p class="price-amount"><span class="cur">$</span>789</p>
-      <p class="price-label">Intro experience</p>
+      <p class="price-label">Your complete Chapter One experience</p>
+      <p class="price-includes">Includes professional hair &amp; makeup, a fully guided studio session, Reveal Night, and <strong>your framed 16&Prime;×24&Prime; wall portrait</strong> to hang at home.</p>
       <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
-      <p class="price-fine">Limited spots · Applications reviewed personally</p>
+      <p class="price-fine">A limited number of sessions each season · Every application read personally by Jasmine</p>
     </div>
   </div>
 </section>
