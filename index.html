@@ -318,6 +318,35 @@ img { max-width: 100%; display: block; }
 }
 
 /* ══════════════════════════════
+   ARTISTRY — a fine-art pair on a dark gallery ground (range of work).
+══════════════════════════════ */
+.artgallery { background: #14150F; text-align: center; }
+.artgallery .section-eyebrow { color: var(--gold); display: block; }
+.artgallery .section-title { color: var(--ivory); margin-bottom: 10px; }
+.artgallery-sub {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(14px, 3.8vw, 17px); color: rgba(247,245,242,0.72);
+  max-width: 460px; margin: 0 auto;
+}
+.artduo {
+  display: grid; grid-template-columns: 1fr; gap: 16px;
+  max-width: 1040px; margin: clamp(36px, 7vw, 52px) auto 0;
+}
+.artduo figure { margin: 0; }
+.artduo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  aspect-ratio: 7 / 5;
+  border: 1px solid rgba(199,178,122,0.28);
+  box-shadow: 0 24px 52px rgba(0,0,0,0.45);
+}
+.artduo figcaption {
+  margin-top: 12px; font-family: var(--sans); font-weight: 500;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(199,178,122,0.75);
+}
+@media (min-width: 760px) { .artduo { grid-template-columns: 1fr 1fr; gap: 18px; } }
+
+/* ══════════════════════════════
    STEPS ROW — the four steps as a horizontal band (distinct from the 2-col rows).
 ══════════════════════════════ */
 .steps-row { display: grid; grid-template-columns: 1fr; gap: 8px; max-width: 1040px; margin: clamp(40px,7vw,56px) auto 0; }
@@ -1247,6 +1276,27 @@ img { max-width: 100%; display: block; }
     <p class="collage-cap reveal d1">Your season, finished as art and hung like it matters.</p>
 
     <a class="cta-btn secondary reveal d1" href="apply-now/#apply"><span>See If You Qualify →</span></a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ARTISTRY — fine-art range
+════════════════════════════════════════════════════════════ -->
+<section class="section artgallery" aria-label="Fine art portraiture">
+  <div class="section-inner" style="max-width:none;">
+    <p class="eyebrow section-eyebrow reveal">The Artistry</p>
+    <h2 class="section-title reveal d1">Made like fine art.</h2>
+    <p class="artgallery-sub reveal d1">Every session becomes a piece worth living with, not just a photo on a phone.</p>
+    <div class="artduo">
+      <figure class="reveal">
+        <img src="/photos/chapter-one-art-editorial.webp" alt="A dramatic fine-art Chapter One portrait with flowing fabric" loading="lazy" decoding="async" width="1400" height="1000">
+        <figcaption>Editorial</figcaption>
+      </figure>
+      <figure class="reveal d1">
+        <img src="/photos/chapter-one-art-bw.webp" alt="A fine-art black and white Chapter One portrait" loading="lazy" decoding="async" width="1400" height="1050">
+        <figcaption>Fine Art · Black &amp; White</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
