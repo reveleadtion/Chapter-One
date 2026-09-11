@@ -4,25 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#F7F5F2">
-<title>Chapter One — Coming Soon | Two Wild Souls Photography</title>
+<title>Chapter One — A Portrait Experience by Two Wild Souls Photography</title>
 
-<!-- ══ SEO / META ══ (public teaser — indexable) -->
-<meta name="description" content="Something new is coming from Two Wild Souls Photography. Chapter One is a portrait experience for your next beginning. Join the list to watch the teaser and get early access before applications open.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://twowildsoulsphotography.com/">
+<meta name="description" content="Chapter One is an application-only portrait experience for people stepping into what comes next. A story-driven session in Downtown Rochester, finished wall art, and an exclusive Reveal Night.">
 
-<!-- ══ OPEN GRAPH — social / ad link previews ══ -->
+<!-- ══ OPEN GRAPH ══ -->
+<meta property="og:url" content="https://twowildsoulsphotography.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Two Wild Souls Photography">
-<meta property="og:title" content="Chapter One is coming.">
-<meta property="og:description" content="A portrait experience for your next beginning. Join the list to watch the teaser and get early access.">
-<!-- OG-IMG: 1200×630 — swap for a teaser-specific still when ready -->
+<meta property="og:title" content="Chapter One — A Portrait Experience">
+<meta property="og:description" content="For the woman on the other side of everything. An application-only portrait experience, finished wall art, and an exclusive Reveal Night.">
 <meta property="og:image" content="https://twowildsoulsphotography.com/photos/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://twowildsoulsphotography.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Chapter One is coming.">
-<meta name="twitter:description" content="A portrait experience for your next beginning. Join the list for early access.">
+<meta name="twitter:title" content="Chapter One — A Portrait Experience">
+<meta name="twitter:description" content="For the woman on the other side of everything.">
 <meta name="twitter:image" content="https://twowildsoulsphotography.com/photos/og-image.jpg">
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Work+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -30,391 +29,1541 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* TWS Brand — inherited from the landing page / quiz */
+  /* TWS Brand — inherited exactly from the quiz (index.html → apply-now) */
   --ivory:      #F7F5F2;
   --stone:      #ECEAE6;
+  --charcoal:   #2E2F2C;
+  --slate:      #6B6E6A;
+  --olive:      #7C8A5A;
+  --steel:      #6F8191;
   --gold:       #C7B27A;
+  --gold-dim:   rgba(199,178,122,0.22);
   --gold-line:  rgba(199,178,122,0.35);
-  --paper:      #F7F5F2;
-  --paper-alt:  #EEEBE4;
-  --ink:        #2E2F2C;
-  --ink-soft:   #54544D;
-  --ink-mute:   #7A7B73;
-  --gold-deep:  #8A6E2C;
-  --olive-deep: #5E6B3E;
-  --border:     rgba(138,110,44,0.28);
-  --black:      #0D0D0B;
+  --cta:        #3F4438;
+  --cta-hover:  #7C8A5A;
 
-  --serif:  'Playfair Display', Georgia, serif;
-  --sans:   'Work Sans', sans-serif;
-  --body:   'Cormorant Garamond', Georgia, serif;
+  /* Surfaces — light theme */
+  --black:      #0D0D0B;                /* retained for the gala night band */
+  --paper:      #F7F5F2;                /* main background (ivory) */
+  --paper-alt:  #EEEBE4;                /* alternating sections */
+  --ink:        #2E2F2C;                /* headings / primary text */
+  --ink-soft:   #54544D;                /* body text (AA on paper) */
+  --ink-mute:   #7A7B73;                /* quiet meta text */
+  --quiz-bg:    #EEEBE4;
+  --gold-deep:  #8A6E2C;                /* legible gold for text accents */
+  --olive-deep: #5E6B3E;                /* legible olive for eyebrows */
+  --border:     rgba(138,110,44,0.28);  /* hairlines on light */
+
+  /* Typography */
+  --serif:   'Playfair Display', Georgia, serif;
+  --sans:    'Work Sans', sans-serif;
+  --body:    'Cormorant Garamond', Georgia, serif;
 }
 
 html { scroll-behavior: smooth; }
+
 body {
-  min-height: 100svh;
+  width: 100%;
   font-family: var(--body);
   background: var(--paper);
   color: var(--ink-soft);
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
-  display: flex; flex-direction: column;
 }
 
-/* Grain — same fractalNoise overlay as the rest of the site */
+/* Grain — identical fractalNoise overlay to the quiz */
 body::after {
   content: '';
   position: fixed; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.80' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 9999;
+  pointer-events: none;
+  z-index: 9999;
 }
+
 img { max-width: 100%; display: block; }
 
-/* Top gold hairline */
-.page::before {
-  content: '';
-  position: fixed; top: 0; left: 0; right: 0;
-  height: 1px; z-index: 3;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
+/* ══════════════════════════════
+   SHARED ELEMENTS
+══════════════════════════════ */
 
-.page { flex: 1; display: flex; flex-direction: column; }
-
-/* ── Portrait band (soft-fades into ivory; no text overlaps it) ── */
-.teaser-photo {
-  position: relative;
-  width: 100%;
-  height: 28svh;
-  min-height: 180px;
-  max-height: 280px;
-  background-color: #E6E2D9;
-  background-image: url('/photos/hero-portrait.webp');
-  background-size: cover;
-  background-position: center 14%;
-  flex-shrink: 0;
+/* Roman numeral "I" — same text-stroke treatment as the quiz hero
+   (reused as a subtle section-marker / bookend motif). */
+.roman {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 0.88;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold-deep);
 }
-.teaser-photo::after {
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: 0;
-  height: 38%;
-  background: linear-gradient(to top, var(--paper) 0%, rgba(247,245,242,0) 100%);
-}
+.roman.hero-roman  { font-size: clamp(60px, 18vw, 116px); opacity: 0.9; }
+.roman.mark-sm     { font-size: clamp(38px, 10vw, 60px); opacity: 0.65; }
 
-/* ── Content ── */
-.teaser-inner {
-  flex: 1;
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-  max-width: 460px; width: 100%;
-  margin: 0 auto;
-  padding: 0 26px max(24px, calc(env(safe-area-inset-bottom, 0px) + 20px));
-}
-
+/* Eyebrow label — uppercase letter-spaced treatment from the quiz */
 .eyebrow {
   font-family: var(--sans);
-  font-weight: 500; font-size: 9px;
-  letter-spacing: 0.4em; text-transform: uppercase;
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--olive-deep);
+}
+
+.logo-mark {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--ink-mute);
 }
 
-.roman {
-  display: block;
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(38px, 10vw, 56px); line-height: 1;
-  color: transparent; -webkit-text-stroke: 1px var(--gold-deep);
-  margin: 12px 0 2px;
-}
-
-.teaser-title {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(30px, 8.5vw, 48px);
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink); line-height: 1;
-  margin-top: 4px;
-}
-
-.teaser-tag {
-  display: inline-block;
-  margin-top: 14px;
-  font-family: var(--sans);
-  font-weight: 600; font-size: 9.5px;
-  letter-spacing: 0.34em; text-transform: uppercase;
-  color: var(--gold-deep);
-  border: 1px solid var(--gold-line);
-  border-radius: 999px;
-  padding: 7px 16px;
-}
-
-.teaser-sub {
-  font-family: var(--body); font-style: italic; font-weight: 400;
-  font-size: clamp(15px, 4.2vw, 19px);
-  color: var(--ink-soft);
-  margin-top: 14px; line-height: 1.5;
-  max-width: 360px;
-}
-
+/* Gold hairline divider + gem — same as the quiz */
 .divider {
   display: flex; align-items: center; justify-content: center; gap: 10px;
-  margin: 16px auto;
+  margin: 22px auto;
 }
 .divider::before, .divider::after {
-  content: ''; width: 26px; height: 1px;
+  content: ''; width: 28px; height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold));
 }
 .divider::after { transform: scaleX(-1); }
-.gem { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); opacity: 0.8; }
-
-.teaser-body {
-  font-family: var(--body); font-weight: 400;
-  font-size: clamp(15px, 4vw, 17px); line-height: 1.75;
-  color: var(--ink-soft);
-  max-width: 380px;
+.gem {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.8;
 }
 
-/* Optional "watch the teaser" button — stays hidden until a video ID is set.
-   When the teaser video is on YouTube, add data-video-id="YOUTUBE_ID" to
-   the button below and it appears + opens the lightbox. */
-.watch-btn {
-  display: none;
-  align-items: center; gap: 10px;
-  margin-top: 24px;
-  font-family: var(--sans); font-weight: 600;
-  font-size: 10.5px; letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--ink); background: transparent;
-  border: 1px solid var(--gold-line); border-radius: 999px;
-  padding: 13px 24px; cursor: pointer;
+/* CTA button — identical gold .cta-btn styling to the quiz */
+.cta-btn {
+  display: inline-block;
+  width: 100%; max-width: 360px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: center; text-decoration: none;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 18px 32px;
+  cursor: pointer;
+  position: relative; overflow: hidden;
   -webkit-appearance: none;
+  transition: transform 0.15s ease;
 }
-.watch-btn.is-on { display: inline-flex; }
-.watch-btn .tri {
-  width: 0; height: 0;
-  border-style: solid; border-width: 6px 0 6px 10px;
-  border-color: transparent transparent transparent var(--gold-deep);
+.cta-btn:active { transform: scale(0.98); }
+.cta-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--ivory);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+.cta-btn:hover::before { transform: translateX(0); }
+.cta-btn span { position: relative; z-index: 1; }
+
+/* Secondary CTA — quiet editorial ghost, à la the reference's outline buttons */
+.cta-btn.secondary {
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid rgba(138,110,44,0.45);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  padding: 17px 32px;
+}
+.cta-btn.secondary::before { background: rgba(199,178,122,0.16); }
+.cta-btn.secondary:hover span { color: var(--ink); }
+
+.cta-note {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  color: var(--ink-mute);
+  text-transform: uppercase;
+  margin-top: 12px;
 }
 
-/* ── Email capture ── */
-.signup {
-  width: 100%;
-  margin-top: 22px;
-  background: var(--paper-alt);
+/* ── SCROLL-REVEAL (echoes the quiz fadeUp, triggered by IntersectionObserver) ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+/* staggered children */
+.reveal.d1 { transition-delay: 0.10s; }
+.reveal.d2 { transition-delay: 0.20s; }
+.reveal.d3 { transition-delay: 0.30s; }
+.reveal.d4 { transition-delay: 0.40s; }
+.reveal.d5 { transition-delay: 0.50s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ══════════════════════════════
+   SECTION 1 — HERO (split: portrait + dark copy panel; text never over the photo,
+   so it is always legible and no face is cropped behind type)
+══════════════════════════════ */
+.hero {
+  position: relative;
+  display: grid; grid-template-rows: 58svh auto;
+  overflow: hidden;
+  background: #17140D;
+}
+.hero::before {                                   /* top gold accent hairline */
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px; z-index: 3;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-photo {
+  background: #17140D center 16% / cover no-repeat;
+  min-height: 300px;
+}
+.hero-inner {
+  background: #17140D;
+  color: var(--ivory);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: clamp(40px, 9vw, 64px) 28px max(44px, calc(env(safe-area-inset-bottom, 0px) + 40px));
+}
+.hero .logo-mark  { color: rgba(247,245,242,0.72); margin-bottom: 14px; }
+.hero .roman      { -webkit-text-stroke-color: var(--gold); margin: 0 auto 4px; }
+.hero-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(38px, 9vw, 66px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  line-height: 1;
+  margin-top: 6px;
+}
+.hero-sub {
+  font-family: var(--body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(15px, 4vw, 20px);
+  color: rgba(247,245,242,0.9);
+  margin: 16px auto 0;
+  max-width: 360px;
+  line-height: 1.5;
+}
+.hero .cta-btn { margin-top: 28px; }
+.hero .cta-note { color: rgba(247,245,242,0.68); }
+@media (min-width: 860px) {
+  .hero { grid-template-rows: none; grid-template-columns: 1.05fr 0.95fr; min-height: 100svh; }
+  .hero-photo { min-height: 100svh; }
+  .hero-inner { min-height: 100svh; }
+  .hero-inner > * { max-width: 440px; }
+}
+
+/* ══════════════════════════════
+   REUSABLE IMAGE + TEXT ROW (alternating; stacks image-first on mobile)
+══════════════════════════════ */
+.media-row {
+  max-width: 1120px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr; gap: clamp(30px, 6vw, 52px);
+  align-items: center;
+}
+.media-figure { margin: 0; }
+.media-figure img {
+  width: 100%; height: auto; aspect-ratio: 4 / 5;
+  object-fit: cover; object-position: center 14%;
   border: 1px solid var(--border);
-  padding: 22px 18px 20px;
+  box-shadow: 0 22px 46px rgba(46,47,44,0.15);
+  display: block;
 }
-.signup h2 {
-  font-family: var(--serif); font-weight: 500;
-  font-size: clamp(19px, 5.2vw, 23px);
-  color: var(--ink); line-height: 1.2;
-  margin-bottom: 5px;
+.media-copy .section-eyebrow { margin-bottom: 16px; }
+/* Recognition portrait is a full standing pose — show it whole (feet included)
+   by matching the frame to the source ratio so nothing is cropped. */
+.recognition .media-figure img { aspect-ratio: 1200 / 1680; object-position: center; }
+@media (min-width: 860px) {
+  .media-row { grid-template-columns: 1fr 1fr; gap: clamp(48px, 6vw, 84px); }
+  .media-row.reverse .media-figure { order: 2; }
 }
-.signup .signup-note {
+
+/* ══════════════════════════════
+   SHOWREEL — the client rotating clip, in a contained device-style frame on a
+   dark ground (kept small so the source stays sharp).
+══════════════════════════════ */
+.showreel { background: #14150F; text-align: center; }
+.showreel .section-eyebrow { color: var(--gold); display: block; }
+.showreel .section-title { color: var(--ivory); margin-bottom: 10px; }
+.showreel-sub { color: rgba(247,245,242,0.7); font-family: var(--body); font-style: italic;
+  font-size: clamp(14px,3.8vw,17px); max-width: 440px; margin: 0 auto clamp(34px,6vw,46px); }
+.showreel-frame {
+  width: min(340px, 78vw); margin: 0 auto; aspect-ratio: 480 / 672;
+  border: 1px solid rgba(199,178,122,0.4);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5); overflow: hidden; background: #000;
+}
+.showreel-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ══════════════════════════════
+   GALLERY MOSAIC — an exhibition grid: one wide scene + framed pieces.
+══════════════════════════════ */
+.mosaic {
+  max-width: 1040px; margin: clamp(36px,7vw,52px) auto 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.mosaic img { width: 100%; height: 100%; object-fit: cover; display: block;
+  border: 1px solid var(--border); box-shadow: 0 14px 34px rgba(46,47,44,0.14); }
+.mosaic .m-wide { grid-column: span 2; aspect-ratio: 16 / 10; }
+.mosaic .m-tall { aspect-ratio: 3 / 4; }
+@media (min-width: 760px) {
+  .mosaic { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .mosaic .m-wide { grid-column: span 3; aspect-ratio: 21 / 9; }
+}
+
+/* ══════════════════════════════
+   ARTISTRY — a fine-art pair on a dark gallery ground (range of work).
+══════════════════════════════ */
+.artgallery { background: #14150F; text-align: center; }
+.artgallery .section-eyebrow { color: var(--gold); display: block; }
+.artgallery .section-title { color: var(--ivory); margin-bottom: 10px; }
+.artgallery-sub {
   font-family: var(--body); font-style: italic;
-  font-size: clamp(13.5px, 3.6vw, 15px);
-  color: var(--ink-mute);
-  margin-bottom: 14px;
+  font-size: clamp(14px, 3.8vw, 17px); color: rgba(247,245,242,0.72);
+  max-width: 460px; margin: 0 auto;
+}
+.artduo {
+  display: grid; grid-template-columns: 1fr; gap: 16px;
+  max-width: 1040px; margin: clamp(36px, 7vw, 52px) auto 0;
+}
+.artduo figure { margin: 0; }
+.artduo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  aspect-ratio: 4 / 5; object-position: center 20%;
+  border: 1px solid rgba(199,178,122,0.28);
+  box-shadow: 0 24px 52px rgba(0,0,0,0.45);
+}
+.artduo figcaption {
+  margin-top: 12px; font-family: var(--sans); font-weight: 500;
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(199,178,122,0.75);
+}
+@media (min-width: 640px) { .artduo { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+
+/* ══════════════════════════════
+   STEPS ROW — the four steps as a horizontal band (distinct from the 2-col rows).
+══════════════════════════════ */
+.steps-row { display: grid; grid-template-columns: 1fr; gap: 8px; max-width: 1040px; margin: clamp(40px,7vw,56px) auto 0; }
+.step-card { padding: 26px 4px; border-top: 1px solid var(--border); }
+.step-card .step-num { display: block; margin-bottom: 12px; }
+@media (min-width: 760px) {
+  .steps-row { grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .step-card { border-top: none; border-left: 1px solid var(--border); padding: 8px 22px; }
+  .step-card:first-child { border-left: none; }
 }
 
-/* ── Sprout embed → brand styling ──
-   The embed injects its own markup (and inline styles), so these overrides use
-   !important to reskin its inputs and submit button to match the brand.
-   Kept resilient to a few possible field/label structures. */
-/* Scoped under `body #signup-embed` so these win against the embed's own
-   (often ID-level / !important) CSS. Reskin: underline fields on ivory + a
-   gold submit button, form contained and centered. */
-body #signup-embed { font-family: var(--body); color: var(--ink); max-width: 340px; margin: 0 auto; }
-/* neutralize the embed's own panel backgrounds & borders (the white block) */
-body #signup-embed div,
-body #signup-embed form,
-body #signup-embed section,
-body #signup-embed table,
-body #signup-embed tbody,
-body #signup-embed tr,
-body #signup-embed td,
-body #signup-embed ul,
-body #signup-embed li,
-body #signup-embed p,
-body #signup-embed span,
-body #signup-embed fieldset {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  max-width: 100% !important;
+/* ══════════════════════════════
+   REVIEW CARDS — three-column quote cards (distinct from the stacked reviews).
+══════════════════════════════ */
+.tcards { display: grid; grid-template-columns: 1fr; gap: 18px; max-width: 1040px; margin: clamp(36px,7vw,52px) auto 0; }
+.tcard {
+  background: var(--paper); border: 1px solid var(--border);
+  padding: clamp(26px,4vw,34px) clamp(24px,3.5vw,30px); text-align: left;
 }
-/* labels */
-body #signup-embed label {
-  font-family: var(--sans) !important;
-  font-size: 9px !important; letter-spacing: 0.24em !important;
-  text-transform: uppercase !important; color: var(--ink-mute) !important;
+.tcard .tcard-stars { color: var(--gold); letter-spacing: 0.3em; font-size: 12px; margin-bottom: 14px; }
+.tcard blockquote {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(16px,2.4vw,19px); line-height: 1.55; color: var(--ink); margin-bottom: 14px;
 }
-/* text-like inputs → elegant underline on ivory */
-body #signup-embed input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
-body #signup-embed textarea,
-body #signup-embed select {
-  display: block !important;
-  width: 100% !important;
-  font-family: var(--body) !important;
-  font-size: 16px !important; /* 16px avoids iOS zoom-on-focus */
-  color: var(--ink) !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-bottom: 1px solid var(--border) !important;
-  border-radius: 0 !important;
-  padding: 11px 2px !important;
-  margin: 0 0 14px 0 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  -webkit-appearance: none !important; appearance: none !important;
+.tcard .tcard-name {
+  font-family: var(--sans); font-weight: 500; font-size: 10px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--olive-deep);
 }
-body #signup-embed input::placeholder,
-body #signup-embed textarea::placeholder { color: var(--ink-mute) !important; opacity: 0.85 !important; }
-body #signup-embed input:focus,
-body #signup-embed textarea:focus,
-body #signup-embed select:focus { border-bottom-color: var(--olive-deep) !important; }
-/* submit → gold brand button, full width */
-body #signup-embed input[type="submit"],
-body #signup-embed button,
-body #signup-embed input[type="button"],
-body #signup-embed a[class*="button"],
-body #signup-embed a[class*="btn"] {
-  display: block !important;
-  width: 100% !important;
-  font-family: var(--sans) !important;
-  font-weight: 600 !important;
-  font-size: 11px !important;
-  letter-spacing: 0.3em !important;
-  text-transform: uppercase !important;
-  text-align: center !important; text-decoration: none !important;
-  color: var(--black) !important;
-  background: var(--gold) !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 15px 20px !important;
-  margin: 8px auto 0 !important;
-  cursor: pointer !important;
-  -webkit-appearance: none !important; appearance: none !important;
-}
-.signup-fallback {
-  font-family: var(--body); font-size: 14px; color: var(--ink-mute);
-}
-.signup-fallback a { color: var(--gold-deep); }
+@media (min-width: 820px) { .tcards { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
 
-.microcopy {
-  margin-top: 14px;
-  font-family: var(--sans); font-weight: 400;
-  font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--ink-mute);
+/* ══════════════════════════════
+   ABOUT — the woman behind the camera
+   Quiet, intimate founder's note. Text-forward for now; the .about-portrait
+   slot is ready for a headshot of Jasmine to become a two-column layout.
+══════════════════════════════ */
+.about { background: var(--paper); }
+.about .section-inner { max-width: 1040px; }
+.about-grid {
+  display: grid; grid-template-columns: 1fr; gap: clamp(28px, 5vw, 56px);
+  align-items: center; text-align: center;
+}
+.about-portrait { margin: 0; position: relative; max-width: 360px; width: 100%; justify-self: center; }
+.about-portrait img {
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 22%;
+  display: block;
+  border: 1px solid var(--border); box-shadow: 0 24px 52px rgba(46,47,44,0.22);
+}
+.about-portrait::after {
+  content: ''; position: absolute; inset: 12px -12px -12px 12px; z-index: -1;
+  border: 1px solid var(--gold-line);
+}
+.about .roman { margin: 0 0 14px; -webkit-text-stroke-color: var(--gold); }
+.about-name {
+  font-family: var(--serif); font-weight: 500; font-style: italic;
+  font-size: clamp(28px, 7vw, 44px); line-height: 1.1; color: var(--ink);
+  margin: 8px 0 4px;
+}
+.about-name-full {
+  font-family: var(--sans); font-weight: 500; font-size: 10px;
+  letter-spacing: 0.26em; text-transform: uppercase; color: var(--olive-deep);
+  display: block; margin-bottom: clamp(20px, 4vw, 26px);
+}
+.about-copy {
+  font-family: var(--body); font-weight: 400;
+  font-size: clamp(16px, 4.2vw, 20px); line-height: 1.8; color: var(--ink-soft);
+  max-width: 560px; margin: 0 auto;
+}
+.about-copy strong { color: var(--ink); font-weight: 500; }
+.about-copy p + p { margin-top: 18px; }
+.about-sign {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(17px, 4.6vw, 22px); color: var(--gold-deep);
+  margin-top: clamp(24px, 5vw, 32px);
+}
+.about-rule {
+  width: 46px; height: 1px; background: var(--gold-line);
+  border: 0; margin: clamp(22px, 5vw, 30px) auto 0;
+}
+/* Two-column once a portrait is present and the viewport is wide */
+@media (min-width: 860px) {
+  .about-grid { grid-template-columns: 0.82fr 1fr; text-align: left; }
+  .about-grid .about-body { max-width: none; }
+  .about-body .about-copy, .about-body .about-rule { margin-left: 0; }
+  .about-body .about-copy { margin-right: 0; }
+}
+/* Graceful fallback: if the headshot is missing, collapse to a centered note */
+.about--nophoto .about-portrait { display: none; }
+.about--nophoto .about-grid { grid-template-columns: 1fr; text-align: center; }
+.about--nophoto .about-body .about-copy,
+.about--nophoto .about-body .about-rule { margin-left: auto; margin-right: auto; }
+
+/* Pricing over a dark photo band */
+.pricing.pricing--photo {
+  background-color: #17140D; background-size: cover; background-position: center 30%;
+  background-repeat: no-repeat;
+}
+.pricing.pricing--photo::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(13,13,11,0.72), rgba(13,13,11,0.8));
+}
+.pricing.pricing--photo .section-inner { position: relative; z-index: 2; }
+
+/* ══════════════════════════════
+   GENERIC SECTION SCAFFOLD
+══════════════════════════════ */
+.section {
+  position: relative;
+  padding: clamp(84px, 17vw, 148px) 26px;
+}
+.section-inner { max-width: 720px; margin: 0 auto; }
+.section.tight .section-inner { max-width: 560px; }
+
+.section-eyebrow { margin-bottom: 18px; }
+.section-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(24px, 6.4vw, 38px);
+  line-height: 1.22;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.section-title em { font-style: italic; color: var(--gold-deep); }
+
+.body-copy {
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: clamp(15px, 4vw, 18px);
+  line-height: 1.85;
+  color: var(--ink-soft);
+}
+.body-copy strong { color: var(--ink); font-weight: 500; }
+.body-copy p + p { margin-top: 18px; }
+
+/* ══════════════════════════════
+   SECTION 2 — THE RECOGNITION
+══════════════════════════════ */
+.recognition {
+  background: var(--paper);
+  text-align: center;
+}
+.recognition .section-inner { max-width: 600px; }
+.recognition-line {
+  font-family: var(--body);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(18px, 5.2vw, 26px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 auto 14px;
+}
+.recognition-close {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(21px, 5.8vw, 30px);
+  line-height: 1.4;
+  color: var(--gold-deep);
+  margin-top: 30px;
 }
 
-/* ── Footer ── */
-.teaser-footer {
-  margin-top: auto;
-  padding-top: 26px;
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
+/* ══════════════════════════════
+   SECTION 3 — THE ETHOS (asymmetric)
+══════════════════════════════ */
+.ethos { background: var(--paper-alt); }
+.ethos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 34px;
+  align-items: center;
+}
+.ethos-copy .section-title { margin-bottom: 20px; }
+.ethos-pull {
+  margin-top: 22px;
+  font-family: var(--body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(16px, 4.4vw, 20px);
+  line-height: 1.6;
+  color: var(--gold-deep);
+  padding-left: 16px;
+  border-left: 2px solid var(--gold-deep);
+}
+/* IMG: studio session in progress, candid, one of the 4 backdrop colors */
+.ethos-img {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background-color: #E1DDD3;
+  background-size: cover; background-position: center;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.ethos-img .img-note {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 24px;
+  font-family: var(--sans); font-size: 9px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ink-mute);
+}
+
+@media (min-width: 760px) {
+  .ethos-grid { grid-template-columns: 1.05fr 0.95fr; gap: 52px; }
+  .ethos.reverse .ethos-img { order: 2; }
+}
+
+/* ══════════════════════════════
+   CINEMATIC FILM BAND (reusable)
+   Full-bleed motion beat, à la the reference page's rotating media.
+   Poster still shows immediately; a muted, looping, autoplay video plays
+   over it once its source is added. An italic-serif tagline sits on a scrim.
+══════════════════════════════ */
+.filmband {
+  position: relative;
+  width: 100%;
+  min-height: 62svh;
+  display: flex; align-items: flex-end; justify-content: flex-start;
+  text-align: left;
+  overflow: hidden;
+  background: #14150F center 18% / cover no-repeat;   /* poster set inline per band */
+}
+.filmband__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 18%;
+  z-index: 0;
+}
+.filmband::after {                              /* legibility scrim */
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% 50%, rgba(13,13,11,0.28) 0%, transparent 70%),
+    linear-gradient(to top, rgba(13,13,11,0.62), rgba(13,13,11,0.30) 50%, rgba(13,13,11,0.55));
+}
+.filmband__inner {
+  position: relative; z-index: 2;
+  max-width: 620px; padding: 0 clamp(24px, 6vw, 68px) clamp(40px, 8vw, 68px);
+}
+.filmband__eyebrow {
+  font-family: var(--sans); font-weight: 500;
+  font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.filmband__line {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(20px, 4.8vw, 32px); line-height: 1.3;
+  color: var(--ivory);
+  text-shadow: 0 1px 24px rgba(13,13,11,0.5);
+}
+.filmband__line em { color: var(--gold); font-style: italic; }
+@media (min-width: 760px) { .filmband { min-height: 78vh; } }
+/* Lighter variant: keep the image bright, scrim only the lower-left caption zone */
+.filmband--light::after {
+  background: linear-gradient(to top,
+    rgba(13,13,11,0.58) 0%, rgba(13,13,11,0.14) 38%, rgba(13,13,11,0) 68%);
+}
+
+/* Gold line-art frame motif (echo of the reference's line-drawn "door") */
+.frame-motif {
+  position: relative;
+  display: inline-block;
+  padding: 26px 34px;
+}
+.frame-motif::before, .frame-motif::after {
+  content: '';
+  position: absolute;
+  width: 26px; height: 26px;
+  border: 1px solid var(--gold-deep);
+}
+.frame-motif::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.frame-motif::after  { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+/* Reusable motion overlay — a muted, looping clip that plays over a poster
+   still inside any relatively-positioned image container (.ethos-img, etc.),
+   the way the reference page animates its main photos. The poster (the
+   container's background-image) shows until a <source> is added, so nothing
+   breaks while clips are still being produced. */
+.motion-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  z-index: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-video, .filmband__video { display: none; }   /* fall back to poster */
+}
+
+/* ══════════════════════════════
+   MARQUEE MOMENT
+   The reference page's signature headline beat: an intro line, then a very
+   large thin high-contrast serif word set with a hand-drawn gold "open door"
+   line-art and a tiny italic script subtitle tucked beneath.
+══════════════════════════════ */
+.marquee { background: var(--paper); text-align: center;
+  padding: clamp(52px, 9vw, 88px) 24px; }
+.marquee-intro {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(15px, 4vw, 19px); line-height: 1.6;
+  color: var(--ink-soft); max-width: 540px; margin: 0 auto clamp(26px, 4.5vw, 40px);
+}
+.marquee-intro strong { font-style: normal; font-weight: 500; color: var(--ink); }
+.marquee-lockup {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: clamp(10px, 2vw, 20px); max-width: 94vw;
+}
+.marquee-word {
+  font-family: var(--body); font-weight: 300;
+  font-size: clamp(42px, 10vw, 82px); line-height: 1;
+  letter-spacing: 0.004em; color: var(--ink); white-space: nowrap;
+}
+.marquee-word em { font-style: italic; }
+.marquee-door {
+  width: clamp(28px, 6vw, 50px); height: auto; flex-shrink: 0;
+  color: var(--gold); pointer-events: none;
+}
+.marquee-script {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(14px, 3.6vw, 20px); letter-spacing: 0.03em;
+  color: var(--ink-mute); margin-top: clamp(16px, 2.6vw, 24px);
+}
+
+/* ══════════════════════════════
+   BIG SERIF STATEMENT BREAK
+   The reference's oversized, thin, centered serif lines that punctuate the
+   scroll ("You deserve to feel this great too!").
+══════════════════════════════ */
+.statement { background: var(--paper); text-align: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 52vh;
+  padding: clamp(72px, 14vw, 120px) 26px; }
+.statement.close { padding-bottom: clamp(72px, 14vw, 120px); }
+.statement-line {
+  font-family: var(--body); font-weight: 300;
+  font-size: clamp(32px, 8.4vw, 62px); line-height: 1.05;
+  letter-spacing: 0.004em; color: var(--ink);
+  max-width: 780px; margin: 0 auto;
+}
+.statement-line em { font-style: italic; color: var(--gold-deep); }
+.statement-sub {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(14px, 3.8vw, 18px); color: var(--ink-mute);
+  margin-top: 18px;
+}
+
+/* ══════════════════════════════
+   TILTED PHOTO COLLAGE
+   Overlapping, slightly rotated snapshots with soft drop shadows and a small
+   italic caption — the reference's casual gallery clusters.
+══════════════════════════════ */
+.gallery-figure {
+  margin: clamp(36px, 8vw, 56px) auto 0; max-width: 860px;
+}
+.gallery-figure img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 52px rgba(46,47,44,0.24);
+}
+.collage-cap {
+  text-align: center; margin: clamp(26px, 6vw, 40px) auto 0; max-width: 340px;
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(14px, 3.6vw, 16px); line-height: 1.55; color: var(--ink-mute);
+}
+
+/* ══════════════════════════════
+   REAL CHAPTERS — a trio of real client portraits, giving faces to the
+   life-shift stories named in the recognition lines.
+══════════════════════════════ */
+.stories { background: var(--paper); text-align: center; }
+.stories .section-title { margin-bottom: 12px; }
+.stories-sub {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(14px, 3.8vw, 17px); color: var(--ink-mute);
+  max-width: 460px; margin: 0 auto;
+}
+.stories-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(34px, 7vw, 44px);
+  max-width: 380px; margin: clamp(44px, 9vw, 64px) auto 0;
+}
+.story { margin: 0; }
+.story img {
+  width: 100%; height: auto; display: block;
+  aspect-ratio: 4 / 5;               /* all three identical size */
+  object-fit: cover; object-position: center 18%;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 44px rgba(46,47,44,0.14);
+}
+.story figcaption {
+  margin-top: 18px; text-align: center;
+}
+.story .story-label {
+  display: block;
+  font-family: var(--sans); font-weight: 500;
+  font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 8px;
+}
+.story .story-line {
+  font-family: var(--body); font-style: italic; font-weight: 400;
+  font-size: clamp(16px, 4.4vw, 19px); line-height: 1.45; color: var(--ink);
+}
+@media (min-width: 760px) {
+  .stories-grid { grid-template-columns: repeat(3, 1fr); max-width: 1000px; gap: 30px; align-items: start; }
+}
+
+/* ══════════════════════════════
+   SECTION 4 — HOW IT WORKS
+══════════════════════════════ */
+.process { background: var(--paper); }
+.process .section-title { text-align: center; margin-bottom: 8px; }
+.process-intro {
+  text-align: center; color: var(--ink-mute);
+  font-family: var(--body); font-size: clamp(14px,3.6vw,16px);
+  font-style: italic; margin-bottom: 48px;
+}
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: start;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:first-child { border-top: 1px solid var(--border); }
+.step-num {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--gold-deep);
+  padding-top: 5px;
+}
+.step-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(19px, 5vw, 24px);
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.step-desc {
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: clamp(14px, 3.7vw, 16px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+/* ══════════════════════════════
+   SECTION 5 — THE GALA / PAYOFF
+══════════════════════════════ */
+.gala { position: relative; background: var(--paper); padding-top: 0; }
+/* IMG or VIDEO-STILL: gallery wall of framed 16x24 portraits at a night event,
+   warm gold lighting, champagne, candid guests. */
+.gala-hero {
+  position: relative;
+  min-height: 62vh;
+  display: flex; align-items: flex-end;
+  background-color: #17140D;
+  background-image: url('/photos/reveal-night.webp');
+  background-size: cover; background-position: center top;
+  overflow: hidden;
+}
+.gala-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(199,178,122,0.12) 0%, transparent 68%),
+    linear-gradient(to top, rgba(13,13,11,0.97) 6%, rgba(13,13,11,0.5) 60%, rgba(13,13,11,0.6) 100%);
+}
+.gala-hero .img-note {
+  position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+  font-family: var(--sans); font-size: 8px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: rgba(199,178,122,0.4);
+  z-index: 2; text-align: center; width: 90%;
+}
+.gala-content {
+  position: relative; z-index: 2;
+  max-width: 640px; margin: 0 auto;
+  padding: 0 26px clamp(48px, 10vw, 80px);
+  text-align: center; width: 100%;
+}
+.gala-content .section-eyebrow { color: var(--gold); }
+.gala-body {
+  padding: clamp(40px, 9vw, 68px) 26px clamp(64px, 12vw, 96px);
+  max-width: 640px; margin: 0 auto; text-align: center;
+}
+.gala-body .body-copy p { margin-bottom: 18px; }
+.gala-body .cta-btn { margin-top: 20px; }
+
+/* ══════════════════════════════
+   SECTION 6 — TESTIMONIALS
+══════════════════════════════ */
+.testimonials { background: var(--paper-alt); text-align: center; }
+.testimonials .eyebrow { display: block; margin-bottom: 42px; }
+.tstack { display: flex; flex-direction: column; gap: 48px; }
+.treview { max-width: 600px; margin: 0 auto; }
+.treview::before {
+  content: '\2605 \2605 \2605 \2605 \2605';
+  display: block; color: var(--gold);
+  font-size: 13px; letter-spacing: 0.32em;
+  margin-bottom: 16px;
+}
+.tquote {
+  font-family: var(--body);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(18px, 4.8vw, 24px);
+  line-height: 1.6;
+  color: var(--ink);
+}
+.tquote::before { content: '“'; color: var(--gold-deep); font-family: var(--serif); }
+.tquote::after  { content: '”'; color: var(--gold-deep); font-family: var(--serif); }
+.tattr {
+  display: block; margin-top: 16px;
+  font-family: var(--sans); font-weight: 500;
+  font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--olive-deep);
+}
+/* TESTIMONIAL-IMG: small circular portrait crop next to each quote, optional */
+
+/* ══════════════════════════════
+   SECTION 7 — FINAL CTA
+══════════════════════════════ */
+.final {
+  position: relative;
+  background-color: #17140D;
+  background-size: cover; background-position: center 28%; background-repeat: no-repeat;
+  text-align: center;
+  padding: clamp(96px, 20vw, 168px) 28px
+           max(64px, calc(env(safe-area-inset-bottom, 0px) + 52px));
+  overflow: hidden;
+}
+.final::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 42%, rgba(199,178,122,0.12) 0%, transparent 66%),
+    linear-gradient(to bottom, rgba(13,13,11,0.82), rgba(13,13,11,0.7) 40%, rgba(13,13,11,0.86));
+  pointer-events: none;
+}
+.final::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.final-inner { position: relative; z-index: 2; max-width: 560px; margin: 0 auto; }
+.final .roman { margin-bottom: 20px; -webkit-text-stroke-color: var(--gold); }
+.final-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(26px, 7vw, 42px);
+  line-height: 1.24;
+  color: var(--ivory);
+  margin-bottom: 16px;
+}
+.final-title em { font-style: italic; color: var(--gold); }
+.final-micro {
+  font-family: var(--body);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(14px, 3.8vw, 17px);
+  color: rgba(247,245,242,0.86);
+  line-height: 1.7;
+  max-width: 400px; margin: 0 auto 30px;
+}
+
+.site-footer {
+  margin-top: clamp(56px, 12vw, 88px);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
 }
 .footer-phone {
-  font-family: var(--body); font-size: 17px; font-weight: 400;
-  color: var(--gold-deep); text-decoration: none; letter-spacing: 0.04em;
+  font-family: var(--body);
+  font-size: 17px; font-weight: 400;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.04em;
 }
 .footer-brand {
-  font-family: var(--sans); font-weight: 400;
+  font-family: var(--sans);
+  font-weight: 400;
   font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase;
-  color: var(--ink-mute);
+  color: rgba(247,245,242,0.66);
 }
 .footer-legal {
-  font-family: var(--sans); font-size: 8px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--ink-mute); opacity: 0.7;
+  font-family: var(--sans);
+  font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(247,245,242,0.55);
+  opacity: 0.9;
+  margin-top: 4px;
 }
 
-/* ── Entrance ── */
-.fade { opacity: 0; transform: translateY(16px); animation: fadeUp 0.8s ease forwards; }
-.fade.d1 { animation-delay: 0.10s; }
-.fade.d2 { animation-delay: 0.20s; }
-.fade.d3 { animation-delay: 0.32s; }
-.fade.d4 { animation-delay: 0.44s; }
-@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-@media (prefers-reduced-motion: reduce) {
-  .fade { animation: none; opacity: 1; transform: none; }
-  html { scroll-behavior: auto; }
+/* ══════════════════════════════
+   SCROLL CUE (hero → next section)
+══════════════════════════════ */
+.scroll-cue {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 6px;
+  margin-top: 26px;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 9.5px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold);
+  text-shadow: 0 1px 12px rgba(13,13,11,0.6);
+  animation: cueFloat 2.2s ease-in-out infinite;
+}
+.scroll-cue .scroll-arrow {
+  font-family: var(--serif);
+  font-size: 20px; line-height: 1;
+  color: var(--gold);
+}
+@keyframes cueFloat {
+  0%,100% { transform: translateY(0); opacity: 0.75; }
+  50%     { transform: translateY(5px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+/* ══════════════════════════════
+   WHAT'S INCLUDED
+══════════════════════════════ */
+.included { background: var(--paper-alt); }
+.included .section-eyebrow,
+.included .section-title { text-align: center; }
+.included .section-title { margin-bottom: 10px; }
+.included-sub {
+  text-align: center; color: var(--ink-mute);
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(14px, 3.6vw, 16px);
+  margin: 0 auto 40px; max-width: 460px;
+}
+.included-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: clamp(36px, 6vw, 56px); align-items: center;
+}
+.included-figure { margin: 0; }
+.included-figure img {
+  width: 100%; height: auto; aspect-ratio: 4 / 5;
+  object-fit: cover; object-position: center 14%;
+  border: 1px solid var(--border);
+  box-shadow: 0 22px 46px rgba(46,47,44,0.15);
+}
+@media (min-width: 820px) {
+  .included-grid { grid-template-columns: 0.9fr 1.1fr; gap: clamp(48px, 6vw, 72px); }
+  .included-grid.reverse { grid-template-columns: 1.1fr 0.9fr; }
+  .included-grid.reverse .included-figure { order: 2; }
+  .included .included-copy .section-eyebrow,
+  .included .included-copy .section-title,
+  .included .included-copy .included-sub,
+  .included .included-copy .include-note { text-align: left; margin-left: 0; }
+  .included .included-copy .include-list { margin-left: 0; }
+}
+.include-list {
+  list-style: none;
+  max-width: 520px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 0;
+}
+.include-list li {
+  display: grid; grid-template-columns: auto 1fr; gap: 16px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--body);
+  font-size: clamp(15px, 4vw, 18px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.include-list li:first-child { border-top: 1px solid var(--border); }
+.include-list li strong { color: var(--ink); font-weight: 500; }
+.include-check {
+  width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px;
+  color: var(--olive-deep);
+}
+.include-note {
+  text-align: center;
+  margin: 34px auto 0; max-width: 480px;
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(13.5px, 3.4vw, 15.5px);
+  color: var(--ink-mute);
 }
 
-/* ── Desktop / tablet: center the page as a column so the portrait keeps a
-   proper head-and-shoulders crop instead of stretching full-width. ── */
-@media (min-width: 760px) {
-  .page { max-width: 620px; margin: 0 auto; }
-  .teaser-photo {
-    height: 440px; min-height: 0; max-height: none;
-    background-position: center 20%;
-  }
-  .teaser-inner { max-width: 500px; padding-bottom: 52px; }
-  .teaser-body { max-width: 430px; }
+/* ══════════════════════════════
+   PRICING / VALUE
+══════════════════════════════ */
+.pricing { background: var(--paper); text-align: center; }
+.pricing .section-inner { max-width: 560px; }
+.price-card {
+  border: 1px solid var(--gold-line);
+  background: rgba(199,178,122,0.06);
+  padding: clamp(34px, 8vw, 52px) 28px;
+  position: relative;
+}
+.price-eyebrow { margin-bottom: 20px; display: block; }
+.price-value {
+  font-family: var(--body); font-style: italic;
+  font-size: clamp(15px, 4vw, 18px);
+  color: var(--ink-mute);
+  margin-bottom: 2px;
+}
+.price-value s { text-decoration-color: var(--gold-deep); }
+.price-prefix {
+  font-family: var(--sans); font-weight: 500; font-size: 10px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-mute); margin: 12px 0 -2px;
+}
+.price-amount {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(46px, 13vw, 74px);
+  line-height: 1;
+  color: var(--ink);
+  margin: 6px 0 4px;
+}
+.price-amount .cur { font-size: 0.5em; vertical-align: super; color: var(--gold-deep); }
+.price-label {
+  font-family: var(--sans);
+  font-weight: 500; font-size: 10px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--olive-deep);
+  margin-bottom: 16px;
+}
+.price-includes {
+  font-family: var(--body);
+  font-size: clamp(14px, 3.6vw, 16px); line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 420px; margin: 0 auto 26px;
+}
+.price-includes strong { color: var(--gold-deep); font-weight: 500; }
+.price-card .cta-btn { margin: 0 auto; }
+.price-fine {
+  margin-top: 16px;
+  font-family: var(--sans); font-size: 9.5px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-mute);
 }
 
-/* ── Video lightbox (for the teaser, once it's on YouTube) ── */
+/* ══════════════════════════════
+   WHO IT'S FOR
+══════════════════════════════ */
+.audience { background: var(--paper-alt); text-align: center; }
+.audience .section-title { margin-bottom: 28px; }
+.audience-list {
+  list-style: none;
+  max-width: 520px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 14px;
+  text-align: left;
+}
+.audience-list li {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  font-family: var(--body);
+  font-size: clamp(15px, 4vw, 18px);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.audience-list .include-check { width: 18px; height: 18px; }
+
+/* Full-bleed text-on-image "Is this you?" */
+.audience-overlay {
+  position: relative; overflow: hidden; text-align: center;
+  background-color: #17140D; background-size: cover; background-position: center 26%;
+  background-repeat: no-repeat;
+  padding: clamp(96px, 18vw, 156px) 26px;
+}
+.audience-overlay::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 76% 70% at 50% 50%, rgba(13,13,11,0.62), rgba(13,13,11,0.5)),
+    linear-gradient(to bottom, rgba(13,13,11,0.7), rgba(13,13,11,0.55) 40%, rgba(13,13,11,0.78));
+}
+.audience-overlay .section-eyebrow { text-shadow: 0 1px 10px rgba(13,13,11,0.7); }
+.audience-overlay .section-title { text-shadow: 0 2px 20px rgba(13,13,11,0.6); }
+.audience-overlay .section-inner { position: relative; z-index: 2; max-width: 640px; }
+.audience-overlay .audience-list li { color: rgba(247,245,242,0.92); }
+.audience-overlay .audience-list .include-check { color: var(--gold); }
+
+/* ══════════════════════════════
+   VIDEO LIGHTBOX + play affordance
+══════════════════════════════ */
+.has-video { cursor: pointer; }
+.play-badge {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 66px; height: 66px; border-radius: 50%;
+  background: rgba(247,245,242,0.9);
+  border: 1px solid var(--gold-line);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+.has-video:hover .play-badge { transform: translate(-50%, -50%) scale(1.06); background: var(--paper); }
+.play-badge::after {
+  content: ''; margin-left: 4px;
+  border-style: solid;
+  border-width: 11px 0 11px 18px;
+  border-color: transparent transparent transparent var(--gold-deep);
+}
+.play-cap {
+  position: absolute; left: 0; right: 0; bottom: 16px; z-index: 3;
+  text-align: center;
+  font-family: var(--sans); font-size: 9px; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--ivory);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
 .lightbox {
   position: fixed; inset: 0; z-index: 10000;
   background: rgba(13,13,11,0.92);
-  display: none; align-items: center; justify-content: center; padding: 24px;
+  display: none; align-items: center; justify-content: center;
+  padding: 24px;
 }
 .lightbox.open { display: flex; }
-.lightbox-frame { position: relative; width: 100%; max-width: 880px; aspect-ratio: 16 / 9; background: #000; }
-.lightbox-frame.portrait { aspect-ratio: 9 / 16; max-width: min(92vw, calc(86svh * 9 / 16)); }
+.lightbox-frame {
+  position: relative; width: 100%; max-width: 900px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+/* Vertical videos (YouTube Shorts) get a portrait frame sized to the viewport. */
+.lightbox-frame.portrait {
+  aspect-ratio: 9 / 16;
+  max-width: min(92vw, calc(86svh * 9 / 16));
+}
 .lightbox-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .lightbox-close {
-  position: absolute; top: -42px; right: 0; background: none; border: none; cursor: pointer;
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ivory);
+  position: absolute; top: -42px; right: 0;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ivory);
 }
 </style>
 </head>
 <body>
 
-<main class="page">
-  <!-- TEASER-IMG: swap /photos/hero-portrait.webp for a teaser-specific still if you have one -->
-  <div class="teaser-photo fade" role="img" aria-label="Chapter One"></div>
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 1 — HERO
+════════════════════════════════════════════════════════════ -->
+<header class="hero">
+  <!-- Single well-framed portrait; copy sits on its own panel so it is always legible. -->
+  <div class="hero-photo" role="img" aria-label="A Chapter One portrait — Rochester women's portrait experience"
+       style="background-image:url('/photos/chapter-one-portrait-sequin.webp');background-position:center top;"></div>
 
-  <div class="teaser-inner">
-    <p class="eyebrow fade" style="margin-top:22px;">Two Wild Souls Photography</p>
-    <div class="roman fade d1">I</div>
-    <h1 class="teaser-title fade d1">Chapter One</h1>
-    <span class="teaser-tag fade d2">Coming Soon</span>
-    <p class="teaser-sub fade d2">A portrait experience for your next beginning.</p>
+  <div class="hero-inner reveal in">
+    <p class="logo-mark">Two Wild Souls Photography</p>
+    <div class="roman hero-roman">I</div>
+    <h1 class="hero-title">Chapter One</h1>
+    <p class="hero-sub">A portrait experience for the woman on the other side of everything.</p>
+    <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
+    <p class="cta-note">Applications reviewed personally · Limited spots</p>
+    <a class="scroll-cue" href="#recognition" aria-label="Scroll to read more">
+      <span>Keep scrolling</span>
+      <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
+    </a>
+  </div>
+</header>
 
-    <div class="divider fade d2"><div class="gem"></div></div>
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 2 — THE RECOGNITION
+════════════════════════════════════════════════════════════ -->
+<section class="section recognition" id="recognition">
+  <div class="media-row reverse">
+    <figure class="media-figure reveal">
+      <img src="/photos/chapter-one-portrait-executive.webp" alt="Rochester women's portrait experience — a confident studio portrait" loading="lazy" decoding="async" width="1200" height="1680">
+    </figure>
+    <div class="media-copy" style="text-align:center;">
+      <p class="recognition-line reveal">Maybe a marriage ended. Maybe a new love began.</p>
+      <p class="recognition-line reveal d1">Maybe you started the business you always talked about.</p>
+      <p class="recognition-line reveal d2">Maybe you became a mom, or moved somewhere new and started over.</p>
+      <p class="recognition-line reveal d3">Maybe you came through a health battle, and you are still standing.</p>
+      <div class="divider reveal d3"><div class="gem"></div></div>
+      <p class="recognition-close reveal d4">Whatever your season, it is worth celebrating.<br>And this is for you.</p>
+    </div>
+  </div>
+</section>
 
-    <p class="teaser-body fade d3">
-      A film, an invitation, and a limited number of spots. Join the list to watch the teaser first and apply before doors open.
-    </p>
+<!-- ══════════════════════════════════════════════════════════
+     MARQUEE MOMENT — the big thin-serif title drop with the gold door line-art
+════════════════════════════════════════════════════════════ -->
+<section class="marquee" aria-label="Chapter One">
+  <p class="marquee-intro reveal">We photograph women in a new season of life, and turn it into <strong>art worth hanging on your wall.</strong></p>
+  <div class="marquee-lockup reveal d1">
+    <span class="marquee-word">Chapter One</span>
+    <svg class="marquee-door" viewBox="0 0 90 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M31 7 L83 15 L83 135 L31 143 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M31 7 L31 143" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M31 7 L8 3 L8 147 L31 143" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <p class="marquee-script reveal d2">your next chapter, framed</p>
+</section>
 
-    <!-- Optional: reveal by adding data-video-id="YOUTUBE_ID" -->
-    <button class="watch-btn fade d3" type="button"
-            aria-label="Watch the teaser"
-            data-video-id="" data-video-orientation="portrait">
-      <span class="tri" aria-hidden="true"></span>Watch the teaser
-    </button>
+<!-- ══════════════════════════════════════════════════════════
+     CINEMATIC FILM BAND — the signature "rotating media" beat
+     TO ADD MOTION: drop a muted, short, looping clip at videos/chapter-one.mp4
+     (and optionally .webm) and a poster still at photos/film-poster.webp.
+     Until the video exists the poster shows on its own — nothing breaks.
+════════════════════════════════════════════════════════════ -->
+<section class="filmband" style="background-image:url('/photos/chapter-one-portrait-velvet.webp');background-position:center 20%;" aria-label="Chapter One portrait">
+  <div class="filmband__inner reveal">
+    <p class="filmband__eyebrow">Chapter One</p>
+    <p class="filmband__line">This is the season you stop waiting,<br><em>and start becoming.</em></p>
+  </div>
+</section>
 
-    <!-- ══ EMAIL CAPTURE (Sprout Studio) ══ -->
-    <section class="signup fade d4" aria-label="Join the email list">
-      <h2>Be the first to know</h2>
-      <p class="signup-note">Early access, the teaser film, and your spot before anyone else.</p>
-      <div class="signup-embed" id="signup-embed">
-        <!-- Sprout Studio email-campaign embed. Renders the form on the live site. -->
-        <script id='sprout-studio-email-campaign-script-11331' type="text/javascript" src='https://sproutstudio.com/sprout_email_campaign_embed.php?email_campaign_list_id=17245&embedable_id=11331' defer></script>
-        <noscript>
-          <p class="signup-fallback">Please enable JavaScript to join the list, or email
-          <a href="mailto:hello@twowildsoulsphotography.com">hello@twowildsoulsphotography.com</a>.</p>
-        </noscript>
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 3 — THE ETHOS
+════════════════════════════════════════════════════════════ -->
+<section class="section ethos">
+  <div class="section-inner">
+    <div class="ethos-grid">
+      <div class="ethos-copy">
+        <p class="eyebrow section-eyebrow reveal">The Experience</p>
+        <h2 class="section-title reveal d1">Not a photoshoot.<br>The last page of one book, <em>and the first of the next.</em></h2>
+        <div class="body-copy reveal d2">
+          <p>Chapter One is an intimate, application-only portrait experience for people stepping into a new season. It begins with your story, not a package. Every session is built around where you have been and who you are becoming.</p>
+          <p>This is not a quick shoot and a gallery of proofs. It is a considered process. A real conversation, professional hair and makeup, a session styled around you, and finished art made to live on your wall.</p>
+        </div>
+        <p class="ethos-pull reveal d3">This isn't for everyone. It's for the ones ready to see themselves differently.</p>
       </div>
-      <p class="microcopy">No spam · Just the first look &amp; early access</p>
-    </section>
 
-    <footer class="teaser-footer fade d4">
+      <div class="ethos-img reveal d2" role="img"
+           aria-label="A Chapter One portrait experience in Rochester — editorial gown portrait"
+           style="order:-1;background-image:url('/photos/chapter-one-portrait-gold-gown.webp');background-position:center 12%;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SHOWREEL — the client rotating clip, in motion
+════════════════════════════════════════════════════════════ -->
+<section class="section showreel">
+  <div class="section-inner">
+    <p class="eyebrow section-eyebrow reveal">In Motion</p>
+    <h2 class="section-title showreel-title reveal d1">A season, in motion.</h2>
+    <div class="showreel-frame reveal d1" style="margin-top:clamp(30px,6vw,44px);">
+      <video autoplay muted loop playsinline preload="none" poster="/photos/chapter-one-showreel-poster.webp" aria-label="Rotating Chapter One portraits">
+        <source src="/videos/chapter-one-showreel.webm" type="video/webm">
+        <source src="/videos/chapter-one-showreel.mp4"  type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 4 — HOW IT WORKS
+════════════════════════════════════════════════════════════ -->
+<section class="section process">
+  <div class="section-inner" style="max-width:1120px;">
+    <p class="eyebrow section-eyebrow reveal" style="text-align:center;display:block;">The Process</p>
+    <h2 class="section-title reveal d1"><span class="frame-motif">How it works</span></h2>
+    <p class="process-intro reveal d1">Four steps, from application to Reveal Night.</p>
+
+    <div class="steps-row">
+      <div class="step-card reveal">
+        <span class="step-num">01</span>
+        <h3 class="step-title">Apply</h3>
+        <p class="step-desc">A short, personal application. Every one is read by Jasmine herself.</p>
+      </div>
+      <div class="step-card reveal d1">
+        <span class="step-num">02</span>
+        <h3 class="step-title">The Call</h3>
+        <p class="step-desc">If selected, a real phone conversation to talk through your story and season of life.</p>
+      </div>
+      <div class="step-card reveal d2">
+        <span class="step-num">03</span>
+        <h3 class="step-title">The Session</h3>
+        <p class="step-desc">An intimate portrait experience in our Downtown Rochester studio, with professional hair and makeup, styled around you.</p>
+      </div>
+      <div class="step-card reveal d3">
+        <span class="step-num">04</span>
+        <h3 class="step-title">Reveal Night</h3>
+        <p class="step-desc">Your finished 16&Prime;×24&Prime; wall art, unveiled at an evening with the full Chapter One community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 5 — REVEAL NIGHT (the payoff)
+════════════════════════════════════════════════════════════ -->
+<section class="gala">
+  <!-- CLICKABLE VIDEO: the .gala-hero opens the film in the lightbox via its
+       data-video-id (a YouTube ID). Swap the ID to change the video. -->
+  <div class="gala-hero has-video" role="button" tabindex="0"
+       aria-label="Play the Chapter One film"
+       data-video-id="4xmrcap65bI" data-video-orientation="portrait">
+    <div class="play-badge" aria-hidden="true"></div>
+    <span class="play-cap">Watch the film</span>
+    <div class="gala-content reveal">
+      <p class="eyebrow section-eyebrow">Reveal Night</p>
+      <h2 class="section-title" style="color:var(--ivory);">A night made for the people who showed up for themselves.</h2>
+    </div>
+  </div>
+
+  <div class="gala-body">
+    <div class="body-copy reveal">
+      <p>Your framed 16&Prime;×24&Prime; portrait, unveiled on the wall alongside the full Chapter One gallery. Every story in the room, hung like the art it is.</p>
+      <p>An evening together with the other people who said yes to themselves. A standing gallery night to move through the room, celebrate, and see your season honored.</p>
+    </div>
+
+    <!-- Reveal Night gallery scene -->
+    <figure class="gallery-figure reveal d1">
+      <img src="/photos/chapter-one-gallery-wall.webp" alt="Guests viewing framed Chapter One portraits at a Reveal Night gallery exhibition" loading="lazy" decoding="async" width="1600" height="1067">
+    </figure>
+    <p class="collage-cap reveal d1">Your season, finished as art and hung like it matters.</p>
+
+    <a class="cta-btn secondary reveal d1" href="apply-now/#apply"><span>See If You Qualify →</span></a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 6 — WHAT'S INCLUDED
+════════════════════════════════════════════════════════════ -->
+<section class="section included">
+  <div class="section-inner" style="max-width:1060px;">
+   <div class="included-grid reverse">
+    <figure class="included-figure reveal">
+      <img src="/photos/chapter-one-portrait-working-mom.webp" alt="Chapter One portrait experience in Rochester — a business owner and mom celebrating her season" loading="lazy" decoding="async" width="1200" height="1683">
+    </figure>
+    <div class="included-copy">
+    <p class="eyebrow section-eyebrow reveal">The Experience</p>
+    <h2 class="section-title reveal d1">What's included</h2>
+    <p class="included-sub reveal d1">You show up as you are, and leave with a finished, framed piece of art made to live on your wall.</p>
+
+    <ul class="include-list">
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>A custom framed 16&Prime;×24&Prime; wall portrait</strong>, ready to hang, unveiled at Reveal Night and yours to keep.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>A personal consultation</strong> to plan a session built around your story and this season of life.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Professional hair and makeup</strong> with every experience, so you look and feel your absolute best.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>A fully guided portrait session</strong> in our Downtown Rochester studio, styled around you.</span>
+      </li>
+      <li class="reveal">
+        <svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>An invitation to Reveal Night</strong>, an evening with the full Chapter One community.</span>
+      </li>
+    </ul>
+
+    <p class="include-note reveal">Want to bring the people who matter most? Family can be included in your session, just let us know.</p>
+    </div>
+   </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 7 — PRICING / VALUE
+════════════════════════════════════════════════════════════ -->
+<section class="section pricing">
+  <div class="section-inner">
+    <div class="price-card reveal">
+      <span class="eyebrow price-eyebrow">The Investment · By Application Only</span>
+      <p class="price-value">Total value <s>over $2,550</s></p>
+      <p class="price-prefix">Starting at</p>
+      <p class="price-amount"><span class="cur">$</span>789</p>
+      <p class="price-label">Your complete Chapter One experience</p>
+      <p class="price-includes">Includes professional hair &amp; makeup, a fully guided studio session, Reveal Night, and <strong>your framed 16&Prime;×24&Prime; wall portrait</strong> to hang at home.</p>
+      <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
+      <p class="price-fine">A limited number of sessions each season · Every application read personally by Jasmine</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FULL-BLEED BAND 2 — a lighter, gray-toned beat for color variation
+════════════════════════════════════════════════════════════ -->
+<section class="filmband filmband--light" style="background-image:url('/photos/chapter-one-portrait-twirl.webp');background-position:center 20%;" aria-label="Chapter One portrait">
+  <div class="filmband__inner reveal">
+    <p class="filmband__eyebrow">The Feeling</p>
+    <p class="filmband__line">Lighter than you have felt<br><em>in a long, long time.</em></p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     REAL CHAPTERS — real client portraits, faces to the stories
+════════════════════════════════════════════════════════════ -->
+<section class="section stories">
+  <div class="section-inner" style="max-width:none;">
+    <p class="eyebrow section-eyebrow reveal" style="display:block;">Real Women, Real Chapters</p>
+    <h2 class="section-title reveal d1">Women who said yes to themselves.</h2>
+    <p class="stories-sub reveal d1">Every portrait begins with a real story and a real turning point.</p>
+    <div class="stories-grid">
+      <figure class="story reveal">
+        <img src="/photos/chapter-one-portrait-jessica-light.webp" alt="Rochester women's portrait experience — a radiant studio portrait celebrating a new chapter" loading="lazy" decoding="async" width="1200" height="1680">
+        <figcaption>
+          <span class="story-label">Her Chapter</span>
+          <span class="story-line">On the other side of the hardest year, and standing taller than ever.</span>
+        </figcaption>
+      </figure>
+      <figure class="story reveal d1">
+        <img src="/photos/chapter-one-portrait-mom.webp" alt="Rochester women's portrait experience — a mom and business owner celebrating a new season" loading="lazy" decoding="async" width="1200" height="1680">
+        <figcaption>
+          <span class="story-label">Her Chapter</span>
+          <span class="story-line">A new business and a new baby, carried at the very same time.</span>
+        </figcaption>
+      </figure>
+      <figure class="story reveal d2">
+        <img src="/photos/chapter-one-portrait-new-chapter.webp" alt="Rochester women's portrait experience — a warm portrait marking a fresh start" loading="lazy" decoding="async" width="1200" height="1680">
+        <figcaption>
+          <span class="story-label">Her Chapter</span>
+          <span class="story-line">A new city, a fresh start, and a story worth telling in her own words.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 8 — WHO IT'S FOR
+════════════════════════════════════════════════════════════ -->
+<section class="audience-overlay" style="background-image:url('/photos/chapter-one-portrait-magenta.webp');" aria-label="Who it's for">
+  <div class="section-inner">
+    <p class="eyebrow section-eyebrow reveal" style="display:block;color:var(--gold);">Who It's For</p>
+    <h2 class="section-title reveal d1" style="color:var(--ivory);">Is this you?</h2>
+    <ul class="audience-list">
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You're stepping into a new season and you feel it shifting.</span></li>
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You've been last on your own list for too long.</span></li>
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You want to see yourself the way the people who love you already do.</span></li>
+      <li class="reveal"><svg class="include-check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You're ready to mark this moment and celebrate how far you've come.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     STATEMENT BREAK — oversized serif punctuation before the reviews
+════════════════════════════════════════════════════════════ -->
+<section class="statement" aria-label="You deserve this too">
+  <p class="statement-line reveal">You deserve to feel <em>this</em> too.</p>
+  <p class="statement-sub reveal d1">Hear it from the women who already have.</p>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 9 — REVIEWS (real client survey quotes, approved for use)
+════════════════════════════════════════════════════════════ -->
+<section class="section testimonials">
+  <div class="section-inner" style="max-width:1120px;">
+    <span class="eyebrow reveal" style="display:block;text-align:center;">Five-Star Reviews</span>
+    <h2 class="section-title reveal d1" style="text-align:center;margin-top:10px;">The women say it best.</h2>
+    <div class="tcards">
+      <div class="tcard reveal">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Incomparable. Head and shoulders above the competition. Extraordinary, artistic, and completely stress free.</blockquote>
+        <span class="tcard-name">— Roy</span>
+      </div>
+      <div class="tcard reveal d1">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Attentive to every detail and comprehensive from start to finish. They truly go above and beyond. Invigorating, memorable, and professional.</blockquote>
+        <span class="tcard-name">— Yana</span>
+      </div>
+      <div class="tcard reveal d2">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>The personal connection and the time they spent with us made all the difference. Accommodating, energetic, and lovable.</blockquote>
+        <span class="tcard-name">— Dawn</span>
+      </div>
+      <div class="tcard reveal">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Comfortable, amazing, and unforgettable. Friendly, creative, and detail oriented from the very first conversation.</blockquote>
+        <span class="tcard-name">— Lira</span>
+      </div>
+      <div class="tcard reveal d1">
+        <div class="tcard-stars" aria-hidden="true">★★★★★</div>
+        <blockquote>Friendly, all inclusive, and stress free. Professional, flexible, and comfortable the whole way through.</blockquote>
+        <span class="tcard-name">— Nick</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 9.5 — ABOUT JASMINE (the woman behind the camera)
+════════════════════════════════════════════════════════════ -->
+<section class="section about" aria-label="Meet Jasmine">
+  <div class="section-inner">
+    <div class="about-grid">
+      <figure class="about-portrait reveal">
+        <img src="/photos/chapter-one-jasmine.webp" alt="Jasmine Robertson, founder of Two Wild Souls Photography"
+             width="360" height="450" loading="lazy"
+             onerror="this.closest('.about').classList.add('about--nophoto')">
+      </figure>
+      <div class="about-body">
+        <div class="roman mark-sm reveal" aria-hidden="true">I</div>
+        <span class="eyebrow reveal" style="display:block;">The Woman Behind the Camera</span>
+        <h2 class="about-name reveal d1">Hi, I'm Jasmine.</h2>
+        <span class="about-name-full reveal d1">Jasmine Robertson · Founder, Two Wild Souls</span>
+        <div class="about-copy reveal d2">
+          <p>I'm a mom and a business owner, so I know how fast life moves &mdash; and how the milestones that matter deserve to be captured beautifully. I created <strong>Two Wild Souls</strong> to give women an elevated portrait experience that actually feels like one.</p>
+          <p>After nearly a decade in automotive sales, I followed my passion back to photography. Now I create stress-free days from my studio in Rochester, handling <strong>every single detail</strong> &mdash; so you can simply show up, be present, and let me take care of the rest.</p>
+        </div>
+        <p class="about-sign reveal d2">&mdash; Jasmine</p>
+        <hr class="about-rule reveal d2" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 10 — FINAL CTA
+════════════════════════════════════════════════════════════ -->
+<section class="final" style="background-image:url('/photos/chapter-one-portrait-red-tulle.webp');">
+  <div class="final-inner reveal">
+    <div class="roman mark-sm">I</div>
+    <h2 class="final-title">Your <em>Chapter One</em> starts with one application.</h2>
+    <p class="final-micro">Spaces are limited. Applications are reviewed personally by Jasmine.</p>
+    <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
+
+    <footer class="site-footer">
       <a class="footer-phone" href="tel:+12482746361">(248) 274-6361</a>
       <p class="footer-brand">Two Wild Souls Photography</p>
       <p class="footer-legal">© 2026 Two Wild Souls Photography · Chapter One</p>
     </footer>
   </div>
-</main>
+</section>
 
-<!-- Video lightbox -->
+<!-- Video lightbox (used by any element with class "has-video" + data-video-id) -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <div class="lightbox-frame">
     <button class="lightbox-close" id="lightbox-close" aria-label="Close video">Close ✕</button>
@@ -423,29 +1572,71 @@ body #signup-embed a[class*="btn"] {
 </div>
 
 <script>
-  // Teaser video button: only shows if a YouTube ID has been set on it.
+  // ── SCROLL-TRIGGERED REVEALS ──
+  // Echoes the quiz's fadeUp keyframes, but fires on scroll-into-view via
+  // IntersectionObserver (this page scrolls, unlike the quiz's screen-swap flow).
   (function () {
-    var btn  = document.querySelector('.watch-btn');
-    var box  = document.getElementById('lightbox');
-    var slot = document.getElementById('lightbox-slot');
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+    els.forEach(function (el) {
+      // Hero content is already visible on load — don't wait for scroll.
+      if (!el.classList.contains('in')) io.observe(el);
+    });
+  })();
+
+  // ── VIDEO LIGHTBOX ──
+  // Any element with class "has-video" and a non-empty data-video-id (a YouTube
+  // video ID) opens that video in a lightbox. Add IDs once the videos are on
+  // YouTube. Elements with an empty data-video-id stay inert (no error).
+  (function () {
+    var box   = document.getElementById('lightbox');
+    var slot  = document.getElementById('lightbox-slot');
     var frame = box ? box.querySelector('.lightbox-frame') : null;
-    if (!btn || !box || !slot || !frame) return;
+    if (!box || !slot || !frame) return;
 
-    var id = (btn.getAttribute('data-video-id') || '').trim();
-    if (!id) return; // no teaser video yet — leave the button hidden
-    btn.classList.add('is-on');
-
-    var portrait = (btn.getAttribute('data-video-orientation') || '').trim() === 'portrait';
-    function open() {
-      frame.classList.toggle('portrait', portrait);
+    function open(id, portrait) {
+      frame.classList.toggle('portrait', !!portrait);
       slot.innerHTML = '<iframe src="https://www.youtube.com/embed/' + encodeURIComponent(id) +
-        '?autoplay=1&rel=0&playsinline=1" title="Chapter One teaser" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
-      box.classList.add('open'); box.setAttribute('aria-hidden', 'false');
+        '?autoplay=1&rel=0&playsinline=1" title="Chapter One video" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+      box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
     }
     function close() {
-      box.classList.remove('open'); box.setAttribute('aria-hidden', 'true'); slot.innerHTML = '';
+      box.classList.remove('open');
+      box.setAttribute('aria-hidden', 'true');
+      slot.innerHTML = ''; // stop playback
     }
-    btn.addEventListener('click', open);
+
+    document.querySelectorAll('.has-video').forEach(function (el) {
+      var id = (el.getAttribute('data-video-id') || '').trim();
+      // No video wired yet: hide the play affordance and make it inert.
+      if (!id) {
+        el.classList.remove('has-video');
+        el.removeAttribute('role');
+        el.removeAttribute('tabindex');
+        el.querySelectorAll('.play-badge, .play-cap').forEach(function (n) { n.style.display = 'none'; });
+        return;
+      }
+      var portrait = (el.getAttribute('data-video-orientation') || '').trim() === 'portrait';
+      function trigger() { open(id, portrait); }
+      el.addEventListener('click', trigger);
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+      });
+    });
+
     document.getElementById('lightbox-close').addEventListener('click', close);
     box.addEventListener('click', function (e) { if (e.target === box) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
