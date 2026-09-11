@@ -1277,7 +1277,8 @@ img { max-width: 100%; display: block; }
     <p class="eyebrow section-eyebrow reveal">In Motion</p>
     <h2 class="section-title showreel-title reveal d1">A season, in motion.</h2>
     <div class="showreel-frame reveal d1" style="margin-top:clamp(30px,6vw,44px);">
-      <video autoplay muted loop playsinline preload="none" poster="/photos/chapter-one-showreel-poster.webp" aria-label="Rotating Chapter One portraits">
+      <video id="showreel-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+             poster="/photos/chapter-one-showreel-poster.webp" aria-label="Rotating Chapter One portraits">
         <source src="/videos/chapter-one-showreel.webm" type="video/webm">
         <source src="/videos/chapter-one-showreel.mp4"  type="video/mp4">
       </video>
@@ -1593,6 +1594,40 @@ img { max-width: 100%; display: block; }
     els.forEach(function (el) {
       // Hero content is already visible on load — don't wait for scroll.
       if (!el.classList.contains('in')) io.observe(el);
+    });
+  })();
+
+  // ── SHOWREEL AUTOPLAY ──
+  // Mobile browsers (and Chrome's autoplay policy) only reliably autoplay a
+  // muted, inline video when muted is set as a property and play() is invoked
+  // from script. We also defer play() until the clip scrolls into view so it
+  // starts instantly at that point instead of stalling on first paint.
+  (function () {
+    var v = document.getElementById('showreel-video');
+    if (!v) return;
+    v.muted = true;              // property form — attribute alone isn't enough for some engines
+    v.setAttribute('muted', ''); // keep them in sync
+
+    function attempt() {
+      var p = v.play();
+      if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+    }
+
+    if ('IntersectionObserver' in window) {
+      var vo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { attempt(); }
+        });
+      }, { threshold: 0.25 });
+      vo.observe(v);
+    } else {
+      attempt();
+    }
+    // Also retry once the media is ready and if the tab regains focus.
+    v.addEventListener('canplay', attempt, { once: true });
+    v.addEventListener('loadeddata', attempt, { once: true });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) attempt();
     });
   })();
 
