@@ -186,6 +186,39 @@ img { max-width: 100%; display: block; }
   margin-top: 12px;
 }
 
+/* Centered inline CTA moment dropped between sections */
+.section-cta { text-align: center; margin-top: clamp(30px, 6vw, 44px); }
+.section-cta .cta-btn { margin: 0 auto; }
+.section-cta .cta-note { margin-top: 14px; }
+
+/* Quiet text-link CTA — for softer decision points (gold, letter-spaced) */
+.cta-text {
+  display: inline-block;
+  font-family: var(--sans); font-weight: 600;
+  font-size: 10.5px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold-deep); text-decoration: none;
+  padding-bottom: 6px; border-bottom: 1px solid var(--gold-line);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.cta-text:hover { color: var(--ink); border-bottom-color: var(--gold-deep); }
+.cta-text--light { color: var(--gold); border-bottom-color: rgba(199,178,122,0.5); }
+.cta-text--light:hover { color: var(--ivory); border-bottom-color: var(--gold); }
+
+/* Sticky mobile "Apply" bar — appears once the hero scrolls away */
+.sticky-cta {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: rgba(13,13,11,0.92);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-top: 1px solid var(--gold-line);
+  transform: translateY(120%);
+  transition: transform 0.35s ease;
+}
+.sticky-cta.show { transform: translateY(0); }
+.sticky-cta .cta-btn { margin: 0 auto; max-width: 520px; padding: 15px 24px; }
+@media (min-width: 860px) { .sticky-cta { display: none; } }
+@media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
+
 /* ── SCROLL-REVEAL (echoes the quiz fadeUp, triggered by IntersectionObserver) ── */
 .reveal {
   opacity: 0;
@@ -428,18 +461,22 @@ img { max-width: 100%; display: block; }
   width: 46px; height: 1px; background: var(--gold-line);
   border: 0; margin: clamp(22px, 5vw, 30px) auto 0;
 }
+.about-cta { margin-top: clamp(22px, 4vw, 28px); }
+.about-cta .cta-btn { margin: 0 auto; max-width: 320px; }
 /* Two-column once a portrait is present and the viewport is wide */
 @media (min-width: 860px) {
   .about-grid { grid-template-columns: 0.82fr 1fr; text-align: left; }
   .about-grid .about-body { max-width: none; }
   .about-body .about-copy, .about-body .about-rule { margin-left: 0; }
   .about-body .about-copy { margin-right: 0; }
+  .about-body .about-cta .cta-btn { margin-left: 0; }
 }
 /* Graceful fallback: if the headshot is missing, collapse to a centered note */
 .about--nophoto .about-portrait { display: none; }
 .about--nophoto .about-grid { grid-template-columns: 1fr; text-align: center; }
 .about--nophoto .about-body .about-copy,
 .about--nophoto .about-body .about-rule { margin-left: auto; margin-right: auto; }
+.about--nophoto .about-body .about-cta .cta-btn { margin-left: auto; margin-right: auto; }
 
 /* Pricing over a dark photo band */
 .pricing.pricing--photo {
@@ -1212,8 +1249,11 @@ img { max-width: 100%; display: block; }
       <p class="recognition-line reveal d2">Maybe you became a mom, or moved somewhere new and started over.</p>
       <p class="recognition-line reveal d3">Maybe you came through a health battle, and you are still standing.</p>
       <div class="divider reveal d3"><div class="gem"></div></div>
-      <p class="recognition-close reveal d4">Whatever your season, it is worth celebrating.<br>And this is for you.</p>
+      <p class="recognition-close reveal d4">Whatever season you're standing in, it deserves to be celebrated.<br>And so do you.</p>
     </div>
+  </div>
+  <div class="section-cta reveal">
+    <a class="cta-text" href="apply-now/#apply">Start Your Chapter →</a>
   </div>
 </section>
 
@@ -1231,6 +1271,9 @@ img { max-width: 100%; display: block; }
     </svg>
   </div>
   <p class="marquee-script reveal d2">your next chapter, framed</p>
+  <div class="section-cta reveal d2" style="margin-top:clamp(24px,4vw,32px);">
+    <a class="cta-text" href="apply-now/#apply">Apply for Your Spot →</a>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -1256,10 +1299,10 @@ img { max-width: 100%; display: block; }
         <p class="eyebrow section-eyebrow reveal">The Experience</p>
         <h2 class="section-title reveal d1">Not a photoshoot.<br>The last page of one book, <em>and the first of the next.</em></h2>
         <div class="body-copy reveal d2">
-          <p>Chapter One is an intimate, application-only portrait experience for people stepping into a new season. It begins with your story, not a package. Every session is built around where you have been and who you are becoming.</p>
-          <p>This is not a quick shoot and a gallery of proofs. It is a considered process. A real conversation, professional hair and makeup, a session styled around you, and finished art made to live on your wall.</p>
+          <p>Chapter One is an intimate, application-only portrait experience for women stepping into a new season. It begins with your story, never a package &mdash; every moment built around where you have been and the woman you are becoming.</p>
+          <p>No rushing. No gallery of proofs to sift through. Just a day made entirely for you: a real conversation, professional hair and makeup, a session styled to you, and finished art worthy of your wall &mdash; so you finally see the very best version of yourself.</p>
         </div>
-        <p class="ethos-pull reveal d3">This isn't for everyone. It's for the ones ready to see themselves differently.</p>
+        <p class="ethos-pull reveal d3">This isn't for everyone. It's for the women ready to see themselves the way the people who love them already do.</p>
       </div>
 
       <div class="ethos-img reveal d2" role="img"
@@ -1365,7 +1408,7 @@ img { max-width: 100%; display: block; }
     <div class="included-copy">
     <p class="eyebrow section-eyebrow reveal">The Experience</p>
     <h2 class="section-title reveal d1">What's included</h2>
-    <p class="included-sub reveal d1">You show up as you are, and leave with a finished, framed piece of art made to live on your wall.</p>
+    <p class="included-sub reveal d1">You show up as you are. We take care of every last detail, celebrate every angle, and send you home with a finished work of art made to live on your wall for years to come.</p>
 
     <ul class="include-list">
       <li class="reveal">
@@ -1391,6 +1434,9 @@ img { max-width: 100%; display: block; }
     </ul>
 
     <p class="include-note reveal">Want to bring the people who matter most? Family can be included in your session, just let us know.</p>
+    <div class="section-cta reveal" style="text-align:left;">
+      <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
+    </div>
     </div>
    </div>
   </div>
@@ -1409,7 +1455,7 @@ img { max-width: 100%; display: block; }
       <p class="price-label">Your complete Chapter One experience</p>
       <p class="price-includes">Includes professional hair &amp; makeup, a fully guided studio session, Reveal Night, and <strong>your framed 16&Prime;×24&Prime; wall portrait</strong> to hang at home.</p>
       <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
-      <p class="price-fine">A limited number of sessions each season · Every application read personally by Jasmine</p>
+      <p class="price-fine">Only a handful of women welcomed each season · Every application read personally by Jasmine</p>
     </div>
   </div>
 </section>
@@ -1541,6 +1587,9 @@ img { max-width: 100%; display: block; }
         </div>
         <p class="about-sign reveal d2">&mdash; Jasmine</p>
         <hr class="about-rule reveal d2" aria-hidden="true">
+        <div class="about-cta reveal d2">
+          <a class="cta-btn secondary" href="apply-now/#apply"><span>Let's Tell Your Story →</span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -1553,7 +1602,7 @@ img { max-width: 100%; display: block; }
   <div class="final-inner reveal">
     <div class="roman mark-sm">I</div>
     <h2 class="final-title">Your <em>Chapter One</em> starts with one application.</h2>
-    <p class="final-micro">Spaces are limited. Applications are reviewed personally by Jasmine.</p>
+    <p class="final-micro">Only a handful of spaces open each season, and this one has your name on it. Every application is read personally by Jasmine.</p>
     <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
 
     <footer class="site-footer">
@@ -1563,6 +1612,11 @@ img { max-width: 100%; display: block; }
     </footer>
   </div>
 </section>
+
+<!-- Sticky mobile CTA — appears after the hero scrolls away (mobile only) -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <a class="cta-btn" href="apply-now/#apply"><span>Apply for Your Spot →</span></a>
+</div>
 
 <!-- Video lightbox (used by any element with class "has-video" + data-video-id) -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -1629,6 +1683,30 @@ img { max-width: 100%; display: block; }
     document.addEventListener('visibilitychange', function () {
       if (!document.hidden) attempt();
     });
+  })();
+
+  // ── STICKY MOBILE CTA ──
+  // Reveal the fixed "Apply" bar once the hero has scrolled out of view, and
+  // hide it again over the final CTA (which already has its own button).
+  (function () {
+    var bar = document.getElementById('sticky-cta');
+    var hero = document.querySelector('.hero');
+    var finalCta = document.querySelector('.final');
+    if (!bar || !hero || !('IntersectionObserver' in window)) return;
+    var pastHero = false, atFinal = false;
+    function sync() {
+      var show = pastHero && !atFinal;
+      bar.classList.toggle('show', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+    }
+    new IntersectionObserver(function (e) {
+      pastHero = !e[0].isIntersecting; sync();
+    }, { threshold: 0 }).observe(hero);
+    if (finalCta) {
+      new IntersectionObserver(function (e) {
+        atFinal = e[0].isIntersecting; sync();
+      }, { threshold: 0 }).observe(finalCta);
+    }
   })();
 
   // ── VIDEO LIGHTBOX ──
